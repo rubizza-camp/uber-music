@@ -1,4 +1,4 @@
-# :reek:FeatureEnvy and :reek:UncommunicativeVariableName
+# :reek:all
 class CreateMusicianSkills < ActiveRecord::Migration[5.2]
   def change
     create_table :musician_skills do |t|
