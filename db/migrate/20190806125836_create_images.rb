@@ -1,4 +1,4 @@
-#:reek:all
+# :reek:FeatureEnvy and :reek:UncommunicativeVariableName
 class CreateImages < ActiveRecord::Migration[5.2]
   def change
     create_table :images do |t|
