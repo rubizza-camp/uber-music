@@ -5,6 +5,8 @@ class CreateImages < ActiveRecord::Migration[5.2]
       t.string :imageble_id
       t.string :imageble_type
       t.string :url
+      t.belongs_to :imageable, polymorphic: true
+
       t.timestamps
     end
   end
