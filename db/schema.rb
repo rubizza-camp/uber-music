@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_114340) do
+ActiveRecord::Schema.define(version: 2019_08_07_131852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "places", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -26,14 +33,20 @@ ActiveRecord::Schema.define(version: 2019_08_07_114340) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_genres", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string "nickname"
-    t.string "first_name"
-    t.string "second_name"
-    t.string "type"
-    t.string "email"
-    t.string "password"
-    t.integer "status", default: 0
+    t.string "nickname", null: false
+    t.string "first_name", null: false
+    t.string "second_name", null: false
+    t.string "type", null: false
+    t.string "email", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
