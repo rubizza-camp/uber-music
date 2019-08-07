@@ -1,4 +1,4 @@
 class MusicianSkill < ApplicationRecord
-  has_many :musicianskilsusers
-  has_many :user, through: :musicianskillsusers
+  has_many :musician_skills_users
+  has_many :user, through: musician_skills_users
 end
