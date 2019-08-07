@@ -16,16 +16,26 @@ ActiveRecord::Schema.define(version: 2019_08_06_123322) do
   enable_extension "plpgsql"
 
   create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "nickname"
+    t.string "first_name"
+    t.string "second_name"
+    t.string "type"
+    t.string "email"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

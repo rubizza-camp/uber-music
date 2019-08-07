@@ -1,6 +1,3 @@
-# :reek:FeatureEnvy and :reek:UncommunicativeVariableName
-# :reek:TooManyStatement
-
 class CreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
