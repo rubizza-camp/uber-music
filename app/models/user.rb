@@ -21,4 +21,6 @@ class User < ApplicationRecord
            through: :approved_musician_skill_users,
            class_name: 'MusicianSkill',
            source: :musician_skills
+  has_many :user_organizations
+  has_many :organizations, through: :user_organizations
 end
