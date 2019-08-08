@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_171446) do
   create_table "organization_events", force: :cascade do |t|
     t.bigint "organization_id"
     t.bigint "event_id"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_organization_events_on_event_id"
@@ -66,7 +67,6 @@ ActiveRecord::Schema.define(version: 2019_08_08_171446) do
   create_table "organizations", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description", default: "", null: false
-    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
