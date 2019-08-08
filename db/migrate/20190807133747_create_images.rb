@@ -2,9 +2,10 @@
 class CreateImages < ActiveRecord::Migration[5.2]
   def change
     create_table :images do |t|
-      t.integer :imageble_id, null: false
-      t.string :imageble_type, null: false
+      t.integer :imageable_id, null: false
+      t.string :imageable_type, null: false
       t.string :url, null: false
+      t.references :imageable, polymorphic: true
       t.timestamps
     end
   end
