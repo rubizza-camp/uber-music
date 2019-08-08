@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2019_08_07_162428) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "images", force: :cascade do |t|
+    t.integer "imageble_id", null: false
+    t.string "imageble_type", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.float "latitude", null: false
