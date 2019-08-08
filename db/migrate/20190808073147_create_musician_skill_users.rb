@@ -5,6 +5,7 @@ class CreateMusicianSkillUsers < ActiveRecord::Migration[5.2]
     create_table :musician_skill_users do |t|
       t.belongs_to :user, index: true
       t.belongs_to :musician_skills
+      t.timestamps
     end
   end
 end
