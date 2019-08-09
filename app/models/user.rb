@@ -10,21 +10,21 @@ class User < ApplicationRecord
   has_many :pending_musician_skills,
            through: :pending_musician_skill_users,
            class_name: 'MusicianSkill',
-           source: :musician_skills
+           source: :musician_skill
   has_many :disabled_musician_skill_users,
            -> { where status: MusicianSkillUser.statuses[:disabled] },
            class_name: 'MusicianSkillUser'
   has_many :disabled_musician_skills,
            through: :disabled_musician_skill_users,
            class_name: 'MusicianSkill',
-           source: :musician_skills
+           source: :musician_skill
   has_many :approved_musician_skill_users,
            -> { where status: MusicianSkillUser.statuses[:approved] },
            class_name: 'MusicianSkillUser'
   has_many :approved_musician_skills,
            through: :approved_musician_skill_users,
            class_name: 'MusicianSkill',
-           source: :musician_skills
+           source: :musician_skill
   has_many :user_organizations
   has_many :organizations, through: :user_organizations
 end
