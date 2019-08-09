@@ -40,7 +40,8 @@ module Api
     end
 
     def place_params
-      params.require(:place).permit(:name, :latitude, :longitude, :address, :description, :rules)
+      params.require(:place).permit(:name, :latitude, :longitude,
+                                    :address, :description, :rules)
     end
   end
 end
