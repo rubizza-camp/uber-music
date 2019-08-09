@@ -19,7 +19,7 @@ class MusicanScillsControllerController < ApplicationController
   end
 
   def update
-	@musican_skill = Place.find(params[:id])
+	@musican_skill = MusicianSkill.find(params[:id])
     if @musican_skill.update(skill_params)
       render json: @musican_skill, status: :ok
     else
@@ -28,7 +28,7 @@ class MusicanScillsControllerController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:id])
+    @place = MusicianSkill.find(params[:id])
     @place.delete
     head :no_content
   end
