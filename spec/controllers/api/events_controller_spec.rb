@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Api::EventsController do
   describe "GET #index" do
     it "returns http success" do
