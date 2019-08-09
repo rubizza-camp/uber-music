@@ -39,13 +39,16 @@ ActiveRecord::Schema.define(version: 2019_08_09_111639) do
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "musician_skill_users", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "musician_skills_id"
-    t.integer "status", default: 0
-    t.index ["musician_skills_id"], name: "index_musician_skill_users_on_musician_skills_id"
+    t.bigint "musician_skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.index ["musician_skill_id"], name: "index_musician_skill_users_on_musician_skill_id"
     t.index ["user_id"], name: "index_musician_skill_users_on_user_id"
   end
 
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_111639) do
   create_table "organization_events", force: :cascade do |t|
     t.bigint "organization_id"
     t.bigint "event_id"
-    t.integer "status", default: 0
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_organization_events_on_event_id"
