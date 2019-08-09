@@ -54,6 +54,23 @@ ActiveRecord::Schema.define(version: 2019_08_08_171446) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "organization_events", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "event_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_organization_events_on_event_id"
+    t.index ["organization_id"], name: "index_organization_events_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.text "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.float "latitude", null: false
@@ -70,6 +87,15 @@ ActiveRecord::Schema.define(version: 2019_08_08_171446) do
     t.bigint "genre_id"
     t.index ["genre_id"], name: "index_user_genres_on_genre_id"
     t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
+  create_table "user_organizations", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_user_organizations_on_organization_id"
+    t.index ["user_id"], name: "index_user_organizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,8 +1,8 @@
-class Event < ApplicationRecord
-  belongs_to :place
-  has_many :images, as: :imageable
+class Organization < ApplicationRecord
+  has_many :user_organizations
+  has_many :users, through: :user_organizations
   has_many :organization_events
-  has_many :organizations, through: :organization_events
+  has_many :events, through: :organization_events
   has_many :pending_organization_events,
            -> { where status: OrganizationEvent.statuses[:pending] },
            class_name: 'OrganizationEvent'
