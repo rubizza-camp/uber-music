@@ -11,6 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_08_09_111639) do
+<<<<<<< HEAD
+=======
+
+  # These are extensions that must be enabled in order to support this database
+>>>>>>> Work correct and fixed functions
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
@@ -46,7 +51,6 @@ ActiveRecord::Schema.define(version: 2019_08_09_111639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
-
     t.index ["musician_skill_id"], name: "index_musician_skill_users_on_musician_skill_id"
     t.index ["user_id"], name: "index_musician_skill_users_on_user_id"
   end
