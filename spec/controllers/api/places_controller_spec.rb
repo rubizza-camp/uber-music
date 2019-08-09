@@ -1,8 +1,13 @@
+require 'rails_helper'
+
 RSpec.describe Api::PlacesController do
 
   describe "GET #index" do
+
+    let!(:place) { create(:place) }
+    let(:json_response) { JSON.parse(response.body) }
+
     before do
-      create(:place)
       get :index
     end
 
@@ -11,7 +16,6 @@ RSpec.describe Api::PlacesController do
     end
 
     it "JSON body response contains expected recipe attributes" do
-      json_response = JSON.parse(response.body)
       expect(json_response.first.keys).to match_array(%w(id name latitude longitude
                                                          address description rules events images))
     end
