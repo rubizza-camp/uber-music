@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :events
     resources :places
     resources :users
+    resources :organizations
   end
 end
