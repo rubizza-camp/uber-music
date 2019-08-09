@@ -42,6 +42,5 @@ module Api
     def skill_params
       params.require(:musician_skill).permit(:name)
     end
-
   end
 end
