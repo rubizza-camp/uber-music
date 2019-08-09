@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_111639) do
+
+ActiveRecord::Schema.define(version: 2019_08_08_171446) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
