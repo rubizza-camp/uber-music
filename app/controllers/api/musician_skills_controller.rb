@@ -1,12 +1,13 @@
 module Api
   class MusicianSkillsController < ApplicationController
+    before_action :set_musican_skill, only: %i[show update destroy]
+
     def index
-      @musican_skill = MusicianSkill.all
+      @musican_skill = MusicianSkill.all.order('created_at DESC')
       render json: @musican_skill
     end
 
     def show
-      @musican_skill = MusicianSkill.find(params[:id])
       render json: @musican_skill
     end
 
@@ -20,7 +21,6 @@ module Api
     end
 
     def update
-      @musican_skill = MusicianSkill.find(params[:id])
       if @musican_skill.update(skill_params)
         render json: @musican_skill, status: :ok
       else
@@ -29,15 +29,19 @@ module Api
     end
 
     def destroy
-      @musican_skill = MusicianSkill.find(params[:id])
       @musican_skill.delete
       head :no_content
     end
 
     private
 
-    def skill_params
-      params.require(:musician_skill).permit(:id, :name)
+    def set_musican_skill
+      @musican_skill = User.find(params[:id])
     end
+
+    def skill_params
+      params.require(:musician_skill).permit(:name)
+    end
+
   end
 end
