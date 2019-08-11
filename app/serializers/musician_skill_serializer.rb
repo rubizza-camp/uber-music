@@ -1,5 +1,5 @@
 class MusicianSkillSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :name
   has_many :musician_skill_users
   has_many :users, through: :musician_skill_users
   has_many :pending_musician_skills,
