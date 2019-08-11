@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :places
     resources :users
     resources :organizations
-    resources :musician_skill
+    resources :musician_skills
   end
 end
