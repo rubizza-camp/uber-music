@@ -1,28 +1,39 @@
-User.create(nickname: 'MomLover', first_name: 'Peta', second_name: 'Fufel', type: 'User', email: 'agaaa@mail.ru', password: '12345')
-User.create(nickname: '__xxx_Killer_xxx__', first_name: 'Kola', second_name: 'Ivanv', type: 'User', email: 'reeo@mail.ru', password: 'qwerty123456')
+User.create(nickname: 'Petya_Super', first_name: 'Petya', second_name: 'Ivanov', type: 'User', email: 'petya2006@mail.ru', password: '123123')
 
-Organization.create(name: 'United Russia', description: 'True lover of motherland')
+Genre.create(name: 'Metall', description: 'Some rock style')
 
-MusicianSkill.create(name: 'Vocals')
+User.all.first.genres << Genre.all.first
 
-Genre.create(name: 'neo-psychedelia', description: 'Neo-psychedelia is a diverse genre of psychedelic music that originated in the 1970s as an outgrowth of the British post-punk scene, also called acid punk.')
+Organization.create(name: 'Moon wolfs', description: 'Hard rock organization')
 
-Place.create(name: 'Hell', latitude: '666', longitude: '666', address: 'Kazintsa street 60, Minsk', description: 'Muaxaxaaxxa', rules: 'no socks with sandals')
+User.all.first.organizations << Organization.all.first
 
-Event.create(place_id: "#{Place.all.first.id}", name: 'New Year', description: 'Happy ', start_time: '2000-12-31', end_time: '2000-12-31')
+Place.create(name: 'Kamenka', latitude: '1488', longitude: '228', address: 'Pushkina street', description: 'Happy place', rules: 'No latinas')
 
-Image.create(imageable_id: '228', imageable_type: 'User', url: 'okeey')
+Place.create(name: 'Urucha', latitude: '8800', longitude: '555', address: 'Tolstova street', description: 'Not happy place', rules: 'No latinas and afro')
 
-User.all.first.image
+Place.create(name: 'Nemiga', latitude: '3535', longitude: '328', address: 'Mishkina street', description: 'Horable place', rules: 'No afro')
 
-User.all.first.genres
-User.all.first.genres.create(name: 'neo-psychedelia')
+Event.create(place_id: "#{Place.all.first.id}", name: 'New Year', description: 'Happy Event', start_time: 'Sun, 03 Mar 2019 14:17:01 +0000', end_time: 'Sun, 03 Mar 2019 14:17:01 +0000')
 
-User.all.first.musician_skills
-User.all.first.musician_skills.create(name: 'Vocals')
+Event.create(place_id: "#{Place.all.second.id}", name: 'Hallowin', description: 'Event with goast', start_time: 'Sun, 20 Mar 2019 14:17:01 +0000', end_time: 'Sun, 30 Mar 2019 14:17:01 +0000')
 
-User.all.first.organizations.create(name: 'United Russia')
+Event.create(place_id: "#{Place.all.last.id}", name: 'Birthday', description: 'Event with cake', start_time: 'Sun, 10 Mar 2019 14:17:01 +0000', end_time: 'Sun, 11 Mar 2019 14:17:01 +0000')
 
-Organization.all.first.events
+Organization.all.first.pending_events << Event.all.first
 
-Organization.all.last.users
+Organization.all.first.disabled_events << Event.all.second
+
+Organization.all.first.approved_events << Event.all.last
+
+MusicianSkill.create(name: 'Bass')
+
+MusicianSkill.create(name: 'Dram')
+
+MusicianSkill.create(name: 'Fleute')
+
+User.all.first.pending_musician_skills << MusicianSkill.all.first
+
+User.all.first.disabled_musician_skills << MusicianSkill.all.second
+
+User.all.first.approved_musician_skills << MusicianSkill.all.last
