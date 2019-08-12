@@ -18,5 +18,5 @@ class MusicianSkill < ApplicationRecord
            class_name: 'MusicianSkillUser'
   has_many :approved_users,
            through: :approved_musician_skill_users,
-           source: :musician_skill
+           source: :user
 end

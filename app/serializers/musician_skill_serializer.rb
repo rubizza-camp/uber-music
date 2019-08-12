@@ -4,14 +4,11 @@ class MusicianSkillSerializer < ActiveModel::Serializer
   has_many :users, through: :musician_skill_users
   has_many :pending_users,
            through: :pending_musician_skill_users,
-           class_name: 'MusicianSkill',
-           source: :musician_skill
+           source: :user
   has_many :disabled_users,
            through: :disabled_musician_skill_users,
-           class_name: 'MusicianSkill',
-           source: :musician_skill
+           source: :user
   has_many :approved_users,
            through: :approved_musician_skill_users,
-           class_name: 'MusicianSkill',
-           source: :musician_skill
+           source: :user
 end
