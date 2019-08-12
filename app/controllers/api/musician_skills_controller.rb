@@ -43,7 +43,7 @@ module Api
     end
 
     def skill_params
-      params.require(:musician_skill).permit(:name)
+      params.require(:musician_skill).permit(:name, :id)
     end
   end
 end
