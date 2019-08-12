@@ -1,24 +1,76 @@
-user =User.create(nickname: 'Petya_Super', first_name: 'Petya', second_name: 'Ivanov', type: 'User', email: 'petya2006@mail.ru', password: '123123')
+user =User.create(
+	nickname: Faker::TvShows::FamilyGuy.character,
+	first_name: Faker::Name.first_name, 
+	second_name: Faker::Name.last_name, 
+	type: 'User', 
+	email: Faker::Internet.free_email, 
+	password: Faker::Name.last_name
+	)
 
-Genre.create(name: 'Metall', description: 'Some rock style')
+Genre.create(
+	name: Faker::Music.genre, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item
+	)
 
 user.genres << Genre.first
 
-organization = Organization.create(name: 'Moon wolfs', description: 'Hard rock organization')
+organization = Organization.create(
+	name: Faker::Music.band,
+	description: Faker::JapaneseMedia::SwordArtOnline.item
+	)
 
 user.organizations << Organization.all.first
 
-kamenka = Place.create(name: 'Kamenka', latitude: '1488', longitude: '228', address: 'Pushkina street', description: 'Happy place', rules: 'No latinas')
+kamenka = Place.create(
+	name: Faker::TvShows::FamilyGuy.location, 
+	latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	address: Faker::Address.street_address, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	rules: Faker::Books::Lovecraft.fhtagn
+	)
 
-urucha = Place.create(name: 'Urucha', latitude: '8800', longitude: '555', address: 'Tolstova street', description: 'Not happy place', rules: 'No latinas and afro')
+urucha = Place.create(
+	name: Faker::TvShows::FamilyGuy.location, 
+	latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	address: Faker::Address.street_address, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	rules: Faker::Books::Lovecraft.fhtagn
+	)
 
-nemiga = Place.create(name: 'Nemiga', latitude: '3535', longitude: '328', address: 'Mishkina street', description: 'Horable place', rules: 'No afro')
+nemiga = Place.create(
+	name: Faker::TvShows::FamilyGuy.location, 
+	latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
+	address: Faker::Address.street_address, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	rules: Faker::Books::Lovecraft.fhtagn
+	)
 
-new_year = Event.create(place_id: "#{kamenka.id}", name: 'New Year', description: 'Happy Event', start_time: 'Sun, 03 Mar 2019 14:17:01 +0000', end_time: 'Sun, 03 Mar 2019 14:17:01 +0000')
+new_year = Event.create(
+	place_id: "#{kamenka.id}", 
+	name: Faker::FunnyName.name, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+	end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+	)
 
-hallowin = Event.create(place_id: "#{urucha.id}", name: 'Hallowin', description: 'Event with goast', start_time: 'Sun, 20 Mar 2019 14:17:01 +0000', end_time: 'Sun, 30 Mar 2019 14:17:01 +0000')
+hallowin = Event.create(
+	place_id: "#{urucha.id}", 
+	name: Faker::FunnyName.name, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+	end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+	)
 
-birthday = Event.create(place_id: "#{nemiga.id}", name: 'Birthday', description: 'Event with cake', start_time: 'Sun, 10 Mar 2019 14:17:01 +0000', end_time: 'Sun, 11 Mar 2019 14:17:01 +0000')
+birthday = Event.create(
+	place_id: "#{nemiga.id}", 
+	name: Faker::FunnyName.name, 
+	description: Faker::JapaneseMedia::SwordArtOnline.item, 
+	start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+	end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+	)
 
 organization.pending_events << new_year
 
@@ -26,14 +78,14 @@ organization.disabled_events << hallowin
 
 organization.approved_events << birthday
 
-bass_skill = MusicianSkill.create(name: 'Bass')
+first_random_skill = MusicianSkill.create(name: Faker::Music.instrument)
 
-drum_skill = MusicianSkill.create(name: 'Drum')
+second_random_skill = MusicianSkill.create(name: Faker::Music.instrument)
 
-fleute_skill = MusicianSkill.create(name: 'Fleute')
+thrid_random_skill = MusicianSkill.create(name: Faker::Music.instrument)
 
-user.pending_musician_skills << bass_skill
+user.pending_musician_skills << first_random_skill
 
-user.disabled_musician_skills << drum_skill
+user.disabled_musician_skills << second_random_skill
 
-user.approved_musician_skills << fleute_skill
+user.approved_musician_skills << thrid_random_skill

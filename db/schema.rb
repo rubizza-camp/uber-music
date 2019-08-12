@@ -11,11 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_08_09_111639) do
-<<<<<<< HEAD
-=======
-
-  # These are extensions that must be enabled in order to support this database
->>>>>>> Work correct and fixed functions
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
