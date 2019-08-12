@@ -1,3 +1,4 @@
+# rubocop:disable all
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -67,5 +68,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-#For creating seeds for database
+# For creating seeds for database
 gem 'faker', '~> 2.1.2'
+# rubocop:enable all
