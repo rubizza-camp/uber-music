@@ -19,4 +19,6 @@ class MusicianSkill < ApplicationRecord
   has_many :approved_users,
            through: :approved_musician_skill_users,
            source: :user
+  accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :musician_skill_users
 end
