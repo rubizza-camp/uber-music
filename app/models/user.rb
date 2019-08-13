@@ -31,4 +31,8 @@ class User < ApplicationRecord
            source: :musician_skill
   has_many :user_organizations
   has_many :organizations, through: :user_organizations
+
+  def role?(role_name)
+    type == role_name
+  end
 end

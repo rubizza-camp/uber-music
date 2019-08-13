@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  authorize_resource
   before_action :set_event, only: %i[show update destroy]
 
   def index
