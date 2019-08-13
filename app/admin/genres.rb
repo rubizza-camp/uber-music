@@ -1,3 +1,4 @@
+# rubocop:disable all
 ActiveAdmin.register Genre do
   config.per_page = 25
 

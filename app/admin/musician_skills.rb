@@ -1,3 +1,4 @@
+# rubocop:disable all
 ActiveAdmin.register MusicianSkill do
   config.per_page = 25
 

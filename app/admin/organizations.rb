@@ -1,3 +1,4 @@
+# rubocop:disable all
 ActiveAdmin.register Organization do
   config.per_page = 10
   remove_filter :user_organizations, :organization_events, :pending_organization_events,
