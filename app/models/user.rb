@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-
-  def display_name
-    @display_name = first_name + "<#{nickname}>" + second_name
+  def full_name
+    @full_name = first_name + ' ' + second_name
   end
 
   devise :database_authenticatable, :registerable,

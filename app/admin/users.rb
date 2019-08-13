@@ -2,7 +2,7 @@
 ActiveAdmin.register User do
   config.per_page = 10
 
-  permit_params :first_name, :second_name, :nickname, :email, :display_name, :password,
+  permit_params :first_name, :second_name, :nickname, :email, :full_name, :password,
                 musician_skill_user_ids: [],
                 musician_skills: [],
                 organization_ids: [],
@@ -19,7 +19,7 @@ ActiveAdmin.register User do
     column :first_name
     column :second_name
     column :nickname
-    column :display_name
+    column :full_name
     column :email
     column :type
     column :musician_skills
@@ -33,7 +33,7 @@ ActiveAdmin.register User do
       row :first_name
       row :second_name
       row :nickname
-      row :display_name
+      row :full_name
       row :email
       row :type
       row :pending_musician_skills
@@ -49,7 +49,7 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :second_name
       f.input :nickname
-      f.input :display_name
+      f.input :full_name
       f.input :email
       f.input :type
       f.input :organizations, as: :check_boxes
