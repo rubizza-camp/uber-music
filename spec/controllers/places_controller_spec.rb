@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe Api::PlacesController do
+RSpec.describe PlacesController do
 
   describe "GET #index" do
 
