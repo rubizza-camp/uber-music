@@ -1,3 +1,4 @@
+# rubocop:disable all
 ActiveAdmin.register Event do
   config.per_page = 10
 
