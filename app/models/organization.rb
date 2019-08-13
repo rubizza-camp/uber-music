@@ -24,4 +24,7 @@ class Organization < ApplicationRecord
            through: :approved_organization_events,
            class_name: 'Event',
            source: :event
+  accepts_nested_attributes_for :events
+  accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :organization_events
 end
