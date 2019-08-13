@@ -13,11 +13,11 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+# Webpack and React
+gem 'react-rails'
 gem 'webpacker'
 gem 'active_model_serializers'
 gem 'thor', '~> 0.19.1'
-gem 'foreman', '~> 0.85.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 

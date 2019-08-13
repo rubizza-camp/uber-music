@@ -1,4 +1,4 @@
-RSpec.describe Api::EventsController do
+RSpec.describe EventsController do
   describe "GET #index" do
     it "returns http success" do
       get :index

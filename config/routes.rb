@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  namespace :api do
-    resources :genres
-    resources :events
-    resources :places
-    resources :users
-    resources :organizations
-    resources :musician_skills
-  end
+  resources :genres
+  resources :events
+  resources :places
+  resources :users
+  resources :organizations
+  resources :musician_skills
 end
