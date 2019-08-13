@@ -19,7 +19,7 @@ export default function ImageCarousel(props) {
       width:  props.width,
       height: props.height
     },
-    coverImg:{
+    coverImg: {
       backgroundSize: 'cover',
     }
   }));
@@ -31,4 +31,5 @@ export default function ImageCarousel(props) {
         <MyImage width={props.width} height={props.height} key={i} src={image}></MyImage>
       )}
     </Carousel>
-);}
+  );
+}

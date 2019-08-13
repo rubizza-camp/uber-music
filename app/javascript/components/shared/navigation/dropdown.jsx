@@ -14,159 +14,161 @@ import Button from "./navigation_button";
 import customDropdownStyle from "../style/customDropdownStyle";
 
 class CustomDropdown extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: false
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
+  
+  handleClick = () => {
+    this.setState(state => ({open: !state.open}));
+  };
+  handleClose = param => {
+    this.setState({open: false});
+    if (this.props && this.props.onClick) {
+      this.props.onClick(param);
     }
-    handleClick = () => {
-        this.setState(state => ({ open: !state.open }));
-    };
-    handleClose = param => {
-        this.setState({ open: false });
-        if (this.props && this.props.onClick) {
-            this.props.onClick(param);
-        }
-    };
-    handleCloseAway = event => {
-        if (this.anchorEl.contains(event.target)) {
-            return;
-        }
-        this.setState({ open: false });
-    };
-    render() {
-        const { open } = this.state;
-        const {
-            classes,
-            buttonText,
-            buttonIcon,
-            dropdownList,
-            buttonProps,
-            dropup,
-            dropdownHeader,
-            caret,
-            hoverColor,
-            left,
-            rtlActive,
-            noLiPadding
-        } = this.props;
-        const caretClasses = classNames({
-            [classes.caret]: true,
-            [classes.caretActive]: open,
-            [classes.caretRTL]: rtlActive
-        });
-        const dropdownItem = classNames({
-            [classes.dropdownItem]: true,
-            [classes[hoverColor + "Hover"]]: true,
-            [classes.noLiPadding]: noLiPadding,
-            [classes.dropdownItemRTL]: rtlActive
-        });
-        let icon = null;
-        switch (typeof buttonIcon) {
-            case "object":
-                icon = <this.props.buttonIcon className={classes.buttonIcon} />;
-                break;
-            case "string":
-                icon = (
-                    <Icon className={classes.buttonIcon}>{this.props.buttonIcon}</Icon>
-                );
-                break;
-            default:
-                icon = null;
-                break;
-        }
-        return (
-            <div>
-                <div>
-                    <Button
-                        aria-label="Notifications"
-                        aria-owns={open ? "menu-list" : null}
-                        aria-haspopup="true"
-                        {...buttonProps}
-                        buttonRef={node => {
-                            this.anchorEl = node;
-                        }}
-                        onClick={this.handleClick}
-                    >
-                        {icon}
-                        {buttonText !== undefined ? buttonText : null}
-                        {caret ? <b className={caretClasses} /> : null}
-                    </Button>
-                </div>
-                <Popper
-                    open={open}
-                    anchorEl={this.anchorEl}
-                    transition
-                    disablePortal
-                    placement={
-                        dropup
-                            ? left
-                            ? "top-start"
-                            : "top"
-                            : left
-                            ? "bottom-start"
-                            : "bottom"
-                    }
-                    className={classNames({
-                        [classes.popperClose]: !open,
-                        [classes.popperResponsive]: true
-                    })}
-                >
-                    {() => (
-                        <Grow
-                            in={open}
-                            id="menu-list"
-                            style={
-                                dropup
-                                    ? { transformOrigin: "0 100% 0" }
-                                    : { transformOrigin: "0 0 0" }
-                            }
-                        >
-                            <Paper className={classes.dropdown}>
-                                <ClickAwayListener onClickAway={this.handleCloseAway}>
-                                    <MenuList role="menu" className={classes.menuList}>
-                                        {dropdownHeader !== undefined ? (
-                                            <MenuItem
-                                                onClick={() => this.handleClose(dropdownHeader)}
-                                                className={classes.dropdownHeader}
-                                            >
-                                                {dropdownHeader}
-                                            </MenuItem>
-                                        ) : null}
-                                        {dropdownList.map((prop, key) => {
-                                            if (prop.divider) {
-                                                return (
-                                                    <Divider
-                                                        key={key}
-                                                        onClick={() => this.handleClose("divider")}
-                                                        className={classes.dropdownDividerItem}
-                                                    />
-                                                );
-                                            }
-                                            return (
-                                                <MenuItem
-                                                    key={key}
-                                                    onClick={() => this.handleClose(prop)}
-                                                    className={dropdownItem}
-                                                >
-                                                    {prop}
-                                                </MenuItem>
-                                            );
-                                        })}
-                                    </MenuList>
-                                </ClickAwayListener>
-                            </Paper>
-                        </Grow>
-                    )}
-                </Popper>
-            </div>
+  };
+  handleCloseAway = event => {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+    this.setState({open: false});
+  };
+  
+  render() {
+    const {open} = this.state;
+    const {
+      classes,
+      buttonText,
+      buttonIcon,
+      dropdownList,
+      buttonProps,
+      dropup,
+      dropdownHeader,
+      caret,
+      hoverColor,
+      left,
+      rtlActive,
+      noLiPadding
+    } = this.props;
+    const caretClasses = classNames({
+      [classes.caret]: true,
+      [classes.caretActive]: open,
+      [classes.caretRTL]: rtlActive
+    });
+    const dropdownItem = classNames({
+      [classes.dropdownItem]: true,
+      [classes[hoverColor + "Hover"]]: true,
+      [classes.noLiPadding]: noLiPadding,
+      [classes.dropdownItemRTL]: rtlActive
+    });
+    let icon = null;
+    switch (typeof buttonIcon) {
+      case "object":
+        icon = <this.props.buttonIcon className={classes.buttonIcon}/>;
+        break;
+      case "string":
+        icon = (
+          <Icon className={classes.buttonIcon}>{this.props.buttonIcon}</Icon>
         );
+        break;
+      default:
+        icon = null;
+        break;
     }
+    return (
+      <div>
+        <div>
+          <Button
+            aria-label="Notifications"
+            aria-owns={open ? "menu-list" : null}
+            aria-haspopup="true"
+            {...buttonProps}
+            buttonRef={node => {
+              this.anchorEl = node;
+            }}
+            onClick={this.handleClick}
+          >
+            {icon}
+            {buttonText !== undefined ? buttonText : null}
+            {caret ? <b className={caretClasses}/> : null}
+          </Button>
+        </div>
+        <Popper
+          open={open}
+          anchorEl={this.anchorEl}
+          transition
+          disablePortal
+          placement={
+            dropup
+              ? left
+              ? "top-start"
+              : "top"
+              : left
+              ? "bottom-start"
+              : "bottom"
+          }
+          className={classNames({
+            [classes.popperClose]: !open,
+            [classes.popperResponsive]: true
+          })}
+        >
+          {() => (
+            <Grow
+              in={open}
+              id="menu-list"
+              style={
+                dropup
+                  ? {transformOrigin: "0 100% 0"}
+                  : {transformOrigin: "0 0 0"}
+              }
+            >
+              <Paper className={classes.dropdown}>
+                <ClickAwayListener onClickAway={this.handleCloseAway}>
+                  <MenuList role="menu" className={classes.menuList}>
+                    {dropdownHeader !== undefined ? (
+                      <MenuItem
+                        onClick={() => this.handleClose(dropdownHeader)}
+                        className={classes.dropdownHeader}
+                      >
+                        {dropdownHeader}
+                      </MenuItem>
+                    ) : null}
+                    {dropdownList.map((prop, key) => {
+                      if (prop.divider) {
+                        return (
+                          <Divider
+                            key={key}
+                            onClick={() => this.handleClose("divider")}
+                            className={classes.dropdownDividerItem}
+                          />
+                        );
+                      }
+                      return (
+                        <MenuItem
+                          key={key}
+                          onClick={() => this.handleClose(prop)}
+                          className={dropdownItem}
+                        >
+                          {prop}
+                        </MenuItem>
+                      );
+                    })}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
+    );
+  }
 }
 
 CustomDropdown.defaultProps = {
-    caret: true,
-    hoverColor: "primary"
+  caret: true,
+  hoverColor: "primary"
 };
 export default withStyles(customDropdownStyle)(CustomDropdown);

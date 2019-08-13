@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :validatable, :confirmable
   has_many :user_genres
   has_many :genres, through: :user_genres
   has_one  :image, as: :imageable

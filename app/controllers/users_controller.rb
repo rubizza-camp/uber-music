@@ -4,11 +4,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.order('created_at DESC')
-    render json: @users
   end
 
   def show
-    render json: @user
   end
 
   def create
@@ -21,11 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update!(user_params)
-      render json: @user, status: :updated
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    p '123456789'
   end
 
   def destroy
@@ -39,11 +33,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :nickname, :first_name, :second_name,
+    params.require(:user).permit(:nickname, :first_name, :second_name,
                                  :type, :email, :password)
   end
 
   def set_user
-    @user = User.find(user_params[:id])
+    @user = User.find(params[:id])
   end
 end

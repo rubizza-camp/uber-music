@@ -20,30 +20,38 @@ const useStyles = makeStyles({
 
 export default function EventsCard(props) {
   const classes = useStyles();
-
+  console.log(props.link);
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image}
+          image={props.image === "" ? "https://static.tgstat.ru/public/images/channels/_0/8a/8a75bb2c415b49459a0b01fecf8fe64d.jpg" : props.image}
+          title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
+            {props.nickname === "" &&
+            "No nickname"
+            }
+            {props.nickname}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.name === " " &&
+            "No name"
+            }
             {props.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.address}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.start_time} - {props.end_time}
+            <br/>
+            {props.email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <a href={props.link} data-method="get">
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );

@@ -107,15 +107,54 @@ class Navigation extends React.Component {
                         </List>
                     }
                 />
-            );
-        }
+              </ListItem>
+            </List>
+          }
+        />
+      );
+    } else {
+      return (
+        <Header
+          brand="Пешеходка"
+          color="dark"
+          fixed
+          changeColorOnScroll={{
+            height: 200,
+            color: "white"
+          }}
+          rightLinks={
+            <List className={classes.list}>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="#/users/sign_in"
+                  className={classes.navLink}
+                  onClick={e => e.preventDefault()}
+                  color="transparent"
+                >
+                  Sign in
+                </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="#/users/sign_up"
+                  className={classes.registerNavLink}
+                  onClick={e => e.preventDefault()}
+                  color="primary"
+                  round
+                >
+                  Sign up
+                </Button>
+              </ListItem>
+            </List>
+          }
+        />
+      );
     }
+  }
 }
 
 Navigation.propTypes = {
-    classes: PropTypes.object
+  classes: PropTypes.object
 };
 
-export default withStyles(navbarsStyle)(
-    Navigation
-);
+export default withStyles(navbarsStyle)(Navigation);
