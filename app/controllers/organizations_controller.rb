@@ -4,11 +4,10 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.all
-    render json: @organizations
   end
 
   def show
-    render json: @organization
+    @organization = Organization.find(params[:id])    
   end
 
   def create
@@ -39,10 +38,11 @@ class OrganizationsController < ApplicationController
   private
 
   def set_organization
+    binding.pry
     @organization = Organization.find(organization_params[:id])
   end
 
   def organization_params
-    params.require(:organization).permit(:id, :name, :description)
+    params.require(:id, :name, :description).permit(:id, :name, :description)
   end
 end
