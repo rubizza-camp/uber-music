@@ -1,0 +1,4 @@
+<%= javascript_pack_tag 'application' %>
+<%= react_component("organizations/organizationdetail", { organization: @organization,
+                                                        users: @organization.users,
+                                                        approved_events: @organization.approved_events }) %>
