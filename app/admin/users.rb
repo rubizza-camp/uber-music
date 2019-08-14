@@ -49,7 +49,6 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :second_name
       f.input :nickname
-      f.input :full_name
       f.input :email
       f.input :type
       f.input :organizations, as: :check_boxes
