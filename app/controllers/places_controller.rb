@@ -3,11 +3,9 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    render json: @places
   end
 
   def show
-    render json: @place
   end
 
   def create
@@ -38,11 +36,11 @@ class PlacesController < ApplicationController
   private
 
   def set_place
-    @place = Place.find(place_params[:id])
+    @place = Place.find(params[:id])
   end
 
   def place_params
-    params.require(:place).permit(:id, :name, :latitude, :longitude,
+    params.require(:place).permit(:name, :latitude, :longitude,
                                   :address, :description, :rules)
   end
 end
