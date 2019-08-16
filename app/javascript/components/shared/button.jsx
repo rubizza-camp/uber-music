@@ -19,5 +19,5 @@ export default function MediumButton(props) {
         {props.content}
       </Button>
     );
-  }
+}
 
