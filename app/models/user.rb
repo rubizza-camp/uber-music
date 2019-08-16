@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  def full_name
-    @full_name = first_name + ' ' + second_name
-  end
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :user_genres
@@ -33,12 +29,16 @@ class User < ApplicationRecord
            source: :musician_skill
   has_many :user_organizations
   has_many :organizations, through: :user_organizations
-
-  def role?(role_name)
-    type == role_name
-  end
   accepts_nested_attributes_for :musician_skills
   accepts_nested_attributes_for :musician_skill_users
   accepts_nested_attributes_for :user_genres
   accepts_nested_attributes_for :genres
+
+  def role?(role_name)
+    type == role_name
+  end
+
+  def full_name
+    @full_name = first_name + ' ' + second_name
+  end
 end
