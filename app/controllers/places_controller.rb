@@ -3,10 +3,17 @@ class PlacesController < ApplicationController
   before_action :set_place, only: %i[show update destroy]
 
   def index
-    @places = Place.all
+    @places = ActiveModel::SerializableResource.new(Place.all).serializable_hash
   end
 
   def show
+    @place = ActiveModel::SerializableResource.new(
+      @place, include:
+              [
+                'events.images.**',
+                'images.*'
+              ]
+    ).serializable_hash
   end
 
   def create

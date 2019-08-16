@@ -1,10 +1,10 @@
 10.times do
   User.create(
     nickname: Faker::TvShows::FamilyGuy.character,
-    first_name: Faker::Name.first_name, 
-    second_name: Faker::Name.last_name, 
-    type: 'User', 
-    email: Faker::Internet.email, 
+    first_name: Faker::Name.first_name,
+    second_name: Faker::Name.last_name,
+    type: 'User',
+    email: Faker::Internet.email,
     password: Faker::Internet.password,
     confirmed_at: DateTime.now
     )
@@ -12,7 +12,7 @@ end
 
 10.times do
   Genre.create(
-    name: Faker::Music.genre, 
+    name: Faker::Music.genre,
     description: Faker::ChuckNorris.fact
     )
 end
@@ -30,7 +30,7 @@ end
 end
 
 
-10.times do 
+10.times do
   Organization.create(
     name: Faker::Music.band,
     description: Faker::ChuckNorris.fact
@@ -53,13 +53,13 @@ end
 end
 
 
-5.times do  
+5.times do
   Place.create(
-    name: Faker::TvShows::FamilyGuy.location, 
-    latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
-    longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
-    address: Faker::Address.street_address, 
-    description: Faker::ChuckNorris.fact, 
+    name: Faker::TvShows::FamilyGuy.location,
+    latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5),
+    longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5),
+    address: Faker::Address.street_address,
+    description: Faker::ChuckNorris.fact,
     rules: Faker::Books::Lovecraft.fhtagn
     )
 end
@@ -67,30 +67,30 @@ end
 
 (0..4).each do |x|
   Event.create(
-    place_id: "#{Place.ids[x]}", 
-    name: Faker::FunnyName.name, 
-    description: Faker::ChuckNorris.fact, 
-    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+    place_id: "#{Place.ids[x]}",
+    name: Faker::FunnyName.name,
+    description: Faker::ChuckNorris.fact,
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
     )
 end
 
 (0..1).each do |x|
   Event.create(
-    place_id: "#{Place.ids[x]}", 
-    name: Faker::FunnyName.name, 
-    description: Faker::ChuckNorris.fact, 
-    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+    place_id: "#{Place.ids[x]}",
+    name: Faker::FunnyName.name,
+    description: Faker::ChuckNorris.fact,
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
   )
 end
 
 (1..3).each do |x|
   Event.create(
-    place_id: "#{Place.ids[x]}", 
-    name: Faker::FunnyName.name, 
-    description: Faker::ChuckNorris.fact, 
-    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+    place_id: "#{Place.ids[x]}",
+    name: Faker::FunnyName.name,
+    description: Faker::ChuckNorris.fact,
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default),
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
   )
 end

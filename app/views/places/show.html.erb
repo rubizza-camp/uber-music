@@ -1,1 +1,3 @@
-<%= react_component('PlacesShow', { data: @place.to_json }) %>
+<%= javascript_pack_tag 'application' %>
+
+<%= react_component('places/PlaceShow', { place: @place }) %>
