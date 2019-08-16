@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :user_genres
@@ -31,8 +29,16 @@ class User < ApplicationRecord
            source: :musician_skill
   has_many :user_organizations
   has_many :organizations, through: :user_organizations
+  accepts_nested_attributes_for :musician_skills
+  accepts_nested_attributes_for :musician_skill_users
+  accepts_nested_attributes_for :user_genres
+  accepts_nested_attributes_for :genres
 
   def role?(role_name)
     type == role_name
+  end
+
+  def full_name
+    @full_name = first_name + ' ' + second_name
   end
 end
