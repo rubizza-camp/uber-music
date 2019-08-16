@@ -17,6 +17,7 @@ class Navigation extends React.Component {
                 <Header
                     brand="Пешеходка"
                     color="transparent"
+                    fixed
                     changeColorOnScroll={{
                         height: 400,
                         color: "white"
@@ -73,6 +74,7 @@ class Navigation extends React.Component {
         } else {
             return (
                 <Header
+                    fixed
                     brand="Пешеходка"
                     color="transparent"
                     changeColorOnScroll={{
