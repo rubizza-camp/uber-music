@@ -20,7 +20,7 @@ class Navigation extends React.Component {
                     fixed
                     changeColorOnScroll={{
                         height: 400,
-                        color: "white"
+                        color: "dark"
                     }}
                     rightLinks={
                         <List className={classes.list}>
@@ -79,7 +79,7 @@ class Navigation extends React.Component {
                     color="transparent"
                     changeColorOnScroll={{
                         height: 400,
-                        color: "white"
+                        color: "dark"
                     }}
                     rightLinks={
                         <List className={classes.list}>

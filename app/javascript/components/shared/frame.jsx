@@ -6,6 +6,7 @@ import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "../../../assets/javascripts/components/shared/landingPage";
 import Navigation from "./navigation/navigation";
+import Parallax from "./parallax.jsx";
 
 
 class LandingPage extends React.Component {
@@ -14,6 +15,7 @@ class LandingPage extends React.Component {
         return (
             <div>
                 <Navigation login={this.props.login} image={this.props.image}/>
+                <Parallax filter small image={this.props.mainImage}/>
                 <div>
                     <div className={classNames(classes.main, classes.mainRaised)}>
                         <div className={classes.container}>
