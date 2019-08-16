@@ -1,4 +1,5 @@
 class GenresController < ApplicationController
+  authorize_resource
   before_action :set_genre, only: %i[show update destroy]
 
   def index
