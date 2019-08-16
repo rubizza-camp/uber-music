@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "./navigation_button";
 import Header from "./header";
 
-import navbarsStyle from "../../../assets/javascripts/components/shared/navbarsStyle";
+import navbarsStyle from "../../../../assets/javascripts/components/shared/navbarsStyle";
 
 class Navigation extends React.Component {
     render() {

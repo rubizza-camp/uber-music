@@ -11,7 +11,7 @@ import Icon from "@material-ui/core/Icon";
 import Popper from "@material-ui/core/Popper";
 import Button from "./navigation_button";
 
-import customDropdownStyle from "../../../assets/javascripts/components/shared/customDropdownStyle";
+import customDropdownStyle from "../../../../assets/javascripts/components/shared/customDropdownStyle";
 
 class CustomDropdown extends React.Component {
     constructor(props) {
