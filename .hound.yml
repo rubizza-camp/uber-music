@@ -6,3 +6,7 @@ rubocop:
 
 reek:
   enabled: false
+
+jshint:
+  enabled: true
+  config_file: .jshintrc
