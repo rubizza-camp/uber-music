@@ -7,7 +7,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params[:id])    
+    @organization = Organization.find(params[:id])
   end
 
   def create
@@ -38,11 +38,10 @@ class OrganizationsController < ApplicationController
   private
 
   def set_organization
-    binding.pry
-    @organization = Organization.find(organization_params[:id])
+    @organization = Organization.find(params[:id])
   end
 
   def organization_params
-    params.require(:id, :name, :description).permit(:id, :name, :description)
+    params.require(:organization).permit(:name, :description)
   end
 end
