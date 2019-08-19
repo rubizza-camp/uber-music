@@ -1,4 +1,9 @@
 <%= javascript_pack_tag 'application' %>
-<%= react_component("organizations/organizationdetail", { organization: @organization,
+<%= react_component("organizations/organization_detail", { organization_name: @organization.name,
+                                                        organization_description: @organization.description,
+                                                        organization_id: @organization.id,
+                                                        organization_users: @organization.users,
+                                                        approved_events: @organization.approved_events.last(3),
                                                         users: @organization.users,
-                                                        approved_events: @organization.approved_events }) %>
+                                                        slidesToShow: 3,
+                                                        slidesToScroll: 3 }) %>
