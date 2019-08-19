@@ -77,4 +77,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # For creating seeds for database
 gem 'faker', '~> 2.1.2'
+
+# For image
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'carrierwave', '~> 2.0'
+gem 'mongoid', '~> 7.0', '>= 7.0.4'
+gem 'mongoid_paranoia', github: 'simi/mongoid-paranoia', require 'mongoid/paranoia'
 # rubocop:enable all
