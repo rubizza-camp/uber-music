@@ -1,9 +1,5 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid';
-import MyImage from '../shared/image'
-import Title from '../shared/title'
-import UserCarousel from './users_carusel'
-import Description from '../shared/description'
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -73,7 +69,7 @@ class OrganizationDetail extends React.Component {
                   <Grid container direction="row" justify="flex-center" alignItems="center">
                     {this.state.approved_events.map((event,i)=> 
                       <Grid item xs={4}>
-                        <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time} end_time={event.end_time} link={'#'}></EventCard>
+                        <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time} end_time={event.end_time} src={'https://images.vexels.com/media/users/3/150668/raw/e2f12f7d920860489987a7b54dedd853-radiohead-logo.jpg'} link={'#'}></EventCard>
                       </Grid>
                     )}
                   </Grid>
