@@ -352,6 +352,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets-rails (~> 3.0, >= 3.0.4)
   thor (~> 0.19.1)
   turbolinks (~> 5)
   tzinfo-data
