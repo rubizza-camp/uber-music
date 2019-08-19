@@ -16,11 +16,11 @@ class Navigation extends React.Component {
             return (
                 <Header
                     brand="Пешеходка"
-                    color="transparent"
+                    color="dark"
                     fixed
                     changeColorOnScroll={{
-                        height: 400,
-                        color: "dark"
+                        height: 200,
+                        color: "white"
                     }}
                     rightLinks={
                         <List className={classes.list}>
@@ -76,10 +76,10 @@ class Navigation extends React.Component {
                 <Header
                     fixed
                     brand="Пешеходка"
-                    color="transparent"
+                    color="dark"
                     changeColorOnScroll={{
                         height: 400,
-                        color: "dark"
+                        color: "white"
                     }}
                     rightLinks={
                         <List className={classes.list}>
