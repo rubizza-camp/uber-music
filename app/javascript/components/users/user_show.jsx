@@ -25,7 +25,6 @@ class UserShowLandingPage extends React.Component {
   
   render() {
     const {classes} = this.props;
-    console.log(this.state.image);
     return (
       <div>
         <div className={classNames(classes.main, classes.mainRaised)}>
@@ -107,7 +106,7 @@ class UserShowLandingPage extends React.Component {
             
             <br/><br/>
             
-            <Grid container direction="row" justify="center" alignItems="flex-start">
+            <Grid container direction="row" justify="center" alignItems="stretch">
               <Grid container justify="center">
                 {this.state.organizations.length === 0 &&
                 <SmallText content={"No organization"}/>

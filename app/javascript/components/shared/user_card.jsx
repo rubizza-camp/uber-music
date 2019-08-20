@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 
 export default function EventsCard(props) {
   const classes = useStyles();
-  console.log(props.link);
   return (
     <Card className={classes.card}>
       <CardActionArea>

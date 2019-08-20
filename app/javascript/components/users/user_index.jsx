@@ -17,20 +17,19 @@ class UserIndexLandingPage extends React.Component {
   }
   
   render() {
-    console.log(this.state.users);
     const {classes} = this.props;
     return (
       <div>
         <div>
           <div className={classNames(classes.main, classes.mainRaised)}>
             <div className={classes.container}>
-              <Grid container direction="row" justify="center" alignItems="center">
-                  {this.state.users.reverse().map((user, i) =>
-                    <Grid item  xs={12} sm={12} md={4} lg={4} xl={3}>
-                      <UserCard key={i} name={user.first_name + " " + user.second_name}
-                      nickname={user.nickname} email={user.email} image={""} link={'/users/' + (i + 1)}/>
-                    </Grid>
-                  )}
+              <Grid container direction="row" justify="center" alignItems="stretch">
+                {this.state.users.reverse().map((user, i) =>
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
+                    <UserCard key={i} name={user.first_name + " " + user.second_name}
+                              nickname={user.nickname} email={user.email} image={""} link={'/users/' + (i + 1)}/>
+                  </Grid>
+                )}
               </Grid>
             </div>
           </div>
