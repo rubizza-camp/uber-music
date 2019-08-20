@@ -12,7 +12,7 @@ end
 10.times do
   Genre.create(
     name: Faker::Music.genre, 
-    description: Faker::JapaneseMedia::SwordArtOnline.item
+    description: Faker::ChuckNorris.fact
     )
 end
 
@@ -32,7 +32,7 @@ end
 10.times do 
   Organization.create(
     name: Faker::Music.band,
-    description: Faker::JapaneseMedia::SwordArtOnline.item
+    description: Faker::ChuckNorris.fact
     )
 end
 
@@ -58,7 +58,7 @@ end
     latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
     longitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
     address: Faker::Address.street_address, 
-    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    description: Faker::ChuckNorris.fact, 
     rules: Faker::Books::Lovecraft.fhtagn
     )
 end
@@ -68,7 +68,7 @@ end
   Event.create(
     place_id: "#{Place.ids[x]}", 
     name: Faker::FunnyName.name, 
-    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    description: Faker::ChuckNorris.fact, 
     start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
     )
@@ -78,7 +78,7 @@ end
   Event.create(
     place_id: "#{Place.ids[x]}", 
     name: Faker::FunnyName.name, 
-    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    description: Faker::ChuckNorris.fact, 
     start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
   )
@@ -88,7 +88,7 @@ end
   Event.create(
     place_id: "#{Place.ids[x]}", 
     name: Faker::FunnyName.name, 
-    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    description: Faker::ChuckNorris.fact, 
     start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
     end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
   )
@@ -131,4 +131,10 @@ end
   Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
   Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
   Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+end
+
+(0..4).each do |x|
+  Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/places/00#{x}.png"))
+  Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+  Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
 end
