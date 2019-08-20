@@ -81,6 +81,7 @@ gem 'faker', '~> 2.1.2'
 # For image
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'carrierwave', '~> 2.0'
-gem 'mongoid', '~> 7.0', '>= 7.0.4'
-gem 'mongoid_paranoia', github: 'simi/mongoid-paranoia', require 'mongoid/paranoia'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mongoid_paranoia', github: 'simi/mongoid-paranoia', :require => 'mongoid/paranoia'
+gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
 # rubocop:enable all
