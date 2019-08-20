@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   def index
-    @users = User.all.order('created_at DESC')
+    @users = User.all.order('created_at DESC').as_json
   end
 
   def show
@@ -38,6 +38,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).as_json
   end
 end

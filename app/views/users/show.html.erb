@@ -1,7 +1,1 @@
-<%= react_component("users/user_show", {
-                                           user: @user.to_json,
-                                           pending_musician_skill_users: @user.pending_musician_skills,
-                                           approved_musician_skill_users: @user.approved_musician_skills,
-                                           organizations: @user.organizations,
-                                           image: "",
-                                           }) %>
+<%= react_component("users/user_show", {user: @user.to_json}) %>

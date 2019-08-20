@@ -25,7 +25,7 @@ export default function EventsCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image === "" ? "https://static.tgstat.ru/public/images/channels/_0/8a/8a75bb2c415b49459a0b01fecf8fe64d.jpg" : props.image}
+          image={props.image === "" ? "/assets/default_avatar.jpg" : props.image}
           title="Contemplative Reptile"
         />
         <CardContent>

@@ -5,8 +5,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "../shared/landingPage";
 import Grid from "@material-ui/core/Grid";
 import UserCard from "../shared/user_card.jsx";
-import SearchField from "react-search-field";
-
 
 class UserIndexLandingPage extends React.Component {
   constructor(props) {
