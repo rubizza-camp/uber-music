@@ -1,27 +1,51 @@
-import React from "react";
-import Title from '../shared/title'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-class OrganizationCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      organizations_name: props.organization.name,
-      organization_description: props.organization.description,
-      organization_id:  'organizations/' + props.organization.id
-    };
-  }
-  render () {
-    return (
-      <React.Fragment>
-        <div className="card">
-          <a href={this.state.organization_id}>
-            <Title content={this.state.organizations_name}></Title>
-          </a>
-          <span className="card-product-hover-price">{this.state.organization_description}</span>
-        </div>
-      </React.Fragment>
-    );
-  }
+function make_url(props){
+  return 'organizations/' + props.organization.id
 }
 
-export default OrganizationCard
+
+export default function OrganizationCard(props) {
+  const useStyles = makeStyles({
+    card: {
+      width: props.width,
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
+  
+  const classes = useStyles();
+  return (
+    <a href={make_url(props)} data-method="get">
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={'https://www.irishtimes.com/polopoly_fs/1.3858190.1555052810!/image/image.jpg_gen/derivatives/box_620_330/image.jpg'}
+            title={props.organization.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.organization.name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    </a>
+  );
+}
