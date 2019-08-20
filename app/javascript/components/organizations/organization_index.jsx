@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../../../assets/javascripts/components/shared/landingPage";
+import landingPageStyle from "../shared/style/landingPage";
 import OrganizationCard from './organization_card'
 import Grid from '@material-ui/core/Grid'
 

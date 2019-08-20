@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../../../assets/javascripts/components/shared/landingPage";
+import landingPageStyle from "../shared/style/landingPage";
 import ImageCarousel from "../shared/image_carousel";
 import TypoGraphy from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
