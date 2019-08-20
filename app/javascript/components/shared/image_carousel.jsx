@@ -1,14 +1,12 @@
 import React from 'react';
 import Carousel from "react-slick";
 import MyImage from './image.jsx'
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default function ImageCarousel(props) {
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 400,
     slidesToShow: props.slidesToShow,
