@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../../../assets/javascripts/components/shared/landingPage";
+import landingPageStyle from "./style/landingPage";
 import Navigation from "./navigation/navigation";
 import Parallax from "./parallax.jsx";
 

@@ -134,7 +134,7 @@ end
 end
 
 (0..4).each do |x|
-  Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/places/00#{x}.png"))
+  Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
   Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
   Image.create(imageable_id: Place.ids[x], imageable_type: "Place", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
 end
