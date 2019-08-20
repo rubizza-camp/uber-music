@@ -78,4 +78,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # For creating seeds for database
 gem 'faker', '~> 2.1.2'
+
+# For image
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'carrierwave', '~> 2.0'
 # rubocop:enable all

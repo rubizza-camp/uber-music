@@ -1,27 +1,58 @@
-user = User.create(
-  nickname: Faker::TvShows::FamilyGuy.character,
-  first_name: Faker::Name.first_name, 
-  second_name: Faker::Name.last_name, 
-  type: 'User', 
-  email: Faker::Internet.free_email, 
-  password: Faker::Name.last_name
-  )
+10.times do
+  User.create(
+    nickname: Faker::TvShows::FamilyGuy.character,
+    first_name: Faker::Name.first_name, 
+    second_name: Faker::Name.last_name, 
+    type: 'User', 
+    email: Faker::Internet.email, 
+    password: Faker::Internet.password
+    )
+end
 
-Genre.create(
-  name: Faker::Music.genre, 
-  description: Faker::JapaneseMedia::SwordArtOnline.item
-  )
+10.times do
+  Genre.create(
+    name: Faker::Music.genre, 
+    description: Faker::JapaneseMedia::SwordArtOnline.item
+    )
+end
 
-user.genres << Genre.first
+(0..9).each do |x|
+  User.all[x].genres << Genre.all[x]
+end
 
-organization = Organization.create(
-  name: Faker::Music.band,
-  description: Faker::JapaneseMedia::SwordArtOnline.item
-  )
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  User.all[y].genres << Genre.all[x]
+end
 
-user.organizations << Organization.first
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  User.all[y].genres << Genre.all[x]
+end
 
-3.times do  
+
+10.times do 
+  Organization.create(
+    name: Faker::Music.band,
+    description: Faker::JapaneseMedia::SwordArtOnline.item
+    )
+end
+
+(1..9).each do |x|
+  User.first.organizations << Organization.all[x]
+end
+
+(5..9).each do |x|
+  User.all[x].organizations << Organization.all[x]
+  User.all[x].organizations << Organization.second
+end
+
+(1..4).each do |x|
+  User.all[x].organizations << Organization.third
+  User.all[x].organizations << Organization.second
+  User.all[x].organizations << Organization.first
+end
+
+
+5.times do  
   Place.create(
     name: Faker::TvShows::FamilyGuy.location, 
     latitude: Faker::Number.normal(mean: 50, standard_deviation: 3.5), 
@@ -33,7 +64,7 @@ user.organizations << Organization.first
 end
 
 
-(0..2).each do |x|
+(0..4).each do |x|
   Event.create(
     place_id: "#{Place.ids[x]}", 
     name: Faker::FunnyName.name, 
@@ -43,18 +74,61 @@ end
     )
 end
 
-organization.pending_events << Event.first
+(0..1).each do |x|
+  Event.create(
+    place_id: "#{Place.ids[x]}", 
+    name: Faker::FunnyName.name, 
+    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+    end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+  )
+end
 
-organization.disabled_events << Event.second
+(1..3).each do |x|
+  Event.create(
+    place_id: "#{Place.ids[x]}", 
+    name: Faker::FunnyName.name, 
+    description: Faker::JapaneseMedia::SwordArtOnline.item, 
+    start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default), 
+    end_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :default)
+  )
+end
 
-organization.approved_events << Event.last
 
-3.times do
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  Organization.all[y].pending_events << Event.all[x]
+end
+
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  Organization.all[y].approved_events << Event.all[x]
+end
+
+10.times do
   MusicianSkill.create(name: Faker::Music.instrument)
 end
 
-user.pending_musician_skills << MusicianSkill.first
 
-user.disabled_musician_skills << MusicianSkill.second
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  User.all[y].approved_musician_skills << MusicianSkill.all[x]
+end
 
-user.approved_musician_skills << MusicianSkill.last
+(0..9).to_a.shuffle.each_with_index do |x,y|
+  User.all[y].approved_musician_skills << MusicianSkill.all[x]
+end
+
+(0..9).each do |x|
+  Image.create(imageable_id: User.ids[x], imageable_type: "User", url: File.open("public/seeds_image/#{x}.jpg"))
+end
+
+(0..9).each do |x|
+  Image.create(imageable_id: Event.ids[x], imageable_type: "Event", url: File.open("public/seeds_image/#{x + 10}.jpg"))
+  Image.create(imageable_id: Event.ids[x], imageable_type: "Event", url: File.open("public/seeds_image/#{x + 20}.jpg"))
+end
+
+(0..9).each do |x|
+  Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/grups/0#{x}.jpg"))
+  Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+  Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+  Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+  Image.create(imageable_id: Organization.ids[x], imageable_type: "Organization", url: File.open("public/seeds_image/#{(0..29).to_a.shuffle.first}.jpg"))
+end
