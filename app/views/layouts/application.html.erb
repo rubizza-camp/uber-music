@@ -15,10 +15,11 @@
 
   <body>
     <% if user_signed_in? %>
-      <%= react_component("shared/navigation/navigation", {image: 'https://i.pinimg.com/originals/bf/72/07/bf72075d9a7cc668f0ebefe370ee0c6f.jpg', id: current_user.id}) %>
+      <%= react_component("shared/navigation/navigation", {image: '', id: current_user.id}) %>
     <% else %>
-      <%= react_component("shared/navigation/navigation", {image: 'https://i.pinimg.com/originals/bf/72/07/bf72075d9a7cc668f0ebefe370ee0c6f.jpg'}) %>
+      <%= react_component("shared/navigation/navigation", {image: ''}) %>
     <% end %>
+      <%= react_component("shared/parallax", {filter: true, small: true, image: "/assets/main.jpg" }) %>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

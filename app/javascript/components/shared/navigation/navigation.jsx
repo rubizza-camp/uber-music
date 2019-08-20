@@ -12,7 +12,7 @@ import navbarsStyle from "../../../../assets/javascripts/components/shared/navba
 class Navigation extends React.Component {
     render() {
         const {classes} = this.props;
-        if (this.props.login === true) {
+        if (this.props.id) {
             return (
                 <Header
                     brand="Пешеходка"
