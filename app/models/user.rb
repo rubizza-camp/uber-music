@@ -37,7 +37,7 @@ class User < ApplicationRecord
   def role?(role_name)
     type == role_name
   end
-  
+
   def full_name
     @full_name = first_name + ' ' + second_name
   end
