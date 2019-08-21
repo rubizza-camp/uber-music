@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = ActiveModel::SerializableResource.new(
-      Organization.find(params[:id]), include:
+      @organization, include:
                                       [
                                         'approved_events.images.**',
                                         'users.image.*',
