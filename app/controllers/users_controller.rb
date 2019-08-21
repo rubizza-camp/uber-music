@@ -7,12 +7,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = ActiveModel::SerializableResource.new(@user,
-                                                  {include: ['organizations.images.**',
-                                                             'approved_musician_skills.*',
-                                                             'pending_musician_skills.*',
-                                                             'image.*',
-                                                  ]}).serializable_hash
+    @user = ActiveModel::SerializableResource.new(
+      @user, include:
+      [
+        'organizations.images.**',
+        'approved_musician_skills.*',
+        'pending_musician_skills.*',
+        'image.*'
+      ]
+    ).serializable_hash
   end
 
   def create

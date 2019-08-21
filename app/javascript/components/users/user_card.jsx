@@ -21,33 +21,34 @@ const useStyles = makeStyles({
 
 export default function UserCard(props) {
   const classes = useStyles();
+  const { user, link } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.user.image ? props.user.image.url.url : "/assets/default_avatar.jpg"}
+          image={user.image ? user.image.url.url : "/assets/default_avatar.jpg"}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.nickname === "" &&
+            {user.nickname === "" &&
             "No nickname"
             }
-            {props.nickname}
+            {user.nickname}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {(props.user.first_name + ' ' + props.user.second_name) === " " &&
+            {(user.first_name + ' ' + user.second_name) === " " &&
             "No name"
             }
-            {(props.user.first_name + ' ' + props.user.second_name)}
+            {(user.first_name + ' ' + user.second_name)}
             <br/>
-            {props.user.email}
+            {user.email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <a href={props.link} data-method="get">
+        <a href={link} data-method="get">
           <Button size="small" color="primary">
             Learn More
           </Button>

@@ -8,11 +8,11 @@ import Grid from "@material-ui/core/Grid";
 import Title from "../shared/title";
 import SmallText from "../shared/small_text";
 import Badge from "../shared/badge";
+import OrganizationCard from "../organizations/organization_card";
 
 class UserShowLandingPage extends React.Component {
   render() {
-    const {classes} = this.props;
-    console.log(this.props);
+    const {classes, user} = this.props;
     return (
       <div>
         <div className={classNames(classes.main, classes.mainRaised)}>
@@ -22,7 +22,7 @@ class UserShowLandingPage extends React.Component {
               <div style={{margin: 20}}>
                 <Grid container justify="center">
                   <Grid item>
-                    <MyImage src={this.props.user.image ? this.props.user.image.url.url : "/assets/default_avatar.jpg"}
+                    <MyImage src={user.image ? user.image.url.url : "/assets/default_avatar.jpg"}
                              width={250} height={250}/>
                   </Grid>
                 </Grid>
@@ -31,10 +31,10 @@ class UserShowLandingPage extends React.Component {
               <div style={{margin: 20}}>
                 <Grid container justify="center">
                   <Grid item>
-                    {this.props.user.nickname === "" &&
+                    {user.nickname === "" &&
                     <Title content={"No title"}/>
                     }
-                    <Title content={this.props.user.nickname}/>
+                    <Title content={user.nickname}/>
                   </Grid>
                 </Grid>
               </div>
@@ -42,41 +42,41 @@ class UserShowLandingPage extends React.Component {
               <div style={{margin: 20}}>
                 <Grid container justify="center">
                   <Grid item>
-                    {this.props.user.first_name === "" &&
+                    {user.first_name === "" &&
                     <SmallText content={"No name"}/>
                     }
-                    <SmallText content={this.props.user.first_name + " " + this.props.user.second_name}/>
+                    <SmallText content={user.first_name + " " + user.second_name}/>
                   </Grid>
                 </Grid>
               </div>
-  
+              
               <div style={{margin: 20}}>
-              <Grid container justify="center">
-                <Grid item>
-                  <SmallText content={this.props.user.email}/>
+                <Grid container justify="center">
+                  <Grid item>
+                    <SmallText content={user.email}/>
+                  </Grid>
                 </Grid>
-              </Grid>
               </div>
               
               <div style={{margin: 20}}>
                 <Grid container direction="row" alignItems="flex-start">
                   
                   <Grid container xs={12} sm={6} justify="center" spacing={3}>
-                    {this.props.user.approved_musician_skills.length === 0 &&
+                    {user.approved_musician_skills.length === 0 &&
                     <SmallText content={"No approved skill"}/>
                     }
-                    {this.props.user.approved_musician_skills.map((approved_musician_skill) =>
+                    {user.approved_musician_skills.map((approved_musician_skill) =>
                       <Grid item>
                         <Badge color="rose"> <SmallText content={approved_musician_skill.name}/></Badge>
                       </Grid>
                     )}
                   </Grid>
-  
+                  
                   <Grid container xs={12} sm={6} justify="center" spacing={3}>
-                    {this.props.user.pending_musician_skills.length === 0 &&
+                    {user.pending_musician_skills.length === 0 &&
                     <SmallText content={"No pending skill"}/>
                     }
-                    {this.props.user.pending_musician_skills.map((pending_musician_skill) =>
+                    {user.pending_musician_skills.map((pending_musician_skill) =>
                       <Grid item>
                         <Badge> <SmallText content={pending_musician_skill.name}/></Badge>
                       </Grid>
@@ -93,21 +93,15 @@ class UserShowLandingPage extends React.Component {
             
             <br/><br/>
             
-            <Grid container direction="row" justify="center" alignItems="stretch" >
-              <Grid container justify="center" spacing={6}>
-                {this.props.user.organizations.length === 0 &&
-                <SmallText content={"No organization"}/>
-                }
-                {this.props.user.organizations.map((organization) =>
-                  <Grid item>
-                    <MyImage
-                      src={organization.images[0] ? organization.images[0].url.url : "/assets/default_avatar.jpg"}
-                      width={200} height={200}/>
-                    <Title content={organization.name}/>
-                  </Grid>
-                )}
-              </Grid>
+            
+            <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
+              {user.organizations.map((organization) =>
+                <Grid item>
+                  <OrganizationCard organization={organization} width={200}/>
+                </Grid>
+              )}
             </Grid>
+          
           </div>
         </div>
       </div>
