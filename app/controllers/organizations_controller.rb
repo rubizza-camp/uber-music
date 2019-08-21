@@ -7,10 +7,14 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = ActiveModel::SerializableResource.new(Organization.find(params[:id]),
-                                                      { include: ['approved_events.images.**',
-                                                                  'users.image.*',
-                                                                  'images.*'] }).serializable_hash
+    @organization = ActiveModel::SerializableResource.new(
+      Organization.find(params[:id]), include:
+                                      [
+                                        'approved_events.images.**',
+                                        'users.image.*',
+                                        'images.*'
+                                      ]
+    ).serializable_hash
   end
 
   def create
