@@ -3,12 +3,19 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   def index
-    @users = User.all.order('created_at DESC')
-    render json: @users
+    @users = ActiveModel::SerializableResource.new(User.all).serializable_hash
   end
 
   def show
-    render json: @user
+    @user = ActiveModel::SerializableResource.new(
+      @user, include:
+      [
+        'organizations.images.**',
+        'approved_musician_skills.*',
+        'pending_musician_skills.*',
+        'image.*'
+      ]
+    ).serializable_hash
   end
 
   def create
@@ -21,11 +28,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update!(user_params)
-      render json: @user, status: :updated
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
   end
 
   def destroy
@@ -39,11 +41,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :nickname, :first_name, :second_name,
+    params.require(:user).permit(:nickname, :first_name, :second_name,
                                  :type, :email, :password)
   end
 
   def set_user
-    @user = User.find(user_params[:id])
+    @user = User.find(params[:id])
   end
 end

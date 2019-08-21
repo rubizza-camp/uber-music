@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    width: 250,
     margin: '10px',
   },
   media: {
@@ -18,32 +19,40 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EventsCard(props) {
+export default function UserCard(props) {
   const classes = useStyles();
-
+  const { user, link } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image}
+          image={user.image ? user.image.url.url : "/assets/default_avatar.jpg"}
+          title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
+            {user.nickname === "" &&
+            "No nickname"
+            }
+            {user.nickname}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.address}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.start_time} - {props.end_time}
+            {(user.first_name + ' ' + user.second_name) === " " &&
+            "No name"
+            }
+            {(user.first_name + ' ' + user.second_name)}
+            <br/>
+            {user.email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <a href={link} data-method="get">
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );

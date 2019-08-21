@@ -8,7 +8,6 @@ class GenresController < ApplicationController
   end
 
   def show
-    render json: @genre
   end
 
   def create
@@ -36,7 +35,7 @@ class GenresController < ApplicationController
   private
 
   def set_genre
-    @genre = User.find(params[:id])
+    @genre = Genre.find(params[:id])
   end
 
   def genre_params

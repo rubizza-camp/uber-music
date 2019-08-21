@@ -1,7 +1,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
-  process resize_to_fill: [200, 200]
+  process resize_to_fill: [795, 300]
   process convert: 'png'
 
   # Choose what kind of storage to use for this Uploader:

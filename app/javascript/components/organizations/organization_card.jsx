@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 function make_url(id){
-  return 'organizations/' + id
+  return '/organizations/' + id
 }
 
 export default function OrganizationCard(props) {

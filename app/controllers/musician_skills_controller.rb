@@ -8,7 +8,6 @@ class MusicianSkillsController < ApplicationController
   end
 
   def show
-    render json: @musician_skill
   end
 
   def create
@@ -39,7 +38,7 @@ class MusicianSkillsController < ApplicationController
   private
 
   def set_musician_skill
-    @musician_skill = MusicianSkill.find(skill_params[:id])
+    @musician_skill = MusicianSkill.find(params[:id])
   end
 
   def skill_params
