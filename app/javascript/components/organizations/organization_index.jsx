@@ -7,12 +7,12 @@ import Grid from '@material-ui/core/Grid'
 
 class OrganizationDetail extends React.Component {
   render() {
-    const {classes} = this.props;
+    const {classes, organizations} = this.props;
     return (
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
-            { this.props.organizations.map((organization, i) => 
+            { organizations.map((organization, i) => 
                 <Grid item key={i}>
                   <OrganizationCard organization={ organization } width={'250px'} key = {i} />
                 </Grid>

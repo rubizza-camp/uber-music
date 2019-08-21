@@ -8,8 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-function make_url(props){
-  return 'organizations/' + props.organization.id
+function make_url(id){
+  return 'organizations/' + id
 }
 
 export default function OrganizationCard(props) {
@@ -22,20 +22,20 @@ export default function OrganizationCard(props) {
       height: 140,
     },
   });
-  
   const classes = useStyles();
+  const {organization} = props
   return (
-    <a href={make_url(props)} data-method="get">
+    <a href={make_url(organization.id)} data-method="get">
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={props.organization.images[0].url.url}
-            title={props.organization.name}
+            image={organization.images[0].url.url}
+            title={organization.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.organization.name}
+              {organization.name}
             </Typography>
           </CardContent>
         </CardActionArea>

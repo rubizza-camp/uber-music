@@ -3,20 +3,18 @@ import Grid from '@material-ui/core/Grid';
 import TypoGraphy from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import MediumButton from '../shared/button'
+import OrganizationTitleName from './organization_title_name'
 
 class OrganizationTitle extends React.Component {
-  current_user_is_ovner(){
-    if(JSON.stringify(this.props.users).includes(JSON.stringify(this.props.current_user)))
-    {
-      return true
-    }
-    return false
+  current_user_is_owner(users, current_user){
+    return users.map((user)=> user.id).includes(current_user.id)
   }
   render() {
-    if(this.current_user_is_ovner()){
+    const {users, current_user, organization_name} = this.props
+    if(this.current_user_is_owner(users, current_user)){
       return (
         <Grid container direction="row" justify="center" alignItems="center">
-          <OrganizationTitleName organization_name={this.props.organization_name}/>
+          <OrganizationTitleName organization_name={organization_name}/>
           <Grid item >
             <Grid container direction="row" justify="flex-end" alignItems="center" spacing={2}>
               <Grid item>
@@ -33,13 +31,7 @@ class OrganizationTitle extends React.Component {
     else{
       return (
         <Grid container direction="column" justify="center" alignItems="center">
-          <Grid item>
-            <TypoGraphy>
-              <Box component='text' fontSize="3em" fontWeight="300">
-                {this.props.organization_name} 
-              </Box>
-            </TypoGraphy>
-          </Grid>
+          <OrganizationTitleName organization_name={organization_name}/>
         </Grid>
       );
     }
