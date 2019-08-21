@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../shared/landingPage";
 import MyImage from "../shared/image";
 import Grid from "@material-ui/core/Grid";
 import Title from "../shared/title";
@@ -106,4 +104,4 @@ UserShowLandingPage.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(landingPageStyle)(UserShowLandingPage);
+export default (UserShowLandingPage);
