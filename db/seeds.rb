@@ -5,7 +5,8 @@
     second_name: Faker::Name.last_name, 
     type: 'User', 
     email: Faker::Internet.email, 
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    confirmed_at: DateTime.now
     )
 end
 
