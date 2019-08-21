@@ -3,18 +3,18 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: %i[show update destroy]
 
   def index
-    @organizations = ActiveModel::SerializableResource.new(Organization.all).serializable_hash
+    @organizations = serialize_recourse(Organization.all)
   end
 
   def show
-    @organization = ActiveModel::SerializableResource.new(
+    @organization = serialize_recourse(
       @organization, include:
-                                      [
-                                        'approved_events.images.**',
-                                        'users.image.*',
-                                        'images.*'
-                                      ]
-    ).serializable_hash
+                      [
+                        'approved_events.images.**',
+                        'users.image.*',
+                        'images.*'
+                      ]
+    )
   end
 
   def create

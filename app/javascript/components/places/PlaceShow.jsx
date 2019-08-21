@@ -12,6 +12,10 @@ import Description from "../shared/description";
 import EventsCard from "../shared/card_events";
 import ImageCarousel from "../shared/image_carousel";
 
+function make_url(id){
+  return '/events/' + id
+}
+
 class PlaceShow extends React.Component {
   render() {
     const {classes, place} = this.props;
@@ -60,7 +64,7 @@ class PlaceShow extends React.Component {
                   {
                     place.events.map((event) =>
                       <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
-                        <EventsCard name={event.name} address={place.address} start_time={event.start_time} end_time={event.end_time} image={event.images[0].url.url}></EventsCard>
+                        <EventsCard name={event.name} address={place.address} start_time={event.start_time} end_time={event.end_time} image={event.images[0].url.url} link={make_url(event.id)}></EventsCard>
                       </Grid>
                     )
                   }

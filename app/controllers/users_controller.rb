@@ -3,19 +3,19 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   def index
-    @users = ActiveModel::SerializableResource.new(User.all).serializable_hash
+    @users = serialize_recourse(User.all)
   end
 
   def show
-    @user = ActiveModel::SerializableResource.new(
+    @user = serialize_recourse(
       @user, include:
-      [
-        'organizations.images.**',
-        'approved_musician_skills.*',
-        'pending_musician_skills.*',
-        'image.*'
-      ]
-    ).serializable_hash
+              [
+                'organizations.images.**',
+                'approved_musician_skills.*',
+                'pending_musician_skills.*',
+                'image.*'
+              ]
+    )
   end
 
   def create
