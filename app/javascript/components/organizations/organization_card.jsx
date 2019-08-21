@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 function make_url(props){
   return 'organizations/' + props.organization.id
+
 }
 
 
@@ -31,7 +32,7 @@ export default function OrganizationCard(props) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={'https://www.irishtimes.com/polopoly_fs/1.3858190.1555052810!/image/image.jpg_gen/derivatives/box_620_330/image.jpg'}
+            image={props.organization.images[0].url.url}
             title={props.organization.name}
           />
           <CardContent>

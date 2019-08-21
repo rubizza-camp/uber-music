@@ -15,16 +15,12 @@ class OrganizationDetail extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        organization_name: props.organization_name,
-        organization_description: props.organization_description,
-        organization_id:  props.organization_id,
-        approved_events: props.approved_events,
-        users: props.users,
-        images: ['https://www.irishtimes.com/polopoly_fs/1.3858190.1555052810!/image/image.jpg_gen/derivatives/box_620_330/image.jpg',
-                  'https://i.ytimg.com/vi/UpbGRJZqw4Q/maxresdefault.jpg',
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0gCuZxzyHY4ouOfI-6WHrO6foCxKPI4z_tDtttsJzNbpGKMzx',
-                  'https://images.vexels.com/media/users/3/150668/raw/e2f12f7d920860489987a7b54dedd853-radiohead-logo.jpg'
-                ],
+        organization_name: props.organization.name,
+        organization_description: props.organization.description,
+        organization_id:  props.organization.id,
+        approved_events: props.organization.approved_events,
+        users: props.organization.users,
+        images: props.organization.images.map((image)=>image.url.url),
         current_user: props.current_user
     };}
     render() {
@@ -63,7 +59,7 @@ class OrganizationDetail extends React.Component {
                   <Grid container direction="row" justify="center" alignItems="stretch">
                     {this.state.approved_events.map((event,i)=>
                       <Grid item xs={12} sm={6} md={4} >
-                        <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time} end_time={event.end_time} src={'https://images.vexels.com/media/users/3/150668/raw/e2f12f7d920860489987a7b54dedd853-radiohead-logo.jpg'} link={'#'}></EventCard>
+                        <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time} end_time={event.end_time} src={event.images[0].url.url} link={'#'}></EventCard>
                       </Grid>
                     )}
                   </Grid>
@@ -78,8 +74,8 @@ class OrganizationDetail extends React.Component {
                 <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
                   {this.state.users.map((user,i)=>
                     <Grid item>
-                      <a src='#'>
-                        <MyImage key={i} src={'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'} width={'auto'} height={'250px'}></MyImage>
+                      <a href='#'>
+                        <MyImage key={i} src={user.image.url.url} width={'300px'} height={'150px'}></MyImage>
                       </a>
                     </Grid>
                   )}
