@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 # Webpack and React
 gem 'react-rails'
 gem 'webpacker'
+gem 'dotenv-rails', '~> 2.2.1'
+
 gem 'active_model_serializers'
 gem 'thor', '~> 0.19.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -39,6 +41,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use cancancan for authorization
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
+
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

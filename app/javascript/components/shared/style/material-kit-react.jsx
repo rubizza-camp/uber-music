@@ -97,6 +97,7 @@ const dangerCardHeader = {
   background: "linear-gradient(60deg, #ef5350, #e53935)",
   ...dangerBoxShadow
 };
+
 const infoCardHeader = {
   color: "#fff",
   background: "linear-gradient(60deg, #26c6da, #00acc1)",

@@ -18,10 +18,6 @@ class Navigation extends React.Component {
           brand="Пешеходка"
           color="dark"
           fixed
-          changeColorOnScroll={{
-            height: 200,
-            color: "white"
-          }}
           rightLinks={
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
@@ -70,7 +66,7 @@ class Navigation extends React.Component {
                       Me
                     </a>,
                     <a
-                      href={"/"}
+                      href={"/users/" + this.props.id + "/edit"}
                       data-method="get"
                       className={classes.dropdownLink}
                     >
@@ -96,10 +92,6 @@ class Navigation extends React.Component {
           brand="Пешеходка"
           color="dark"
           fixed
-          changeColorOnScroll={{
-            height: 200,
-            color: "white"
-          }}
           rightLinks={
             <List className={classes.list}>
               <ListItem className={classes.listItem}>

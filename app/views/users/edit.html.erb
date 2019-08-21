@@ -1,0 +1,69 @@
+<div class="section text-center">
+
+
+  <%= form_for @user do |f| %>
+
+    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+      <% if @user.image %>
+        <img id="new-image" src="<%= @user.image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+      <% else %>
+        <img id="new-image" src="/assets/default_avatar.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
+      <% end %>
+
+      <br/>
+      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+      <br/>
+      <div>
+        <span class="btn btn-raised btn-round btn-default btn-file">
+            <span class="fileinput-new">Select image</span>
+            <span class="fileinput-exists">Change</span>
+          <%= f.file_field :image, onchange: "readURL(this);", id: "image", autocomplete: @user.image %>
+        </span>
+      </div>
+    </div>
+    <br/>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <%= f.text_field :first_name, placeholder: "First Name...", class: "form-control", autocomplete: @user.first_name %>
+        </div>
+        <div class="col">
+          <%= f.text_field :second_name, placeholder: "Second Name...", class: "form-control", autocomplete: @user.second_name %>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre'}) %><br/>
+        </div>
+        <div class="col">
+          <%= react_component("users/select", {map: @musician_skill, name: 'Musician Skill', id: 'musician_skill'}) %><br/>
+        </div>
+      </div>
+    </div>
+
+    <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %><br/>
+    <%= f.submit "Sign in", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
+
+<script>
+  function readURL(input) {
+    console.log(input);
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      console.log(input);
+
+      reader.onload = function (e) {
+        $('#new-image').attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
