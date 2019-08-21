@@ -3,12 +3,17 @@ class PlacesController < ApplicationController
   before_action :set_place, only: %i[show update destroy]
 
   def index
-    @places = Place.all
-    render json: @places
+    @places = ActiveModel::SerializableResource.new(Place.all).serializable_hash
   end
 
   def show
-    render json: @place
+    @place = ActiveModel::SerializableResource.new(
+      @place, include:
+              [
+                'events.images.**',
+                'images.*'
+              ]
+    ).serializable_hash
   end
 
   def create
@@ -39,11 +44,11 @@ class PlacesController < ApplicationController
   private
 
   def set_place
-    @place = Place.find(place_params[:id])
+    @place = Place.find(params[:id])
   end
 
   def place_params
-    params.require(:place).permit(:id, :name, :latitude, :longitude,
+    params.require(:place).permit(:name, :latitude, :longitude,
                                   :address, :description, :rules)
   end
 end

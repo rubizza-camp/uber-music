@@ -11,13 +11,14 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    margin: '10px',
   },
   media: {
     height: 140,
   },
 });
 
-export function MyCard(props) {
+export default function EventsCard(props) {
   const classes = useStyles();
 
   return (
@@ -25,16 +26,17 @@ export function MyCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://upload.wikimedia.org/wikipedia/commons/6/66/An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg"
-          title="Contemplative Reptile"
+          image={props.image}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.latitude}, {props.longitude}
             {props.address}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.start_time} - {props.end_time}
           </Typography>
         </CardContent>
       </CardActionArea>
