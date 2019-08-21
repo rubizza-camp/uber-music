@@ -3,12 +3,18 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: %i[show update destroy]
 
   def index
-    @organizations = Organization.all
-    render json: @organizations
+    @organizations = ActiveModel::SerializableResource.new(Organization.all).serializable_hash
   end
 
   def show
-    render json: @organization
+    @organization = ActiveModel::SerializableResource.new(
+      @organization, include:
+                                      [
+                                        'approved_events.images.**',
+                                        'users.image.*',
+                                        'images.*'
+                                      ]
+    ).serializable_hash
   end
 
   def create
@@ -39,10 +45,10 @@ class OrganizationsController < ApplicationController
   private
 
   def set_organization
-    @organization = Organization.find(organization_params[:id])
+    @organization = Organization.find(params[:id])
   end
 
   def organization_params
-    params.require(:organization).permit(:id, :name, :description)
+    params.require(:organization).permit(:name, :description)
   end
 end
