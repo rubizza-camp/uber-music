@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 function make_url(props){
   return 'organizations/' + props.organization.id
-
 }
-
 
 export default function OrganizationCard(props) {
   const useStyles = makeStyles({
