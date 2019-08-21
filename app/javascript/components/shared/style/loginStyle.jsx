@@ -11,7 +11,7 @@ const loginStyle = {
     margin: "0",
     border: "0",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   container,
   form: {
