@@ -3,10 +3,16 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
   def index
-    @users = User.all.order('created_at DESC').as_json
+    @users = ActiveModel::SerializableResource.new(User.all).serializable_hash
   end
 
   def show
+    @user = ActiveModel::SerializableResource.new(@user,
+                                                  {include: ['organizations.images.**',
+                                                             'approved_musician_skills.*',
+                                                             'pending_musician_skills.*',
+                                                             'image.*',
+                                                  ]}).serializable_hash
   end
 
   def create
@@ -19,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p '123456789'
   end
 
   def destroy
@@ -38,6 +43,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id]).as_json
+    @user = User.find(params[:id])
   end
 end

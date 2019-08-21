@@ -41,8 +41,4 @@ class User < ApplicationRecord
   def full_name
     @full_name = first_name + ' ' + second_name
   end
-
-  def as_json
-    UserPresenter.new(self).to_json
-  end
 end

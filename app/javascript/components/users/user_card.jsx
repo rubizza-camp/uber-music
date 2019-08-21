@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    width: 250,
     margin: '10px',
   },
   media: {
@@ -18,14 +19,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EventsCard(props) {
+export default function UserCard(props) {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.image === "" ? "/assets/default_avatar.jpg" : props.image}
+          image={props.user.image ? props.user.image.url.url : "/assets/default_avatar.jpg"}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -36,12 +37,12 @@ export default function EventsCard(props) {
             {props.nickname}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.name === " " &&
+            {(props.user.first_name + ' ' + props.user.second_name) === " " &&
             "No name"
             }
-            {props.name}
+            {(props.user.first_name + ' ' + props.user.second_name)}
             <br/>
-            {props.email}
+            {props.user.email}
           </Typography>
         </CardContent>
       </CardActionArea>
