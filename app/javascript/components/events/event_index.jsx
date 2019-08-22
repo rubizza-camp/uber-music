@@ -37,7 +37,6 @@ class EventIndex extends React.Component {
   }
 }
 
-
 EventIndex.propTypes = {
   classes: PropTypes.object
 };

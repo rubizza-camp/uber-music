@@ -4,7 +4,6 @@ import EventButton from '../shared/button_event'
 
 class UpdateButtons extends React.Component {
 
-
   render() {
     const {user_ids, current_user} = this.props
     if (current_user && user_ids.includes(current_user.id)) {
@@ -31,9 +30,5 @@ class UpdateButtons extends React.Component {
     }
   }
 }
-
-
-
-
 
 export default UpdateButtons;

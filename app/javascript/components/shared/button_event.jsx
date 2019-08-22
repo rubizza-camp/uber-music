@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
 export default function EventButton(props) {
   const classes = useStyles();
   return (
