@@ -16,14 +16,14 @@ class EventSerializer < ActiveModel::Serializer
   has_many :images, as: :imageable
 
   def start_time
-    self.object.start_time.strftime('%d.%m.%Y %H:%M')
+    object.start_time.strftime('%d.%m.%Y %H:%M')
   end
 
   def end_time
-    self.object.end_time.strftime('%d.%m.%Y %H:%M')
+    object.end_time.strftime('%d.%m.%Y %H:%M')
   end
 
   def organizations_user_ids
-    self.object.approved_organizations.map { |org| org.user_ids }.flatten
+    object.approved_organizations.map(&:user_ids).flatten
   end
 end
