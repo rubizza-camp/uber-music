@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -36,14 +36,19 @@ export default function EventsCard(props) {
             {props.address}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.start_time} - {props.end_time}
+            Начало: {props.start_time}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Конец: {props.end_time}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <a href={props.link} data-method="get">
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );

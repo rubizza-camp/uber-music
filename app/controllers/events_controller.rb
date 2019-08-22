@@ -3,12 +3,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show update destroy]
 
   def index
-    @events = Event.all
-    render json: @events
+    @events = ActiveModel::SerializableResource.new(Event.all).serializable_hash
   end
 
   def show
-    render json: @event
+    @event = ActiveModel::SerializableResource.new(@event).serializable_hash
   end
 
   def create
