@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-class MusicianSkillSelect extends React.Component {
+class NameSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selectedOption: null };
@@ -9,21 +9,18 @@ class MusicianSkillSelect extends React.Component {
   handleChange = selectedOption => {
     this.setState({ selectedOption }); 
   };
+  options = this.props.input_array.map((element) =>
+     { value: element.id, label: element.name } ); 
   render() {
     const { selectedOption } = this.state;
-    let options = [];
-    {
-      options = this.props.musician_skills_array.map((skill) =>
-      ( { value: skill.id, label: skill.name } ));
-    }
-    return (
+   return (
       <Select
         value={selectedOption}
         onChange={this.handleChange}
-        options={options}
+        options={this.options}
         isMulti
       />
     );
   }
 }
-export default MusicianSkillSelect;
+export default NameSelect;
