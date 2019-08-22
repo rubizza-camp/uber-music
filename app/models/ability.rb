@@ -16,7 +16,7 @@ class Ability
     elsif user.role?('User')
       user_rules
     else
-      can %i[index show], [Place, Event]
+      can %i[index show], [Place, Event, Organization]
     end
   end
 
