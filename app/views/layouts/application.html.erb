@@ -16,7 +16,7 @@
     <% if user_signed_in? %>
       <%= react_component("shared/navigation/navigation", {image: current_user.image, id: current_user.id}) %>
     <% else %>
-      <%= react_component("shared/navigation/navigation", {image: current_user.image}) %>
+      <%= react_component("shared/navigation/navigation") %>
     <% end %>
       <%= react_component("shared/parallax", {filter: true, small: true, image: "/assets/main.jpg" }) %>
     <%= yield %>
