@@ -14,13 +14,13 @@ class Ability
     if user.role?('Moderator')
       can :manage, :all
     elsif user.role?('User')
-      user_rules
+      user_rules(user)
     else
-      can %i[index show], [Place, Event]
+      can %i[show index], [Place, Event, Organization]
     end
   end
 
-  def user_rules
+  def user_rules(user)
     can %i[index show], [Event, Genre, Organization, Place, MusicianSkill, User]
     can :manage, Event do |event|
       user.organization_ids.each do |organization_id|
@@ -30,5 +30,6 @@ class Ability
     can :manage, Organization do |organization|
       organization if organization.user_ids.include?(user.id)
     end
+    can %i[update edit index show], User, id: user.id
   end
 end
