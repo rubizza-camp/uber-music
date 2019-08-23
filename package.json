@@ -16,6 +16,7 @@
     "react-search-field": "^1.0.0",
     "react-select": "^3.0.4",
     "react-slick": "^0.25.2",
+    "react-yandex-maps": "^4.0.1",
     "react_ujs": "^2.6.0",
     "slick-carousel": "^1.8.1"
   },
