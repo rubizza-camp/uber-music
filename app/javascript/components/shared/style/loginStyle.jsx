@@ -15,9 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { container } from "assets/jss/material-kit-react.jsx";
-
-import image from "assets/img/sign.jpg";
+import { container } from "./material-kit-react.jsx";
 
 const loginStyle = {
   section: {
@@ -30,8 +28,7 @@ const loginStyle = {
     margin: "0",
     border: "0",
     display: "flex",
-    alignItems: "center",
-    backgroundImage: "url(" + image + ")"
+    alignItems: "center"
   },
   container,
   form: {
