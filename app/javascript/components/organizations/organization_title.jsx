@@ -7,7 +7,7 @@ import OrganizationTitleName from './organization_title_name'
 
 class OrganizationTitle extends React.Component {
   current_user_is_owner(users, current_user){
-    return users.map((user)=> user.id).includes(current_user.id)
+    return current_user ? users.map((user)=> user.id).includes(current_user.id) : false 
   }
   render() {
     const {users, current_user, organization_name} = this.props
