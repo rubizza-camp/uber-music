@@ -56,7 +56,10 @@ export default function SelectPlace(props) {
             </MenuItem>
           ))}
         </Select>
+<<<<<<< HEAD
         {props.hasError && <FormHelperText>Это поле обязательно!</FormHelperText>}
+=======
+>>>>>>> Create form for event model
       </FormControl>
     </div>
   );
