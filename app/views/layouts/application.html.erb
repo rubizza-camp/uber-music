@@ -15,7 +15,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<>
+<body>
 <% if user_signed_in? %>
   <%= react_component("shared/navigation/navigation", {image: current_user.image, id: current_user.id}) %>
 <% else %>
@@ -29,7 +29,7 @@
     <% end %>
 
     <% if alert %>
-      <%= react_component("shared/information_header", {message: alert, color: 'warning'}) %>
+      <%= react_component("shared/information_header", {message: alert, color: 'danger'}) %>
     <% end %>
     <%= yield %>
   </div>
