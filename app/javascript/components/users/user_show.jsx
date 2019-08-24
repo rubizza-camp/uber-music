@@ -9,7 +9,7 @@ import OrganizationCard from "../organizations/organization_card";
 
 class UserShowLandingPage extends React.Component {
   render() {
-    const {classes, user} = this.props;
+    const {user} = this.props;
     return (
       <div>
         <Grid container direction="column" alignItems="stretch">
@@ -21,7 +21,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -32,7 +31,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -43,7 +41,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -51,7 +48,7 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
+          <Title content={"Musician Skill:"}/>
           <div style={{margin: 20}}>
             <Grid container direction="row" alignItems="flex-start">
               
@@ -76,18 +73,13 @@ class UserShowLandingPage extends React.Component {
                   </Grid>
                 )}
               </Grid>
-            
             </Grid>
           </div>
         </Grid>
-        
-        <br/><br/>
-        
+        <hr/>
+        <br/>
         <Title content={"Organizations:"}/>
-        
-        <br/><br/>
-        
-        
+        <br/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
           {user.organizations.map((organization) =>
             <Grid item>

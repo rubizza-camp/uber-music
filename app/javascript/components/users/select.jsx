@@ -1,10 +1,12 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Grid from "@material-ui/core/Grid";
+import UserCard from "./user_card";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,16 +44,17 @@ function getStyles(name, personName, theme) {
 export default function MultipleSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-  
+  const [personName, setPersonName] = React.useState(props.currentElements);
+
   function handleChange(event) {
     setPersonName(event.target.value);
+    document.querySelector(props.selector).value = event.target.value;
   }
   
   return (
     <div className={classes.root}>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor={props.id} >{props.name}</InputLabel>
+        <InputLabel htmlFor={props.id}>{props.name}</InputLabel>
         <Select
           multiple
           value={personName}

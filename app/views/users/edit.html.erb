@@ -1,15 +1,11 @@
 <div class="section text-center">
-
-
   <%= form_for @user do |f| %>
-
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
       <% if @user.image %>
         <img id="new-image" src="<%= @user.image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
       <% else %>
         <img id="new-image" src="/assets/default_avatar.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
       <% end %>
-
       <br/>
       <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
       <br/>
@@ -33,30 +29,28 @@
       </div>
     </div>
     <br/>
-
     <div class="container">
       <div class="row">
         <div class="col">
-          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre'}) %><br/>
+          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#user_genres'}) %><br/>
+          <%= f.hidden_field :genres, value: '' %>
+
         </div>
         <div class="col">
-          <%= react_component("users/select", {map: @musician_skill, name: 'Musician Skill', id: 'musician_skill'}) %><br/>
+          <%= react_component("users/select", {map: @musician_skill, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.musician_skill_ids, selector: '#user_musician_skills'}) %><br/>
+          <%= f.hidden_field :musician_skills, value: ''  %>
         </div>
       </div>
     </div>
-
     <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %><br/>
     <%= f.submit "Sign in", class: "btn btn-primary" %>
   <% end %>
-
 </div>
 
 <script>
   function readURL(input) {
-    console.log(input);
     if (input.files && input.files[0]) {
       const reader = new FileReader();
-      console.log(input);
 
       reader.onload = function (e) {
         $('#new-image').attr('src', e.target.result);

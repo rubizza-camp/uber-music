@@ -56,11 +56,15 @@ class UsersController < ApplicationController
   end
 
   def update_genres(user)
-    user[:genres]&.each { |item| current_user.genres << Genre.find[item] }
+    user[:genres].split(',').each do |item|
+      current_user.genres << Genre.find(item)
+    end
   end
 
   def update_musician_skills(user)
-    user[:genres]&.each { |item| current_user.genres << Genre.find[item] }
+    user[:musician_skills].split(',').each do |item|
+      current_user.musician_skills << MusicianSkill.find(item.to_i)
+    end
   end
 
   def update_user(user)
@@ -72,6 +76,7 @@ class UsersController < ApplicationController
   end
 
   def create_photo(user)
+    current_user.image.destroy
     Image.create(imageable_id: current_user.id,
                  imageable_type: 'User',
                  url: user[:image])
