@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 export default function MediumButton(props) {
   const classes = useStyles();
   return (
-    <Button variant="contained" size="medium" color='primary' className={classes.purpleColor}>
+    <Button href={props.href} variant="contained" size="medium" color='primary' className={classes.purpleColor}>
       {props.content}
     </Button>
   );
