@@ -69,6 +69,7 @@ class OrganizationDetail extends React.Component {
           </Grid>
         </Grid>
       </div>
+      
     );
   }
 }
