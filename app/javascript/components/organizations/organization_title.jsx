@@ -8,7 +8,7 @@ class OrganizationTitle extends React.Component {
     return current_user ? users.map((user)=> user.id).includes(current_user.id) : false 
   }
   render() {
-    const {users, current_user, organization_name} = this.props
+    const {users, current_user, organization_name, organization_id} = this.props
     if(this.current_user_is_owner(users, current_user)){
       return (
         <Grid container direction="row" justify="center" alignItems="center">
@@ -16,7 +16,7 @@ class OrganizationTitle extends React.Component {
           <Grid item >
             <Grid container direction="row" justify="flex-end" alignItems="center" spacing={2}>
               <Grid item>
-                <MediumButton content={'Edit'}/>
+                <MediumButton content={'Edit'} href = {`/organizations/${organization_id}/edit`}/>
               </Grid>
               <Grid>
                 <MediumButton content={'Delte'}/>
