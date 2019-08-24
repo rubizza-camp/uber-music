@@ -964,25 +964,33 @@ pre code {
 
 @media (min-width: 576px) {
   .container {
-    max-width: 540px;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 720px;
+      padding-bottom: 30px;
+      padding-top: 30px;
+      max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
   .container {
+      padding-bottom: 40px;
+      padding-top: 40px;
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1140px;
+      padding-bottom: 50px;
+      padding-top: 50px;
+      max-width: 1140px;
   }
 }
 
