@@ -36,31 +36,46 @@ class UsersController < ApplicationController
   end
 
   def update
-    @current_password = false
-    @confirm_password = false
     user = params[:user]
     if user[:password] != user[:confirm_password]
-      @confirm_password = true
       flash[:alert] = 'confirm_password'
       redirect_to action: :edit, id: current_user.id
     else
-      Image.create(
-          imageable_id: current_user.id,
-          imageable_type: "User",
-          url: user[:image]) if user[:image]
-
-      current_user.update(
-          first_name: user[:first_name],
-          second_name: user[:second_name],
-          nickname: user[:nickname])
-
-      user[:genres]&.each { |item| current_user.genres << Genre.find[item] }
-      user[:musician_skill]&.each { |item| current_user.musician_skill << MusicianSkill.find[item] }
+      update_fields(user)
       redirect_to action: :show, id: current_user.id
     end
   end
 
   private
+
+  def update_fields(user)
+    create_photo(user) if user[:image]
+    update_user(user)
+    update_genres(user)
+    update_musician_skills(user)
+  end
+
+  def update_genres(user)
+    user[:genres]&.each { |item| current_user.genres << Genre.find[item] }
+  end
+
+  def update_musician_skills(user)
+    user[:genres]&.each { |item| current_user.genres << Genre.find[item] }
+  end
+
+  def update_user(user)
+    current_user.update(
+      first_name: user[:first_name],
+      second_name: user[:second_name],
+      nickname: user[:nickname]
+    )
+  end
+
+  def create_photo(user)
+    Image.create(imageable_id: current_user.id,
+                 imageable_type: 'User',
+                 url: user[:image])
+  end
 
   def user_params
     params.require(:user).permit(:nickname, :first_name, :second_name,
