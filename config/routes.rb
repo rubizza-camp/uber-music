@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :events
   resources :places
   resources :users
+  resources :moderators
   resources :organizations
   resources :musician_skills
 end

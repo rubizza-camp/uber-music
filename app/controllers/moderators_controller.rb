@@ -1,0 +1,2 @@
+class ModeratorsController < UsersController
+end
