@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   authorize_resource
-  before_action :set_organization, only: %i[show update destroy]
+  before_action :set_organization, only: %i[show update destroy edit]
 
   def index
     @organizations = serialize_recourse(Organization.all)
@@ -26,11 +26,18 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def edit
+    @organization
+    @events = Event.all
+  end
+
   def update
-    if @organization.update!(organization_params)
-      render json: @organization, status: :ok
+    set_image(organization_params) if organization_params[:image]
+    if update_basic_attribute(organization_params)
+      redirect_to action: :show, id: @organization.id
     else
-      render json: @organization.errors, status: :unprocessable_entity
+      flash[:alert] = 'Oops, something went wrong, please try again later.'
+      redirect_to action: :show, id: @organization.id
     end
   end
 
@@ -44,11 +51,21 @@ class OrganizationsController < ApplicationController
 
   private
 
+  def update_basic_attribute(organization_params)
+    @organization.update!(name: organization_params[:name],
+                          description: organization_params[:description])
+  end
+
+  def set_image(organization_params)
+    Image.create(imageable_id: organization_params[:id], imageable_type: 'Organization',
+                 url: organization_params[:image])
+  end
+
   def set_organization
     @organization = Organization.find(params[:id])
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description)
+    params.require(:organization).permit(:name, :description, :id, :image)
   end
 end

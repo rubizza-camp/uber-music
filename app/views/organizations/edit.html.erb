@@ -1,0 +1,16 @@
+<%= javascript_pack_tag 'application' %>
+<div class="section text-center">
+  <%= form_with model: @organization do |f| %>
+    <%= f.hidden_field :id, value: @organization.id %>
+    <%= f.text_field :name %>
+    <%= f.text_area :description %>
+    <div>
+      <span class="btn btn-raised btn-round btn-default btn-file">
+        <span class="fileinput-new">Select image</span>
+        <span class="fileinput-exists">Change</span>
+        <%= f.file_field :image, id: "image", autocomplete: @organization.images.first %>
+      </span>
+    </div>
+    <%= f.submit "Update", class: "btn btn-primary" %>
+  <% end %>
+</div>
