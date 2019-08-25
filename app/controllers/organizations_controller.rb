@@ -17,12 +17,24 @@ class OrganizationsController < ApplicationController
     )
   end
 
+  def new
+    @organization = Organization.new
+  end
+
   def create
-    @organization = Organization.new(organization_params)
+    binding.pry
+    @organization = Organization.new(name: organization_params[:name],
+                                     description: organization_params[:description])
+    @organization.users << current_user
     if @organization.save!
-      render json: @organization, status: :created
+      organization_params[:image] ? set_image(organization_params[:image], @organization.id) :
+                                    set_image(File.open('app/assets/images/default_organization.jpg'),
+                                              @organization.id)
+      flash[:alert] = 'Organization successfull create!'
+      redirect_to action: :show, id: @organization.id
     else
-      render json: @organization.errors, status: :unprocessable_entity
+      flash[:alert] = 'Oops, something went wrong, please try again later.'
+      redirect_to action: :new
     end
   end
 
@@ -32,7 +44,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update
-    set_image(organization_params) if organization_params[:image]
+    set_image(organization_params[:image], organization_params[:id] ) if organization_params[:image]
     if update_basic_attribute(organization_params)
       redirect_to action: :show, id: @organization.id
     else
@@ -56,9 +68,9 @@ class OrganizationsController < ApplicationController
                           description: organization_params[:description])
   end
 
-  def set_image(organization_params)
-    Image.create(imageable_id: organization_params[:id], imageable_type: 'Organization',
-                 url: organization_params[:image])
+  def set_image(organization_image, organization_id)
+    Image.create(imageable_id: organization_id, imageable_type: 'Organization',
+                 url: organization_image)
   end
 
   def set_organization
