@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied, with: :access_denied
 
+  def access_denied_activeadmin(*)
+    redirect_to root_path
+  end
+
   private
 
   def access_denied(exception)
