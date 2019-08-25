@@ -18,9 +18,6 @@ class OrganizationTitle extends React.Component {
               <Grid item>
                 <MediumButton content={'Edit'} href = {`/organizations/${organization_id}/edit`}/>
               </Grid>
-              <Grid>
-                <MediumButton content={'Delte'}/>
-              </Grid>
             </Grid>
           </Grid>
         </Grid>
