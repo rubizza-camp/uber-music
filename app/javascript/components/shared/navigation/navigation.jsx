@@ -10,7 +10,6 @@ import Header from "./header";
 import navbarsStyle from "../style/navbarsStyle";
 
 class Navigation extends React.Component {
-  btnClick() {}
   render() {
     const {classes} = this.props;
     if (this.props.id) {
@@ -27,22 +26,29 @@ class Navigation extends React.Component {
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#pablo"
+                  href="/organizations"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
                   color="transparent"
-                >
-                  Button1
+                  >
+                  Organizations
                 </Button>
-              </ListItem>
+            </ListItem>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#pablo"
+                  href="/places"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
                   color="transparent"
                 >
-                  Button2
+                  Places
+                </Button>
+            </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/events"
+                  className={classes.navLink}
+                  color="transparent"
+                >
+                  Events
                 </Button>
               </ListItem>
               <ListItem className={classes.listItem}>
@@ -104,22 +110,18 @@ class Navigation extends React.Component {
           rightLinks={
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
-
                   <Button
                     href="/organizations"
                     className={classes.navLink}
-                    onClick={this.btnClick.bind(this)}
                     color="transparent"
                   >
                     Organizations
                   </Button>
-
               </ListItem>
               <ListItem className={classes.listItem}>
                 <Button
                   href="/places"
                   className={classes.navLink}
-                  onClick={this.btnClick.bind(this)}
                   color="transparent"
                 >
                   Places
@@ -129,7 +131,6 @@ class Navigation extends React.Component {
                 <Button
                   href="/events"
                   className={classes.navLink}
-                  onClick={this.btnClick.bind(this)}
                   color="transparent"
                 >
                   Events
@@ -139,7 +140,6 @@ class Navigation extends React.Component {
                 <Button
                   href="/users/sign_in"
                   className={classes.navLink}
-                  onClick={this.btnClick.bind(this)}
                   color="transparent"
                 >
                   Sign in
@@ -149,7 +149,6 @@ class Navigation extends React.Component {
                 <Button
                   href="/users/sign_up"
                   className={classes.registerNavLink}
-                  onClick={this.btnClick.bind(this)}
                   color="primary"
                   round
                 >
