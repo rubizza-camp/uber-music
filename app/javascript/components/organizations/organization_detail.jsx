@@ -17,7 +17,7 @@ class OrganizationDetail extends React.Component {
         <Grid direction="column" justify="center" alignItems="center" xs={11} md={12}>
           <Grid item>
             <OrganizationTitle current_user={current_user} users={organization.users}
-                               organization_name={organization.name}/>
+                               organization_name={organization.name} organization_id={organization.id}/>
           </Grid>
           <Grid item>
             <TypoGraphy>
