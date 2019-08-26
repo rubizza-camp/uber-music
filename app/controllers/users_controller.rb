@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def edit
     @genres = Genre.all
-    @musician_skills = MusicianSkill.all - current_user.approved_musician_skills
+    @musician_skills = MusicianSkill.where.not(id: current_user.approved_musician_skills.pluck(:id))
     @user = current_user
     @image = current_user.image
   end
