@@ -22,40 +22,36 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    binding.pry
     @organization = Organization.new(name: organization_params[:name],
                                      description: organization_params[:description])
     @organization.users << current_user
     if @organization.save!
-      binding.pry
-      organization_params[:image] ?
-        ImageService.add_image(@organization.id, 'Organization', organization_params[:image]) :
-        ImageService.add_image(@organization.id,'Organization',
-                               File.open('app/assets/images/default_organization.jpg'))
-      flash[:notice] = 'Organization successfull create!'
+      set_image(@organization.id, 'Organization', organization_params)
+      flash[:notice] = 'Организация успешно создана!'
       redirect_to action: :show, id: @organization.id
     else
-      flash[:alert] = 'Oops, something went wrong, please try again later.'
+      flash[:alert] = 'Упс, что-то пошло не так, попробуйте позже.'
       redirect_to action: :new
     end
   end
 
   def edit
-    @organization
     @users = User.all
   end
 
   def update
-    ImageService.add_image(organization_params[:id],
-                          'Organization',
-                          organization_params[:image]) if organization_params[:image]
+    if organization_params[:image]
+      ImageService.add_image(organization_params[:id],
+                             'Organization',
+                             organization_params[:image])
+    end
     update_users(organization_params)
     if update_basic_attribute(organization_params)
-      redirect_to action: :show, id: @organization.id
+      flash[:notice] = 'Организация успешно обновлена!'
     else
-      flash[:alert] = 'Oops, something went wrong, please try again later.'
-      redirect_to action: :show, id: @organization.id
+      flash[:alert] = 'Упс, что-то пошло не так, попробуйте позже.'
     end
+    redirect_to action: :show, id: @organization.id
   end
 
   def destroy
@@ -68,13 +64,22 @@ class OrganizationsController < ApplicationController
 
   private
 
+  def set_image(id, type, organization_params)
+    if organization_params[:image]
+      ImageService.add_image(id, type, organization_params[:image])
+    else
+      ImageService.add_image(@organization.id, type,
+                             File.open('app/assets/images/default_organization.jpg'))
+    end
+  end
+
   def update_basic_attribute(organization_params)
     @organization.update!(name: organization_params[:name],
                           description: organization_params[:description])
   end
 
   def update_users(organization_params)
-    @organization.users.clear
+    @organization.users.clear if organization_params[:users] != ''
     organization_params[:users].split(',').each do |id|
       @organization.users << User.find(id)
     end

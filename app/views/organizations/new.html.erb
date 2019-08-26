@@ -4,8 +4,6 @@
     <img id="new-image" src="/assets/default_organization.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
     <div>
       <span class="btn btn-raised btn-round btn-default btn-file">
-        <span class="fileinput-new">Select image</span>
-        <span class="fileinput-exists">Change</span>
         <%= f.file_field :image, onchange: "readURL(this)", id: "image", autocomplete: @organization.images.first %>
       </span>
     </div>
