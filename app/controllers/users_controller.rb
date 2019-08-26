@@ -49,8 +49,8 @@ class UsersController < ApplicationController
   private
 
   def update_fields(user)
-    create_photo(user) if user[:image]
-    update_user(user)
+    UserService.set_image(current_user, user[:image]) if user[:image]
+    update_user_name(user)
     update_genres(user)
     update_musician_skills(user)
   end
@@ -63,23 +63,16 @@ class UsersController < ApplicationController
 
   def update_musician_skills(user)
     user[:musician_skills].split(',').each do |item|
-      current_user.musician_skills << MusicianSkill.find(item.to_i)
+      current_user.musician_skills << MusicianSkill.find(item)
     end
   end
 
-  def update_user(user)
+  def update_user_name(user)
     current_user.update(
       first_name: user[:first_name],
       second_name: user[:second_name],
       nickname: user[:nickname]
     )
-  end
-
-  def create_photo(user)
-    current_user.image.destroy
-    Image.create(imageable_id: current_user.id,
-                 imageable_type: 'User',
-                 url: user[:image])
   end
 
   def user_params
