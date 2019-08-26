@@ -6,4 +6,8 @@ class OrganizationSerializer < ActiveModel::Serializer
            through: :approved_organization_events,
            class_name: 'Event',
            source: :event
+
+  def first_image_url
+    object.images.first.url.url
+  end
 end

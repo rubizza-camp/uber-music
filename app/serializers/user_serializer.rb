@@ -16,4 +16,8 @@ class UserSerializer < ActiveModel::Serializer
            source: :musician_skill
   has_many :organizations, through: :user_organizations
   has_one :image, as: :imageable
+
+  def first_image_url
+    object.image.first.url.url
+  end
 end
