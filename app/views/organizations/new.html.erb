@@ -1,0 +1,31 @@
+<%= javascript_pack_tag 'application' %>
+<div class="section text-center">
+  <%= form_with model: @organization do |f| %>    
+    <img id="new-image" src="/assets/default_organization.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
+    <div>
+      <span class="btn btn-raised btn-round btn-default btn-file">
+        <%= f.file_field :image, onchange: "readURL(this)", id: "image", autocomplete: @organization.images.first %>
+      </span>
+    </div>
+      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+    </div>
+    <div class='container'>
+      <%= f.text_field :name, class: "form-control", placeholder: 'Name'%>
+      <br/>
+      <%= f.text_area :description,  class: "form-control", placeholder: 'Description'%>  
+    </div>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          $('#new-image').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+</script>

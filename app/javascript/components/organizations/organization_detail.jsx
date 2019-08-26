@@ -17,7 +17,7 @@ class OrganizationDetail extends React.Component {
         <Grid direction="column" justify="center" alignItems="center" xs={11} md={12}>
           <Grid item>
             <OrganizationTitle current_user={current_user} users={organization.users}
-                               organization_name={organization.name}/>
+                               organization_name={organization.name} organization_id={organization.id}/>
           </Grid>
           <Grid item>
             <TypoGraphy>
@@ -46,7 +46,7 @@ class OrganizationDetail extends React.Component {
               {organization.approved_events.map((event, i) =>
                 <Grid item xs={12} sm={6} md={4} key={i}>
                   <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time}
-                             end_time={event.end_time} src={event.images[0].url.url} link={'#'}></EventCard>
+                             end_time={event.end_time} src={event.images[0].url.url} link={`/events/${event.id}`}></EventCard>
                 </Grid>
               )}
             </Grid>
@@ -61,7 +61,7 @@ class OrganizationDetail extends React.Component {
           <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
             {organization.users.map((user, i) =>
               <Grid item key={i}>
-                <a href='#'>
+                <a href={`/users/${user.id}`}>
                   <MyImage key={i} src={user.image.url.url} width={'300px'} height={'150px'}></MyImage>
                 </a>
               </Grid>
@@ -69,6 +69,7 @@ class OrganizationDetail extends React.Component {
           </Grid>
         </Grid>
       </div>
+      
     );
   }
 }
