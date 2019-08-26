@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box'
 
 class OrganizationTitleName extends React.Component {
   render() {
-    const {organization_name} = this.props
+    const {organization_name} = this.props;
     return (
       <Grid item md={6} xs={12}>
         <TypoGraphy>
