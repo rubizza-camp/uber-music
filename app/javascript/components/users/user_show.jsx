@@ -50,28 +50,30 @@ class UserShowLandingPage extends React.Component {
           </div>
           <Title content={"Musician Skill:"}/>
           <div style={{margin: 20}}>
-            <Grid container direction="row" alignItems="flex-start">
-              
-              <Grid container xs={12} sm={6} justify="center" spacing={3}>
-                {user.approved_musician_skills.length === 0 &&
-                <SmallText content={"No approved skill"}/>
-                }
-                {user.approved_musician_skills.map((approved_musician_skill, i) =>
-                  <Grid item>
-                    <Badge color="rose"> <SmallText content={approved_musician_skill.name}/></Badge>
-                  </Grid>
-                )}
+            <Grid container>
+              <Grid item xs={6}>
+                <Grid container spacing={2}>
+                  {user.approved_musician_skills.length === 0 &&
+                  <SmallText content={"No approved skill"}/>
+                  }
+                  {user.approved_musician_skills.map((approved_musician_skill, i) =>
+                    <Grid item key={i}>
+                      <Badge color="rose"> <SmallText content={approved_musician_skill.name}/></Badge>
+                    </Grid>
+                  )}
+                </Grid>
               </Grid>
-              
-              <Grid container xs={12} sm={6} justify="center" spacing={3}>
-                {user.pending_musician_skills.length === 0 &&
-                <SmallText content={"No pending skill"}/>
-                }
-                {user.pending_musician_skills.map((pending_musician_skill, i) =>
-                  <Grid item>
-                    <Badge> <SmallText content={pending_musician_skill.name}/></Badge>
-                  </Grid>
-                )}
+              <Grid item xs={6}>
+                <Grid container spacing={3}>
+                  {user.pending_musician_skills.length === 0 &&
+                  <SmallText content={"No pending skill"}/>
+                  }
+                  {user.pending_musician_skills.map((pending_musician_skill, i) =>
+                    <Grid item key={i}>
+                      <Badge> <SmallText content={pending_musician_skill.name}/></Badge>
+                    </Grid>
+                  )}
+                </Grid>
               </Grid>
             </Grid>
           </div>
@@ -82,7 +84,7 @@ class UserShowLandingPage extends React.Component {
         <br/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
           {user.organizations.map((organization, i) =>
-            <Grid item>
+            <Grid item key={i}>
               <OrganizationCard organization={organization} width={200}/>
             </Grid>
           )}

@@ -17,7 +17,7 @@ class WelcomePage extends React.Component {
         <React.Fragment>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Title content={"О проекте:"}></Title>
+              <Title content={"О проекте:"}/>
             </Grid>
             <Grid item xs={12}>
               <Description
@@ -27,14 +27,14 @@ class WelcomePage extends React.Component {
           <hr/>
           <Grid container direction="column" alignItems="center">
             <Grid item>
-              <Title content={"Ближайшие мероприятия"}></Title>
+              <Title content={"Ближайшие мероприятия"}/>
             </Grid>
             <Grid container>
               {
-                events.map((event, i) =>
+                events.map((event) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
                     <EventsCard name={event.name} start_time={event.start_time} end_time={event.end_time}
-                                image={event.first_image_url}></EventsCard>
+                                image={event.first_image_url}/>
                   </Grid>
                 )
               }
@@ -43,21 +43,21 @@ class WelcomePage extends React.Component {
           <hr/>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Title content={"Карта мест выступлений"}></Title>
+              <Title content={"Карта мест выступлений"}/>
             </Grid>
             <Grid item xs={12}>
-              <YandexMaps width={"900px"} height={"500px"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}></YandexMaps>
+              <YandexMaps width={"900px"} height={"500px"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
             </Grid>
           </Grid>
           <hr/>
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item xs={12}>
-              <Title content={"Как принять участие?"}></Title>
+              <Title content={"Как принять участие?"}/>
             </Grid>
             <Grid item xs={12}>
               <Grid container direction="column" justify="center" alignItems="stretch">
                 <Grid item>
-                  <MyStepper></MyStepper>
+                  <MyStepper/>
                 </Grid>
               </Grid>
             </Grid>

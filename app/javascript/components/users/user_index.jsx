@@ -12,8 +12,8 @@ class UserIndexLandingPage extends React.Component {
       <div>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={1}>
           {users.map((user, i) =>
-            <Grid item>
-              <UserCard key={i} user={user} link={'/users/' + user.id}/>
+            <Grid item key={i}>
+              <UserCard user={user} link={'/users/' + user.id}/>
             </Grid>
           )}
         </Grid>

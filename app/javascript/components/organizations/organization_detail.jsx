@@ -14,7 +14,7 @@ class OrganizationDetail extends React.Component {
     const {organization, current_user} = this.props;
     return (
       <div>
-        <Grid direction="column" justify="center" alignItems="center" xs={11} md={12}>
+        <Grid container direction="column" justify="center" alignItems="center">
           <Grid item>
             <OrganizationTitle current_user={current_user} users={organization.users}
                                organization_name={organization.name} organization_id={organization.id}/>
@@ -27,9 +27,9 @@ class OrganizationDetail extends React.Component {
             </TypoGraphy>
           </Grid>
           <br/>
-          <Grid item>
-            <ImageCarousel images={organization.images.map((image, i) => image.url.url)} slidesToShow={1}
-                           slidesToScroll={1} width={'100%'} height={'50%'}></ImageCarousel>
+          <Grid item xs={11} md={12}>
+            <ImageCarousel images={organization.images.map((image) => image.url.url)} slidesToShow={1}
+                           slidesToScroll={1} width={'100%'} height={'50%'}/>
           </Grid>
           <Grid item>
             <TypoGraphy component="h3">

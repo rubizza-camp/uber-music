@@ -27,11 +27,11 @@ class PlaceShow extends React.Component {
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <Grid container direction="column" justify="flex-start" alignItems="flex-start">
                 <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
-                  <Title content={place.name}></Title>
+                  <Title content={place.name}/>
                 </Grid>
                 <p>
                   <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
-                    <SmallText content={place.address}></SmallText>
+                    <SmallText content={place.address}/>
                   </Grid>
                 </p>
                 <p>
@@ -45,17 +45,17 @@ class PlaceShow extends React.Component {
           <hr/>
           <Grid container direction="column" alignItems="center">
             <Grid item>
-              <Title content={"Фотогалерея"}></Title>
+              <Title content={"Фотогалерея"}/>
             </Grid>
             <Grid item>
               <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"600px"} height={"400px"}
-                             images={place.images.map((image, i) => image.url.url)}></ImageCarousel>
+                             images={place.images.map((image) => image.url.url)}/>
             </Grid>
           </Grid>
           <hr/>
           <Grid container direction="column" alignItems="center">
             <Grid item>
-              <Title content={"Ближайшие мероприятия"}></Title>
+              <Title content={"Ближайшие мероприятия"}/>
             </Grid>
             <Grid container>
               {
@@ -63,7 +63,7 @@ class PlaceShow extends React.Component {
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
                     <EventsCard name={event.name} address={place.address} start_time={event.start_time}
                                 end_time={event.end_time} image={event.images[0].url.url}
-                                link={make_url(event.id)}></EventsCard>
+                                link={make_url(event.id)} key={i}/>
                   </Grid>
                 )
               }
