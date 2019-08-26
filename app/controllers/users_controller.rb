@@ -29,21 +29,15 @@ class UsersController < ApplicationController
 
   def edit
     @genres = Genre.all
-    @musician_skill = MusicianSkill.all
+    @musician_skills = MusicianSkill.where.not(id: current_user.approved_musician_skills.pluck(:id))
     @user = current_user
-    @id = current_user.id
     @image = current_user.image
   end
 
   def update
-    user = params[:user]
-    if user[:password] != user[:confirm_password]
-      flash[:alert] = 'confirm_password'
-      redirect_to action: :edit, id: current_user.id
-    else
-      update_fields(user)
-      redirect_to action: :show, id: current_user.id
-    end
+    user = params[:user] || params[:moderator]
+    update_fields(user)
+    redirect_to action: :show, id: current_user.id
   end
 
   private
@@ -56,14 +50,16 @@ class UsersController < ApplicationController
   end
 
   def update_genres(user)
+    current_user.genres.clear if user[:genres] != ''
     user[:genres].split(',').each do |item|
       current_user.genres << Genre.find(item)
     end
   end
 
   def update_musician_skills(user)
+    current_user.pending_musician_skills.clear if user[:musician_skills] != ''
     user[:musician_skills].split(',').each do |item|
-      current_user.musician_skills << MusicianSkill.find(item)
+      current_user.pending_musician_skills << MusicianSkill.find(item)
     end
   end
 

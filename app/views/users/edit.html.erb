@@ -32,13 +32,13 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#user_genres'}) %><br/>
-          <%= f.hidden_field :genres, value: '' %>
+          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#genres'}) %><br/>
+          <%= f.hidden_field :genres, id: :genres, value: '' %>
 
         </div>
         <div class="col">
-          <%= react_component("users/select", {map: @musician_skill, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.musician_skill_ids, selector: '#user_musician_skills'}) %><br/>
-          <%= f.hidden_field :musician_skills, value: ''  %>
+          <%= react_component("users/select", {map: @musician_skills, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.pending_musician_skill_ids, selector: '#musician_skills'}) %><br/>
+          <%= f.hidden_field :musician_skills, id: :musician_skills, value: ''  %>
         </div>
       </div>
     </div>
