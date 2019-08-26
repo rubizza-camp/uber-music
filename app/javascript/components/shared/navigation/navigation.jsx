@@ -10,6 +10,7 @@ import Header from "./header";
 import navbarsStyle from "../style/navbarsStyle";
 
 class Navigation extends React.Component {
+  btnClick() {}
   render() {
     const {classes} = this.props;
     if (this.props.id) {
@@ -103,10 +104,42 @@ class Navigation extends React.Component {
           rightLinks={
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
+
+                  <Button
+                    href="/organizations"
+                    className={classes.navLink}
+                    onClick={this.btnClick.bind(this)}
+                    color="transparent"
+                  >
+                    Organizations
+                  </Button>
+
+              </ListItem>
+              <ListItem className={classes.listItem}>
                 <Button
-                  href="#/users/sign_in"
+                  href="/places"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
+                  onClick={this.btnClick.bind(this)}
+                  color="transparent"
+                >
+                  Places
+                </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/events"
+                  className={classes.navLink}
+                  onClick={this.btnClick.bind(this)}
+                  color="transparent"
+                >
+                  Events
+                </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/users/sign_in"
+                  className={classes.navLink}
+                  onClick={this.btnClick.bind(this)}
                   color="transparent"
                 >
                   Sign in
@@ -114,15 +147,15 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#/users/sign_up"
+                  href="/users/sign_up"
                   className={classes.registerNavLink}
-                  onClick={e => e.preventDefault()}
+                  onClick={this.btnClick.bind(this)}
                   color="primary"
                   round
                 >
                   Sign up
-                </Button>
-              </ListItem>
+                </Button>               
+              </ListItem>             
             </List>
           }
         />
