@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     @genres = Genre.all
     @musician_skills = MusicianSkill.all - current_user.approved_musician_skills
     @user = current_user
-    @id = current_user.id
     @image = current_user.image
   end
 
