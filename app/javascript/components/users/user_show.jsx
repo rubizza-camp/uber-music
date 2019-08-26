@@ -77,6 +77,21 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
+          <Title content={"Genres:"}/>
+          <div style={{margin: 10}}>
+            <Grid container direction="row" alignItems="flex-start">
+              <Grid container justify="center" spacing={3}>
+                {user.genres.length === 0 &&
+                <SmallText content={"No approved skill"}/>
+                }
+                {user.genres.map((genre) =>
+                  <Grid item>
+                    <Badge color="rose"> <SmallText content={genre.name}/></Badge>
+                  </Grid>
+                )}
+              </Grid>
+            </Grid>
+          </div>
         </Grid>
         <hr/>
         <br/>

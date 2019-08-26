@@ -13,6 +13,7 @@ class UsersController < ApplicationController
                 'organizations.images.**',
                 'approved_musician_skills.*',
                 'pending_musician_skills.*',
+                'genres.*',
                 'image.*'
               ]
     )
