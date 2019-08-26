@@ -56,7 +56,7 @@ class UserShowLandingPage extends React.Component {
                 {user.approved_musician_skills.length === 0 &&
                 <SmallText content={"No approved skill"}/>
                 }
-                {user.approved_musician_skills.map((approved_musician_skill) =>
+                {user.approved_musician_skills.map((approved_musician_skill, i) =>
                   <Grid item>
                     <Badge color="rose"> <SmallText content={approved_musician_skill.name}/></Badge>
                   </Grid>
@@ -67,7 +67,7 @@ class UserShowLandingPage extends React.Component {
                 {user.pending_musician_skills.length === 0 &&
                 <SmallText content={"No pending skill"}/>
                 }
-                {user.pending_musician_skills.map((pending_musician_skill) =>
+                {user.pending_musician_skills.map((pending_musician_skill, i) =>
                   <Grid item>
                     <Badge> <SmallText content={pending_musician_skill.name}/></Badge>
                   </Grid>
@@ -81,7 +81,7 @@ class UserShowLandingPage extends React.Component {
         <Title content={"Organizations:"}/>
         <br/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
-          {user.organizations.map((organization) =>
+          {user.organizations.map((organization, i) =>
             <Grid item>
               <OrganizationCard organization={organization} width={200}/>
             </Grid>

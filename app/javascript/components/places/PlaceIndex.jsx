@@ -16,7 +16,7 @@ class PlaceIndex extends React.Component {
         <React.Fragment>
           <Grid container justify="center" alignItems="center">
             {
-              places.map((place) =>
+              places.map((place, i) =>
                 <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
                   <PlacesCard name={place.name} address={place.address} image={place.images[0].url.url}
                               link={make_url(place.id)}></PlacesCard>

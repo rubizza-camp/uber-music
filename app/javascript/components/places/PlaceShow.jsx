@@ -49,7 +49,7 @@ class PlaceShow extends React.Component {
             </Grid>
             <Grid item>
               <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"600px"} height={"400px"}
-                             images={place.images.map((image) => image.url.url)}></ImageCarousel>
+                             images={place.images.map((image, i) => image.url.url)}></ImageCarousel>
             </Grid>
           </Grid>
           <hr/>
@@ -59,7 +59,7 @@ class PlaceShow extends React.Component {
             </Grid>
             <Grid container>
               {
-                place.events.map((event) =>
+                place.events.map((event, i) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
                     <EventsCard name={event.name} address={place.address} start_time={event.start_time}
                                 end_time={event.end_time} image={event.images[0].url.url}
