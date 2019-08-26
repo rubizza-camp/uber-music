@@ -22,22 +22,29 @@ class Navigation extends React.Component {
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#pablo"
+                  href="/organizations"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
                   color="transparent"
-                >
-                  Button1
+                  >
+                  Organizations
                 </Button>
-              </ListItem>
+            </ListItem>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#pablo"
+                  href="/places"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
                   color="transparent"
                 >
-                  Button2
+                  Places
+                </Button>
+            </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/events"
+                  className={classes.navLink}
+                  color="transparent"
+                >
+                  Events
                 </Button>
               </ListItem>
               <ListItem className={classes.listItem}>
@@ -95,10 +102,36 @@ class Navigation extends React.Component {
           rightLinks={
             <List className={classes.list}>
               <ListItem className={classes.listItem}>
+                  <Button
+                    href="/organizations"
+                    className={classes.navLink}
+                    color="transparent"
+                  >
+                    Organizations
+                  </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
                 <Button
-                  href="#/users/sign_in"
+                  href="/places"
                   className={classes.navLink}
-                  onClick={e => e.preventDefault()}
+                  color="transparent"
+                >
+                  Places
+                </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/events"
+                  className={classes.navLink}
+                  color="transparent"
+                >
+                  Events
+                </Button>
+              </ListItem>
+              <ListItem className={classes.listItem}>
+                <Button
+                  href="/users/sign_in"
+                  className={classes.navLink}
                   color="transparent"
                 >
                   Sign in
@@ -106,15 +139,14 @@ class Navigation extends React.Component {
               </ListItem>
               <ListItem className={classes.listItem}>
                 <Button
-                  href="#/users/sign_up"
+                  href="/users/sign_up"
                   className={classes.registerNavLink}
-                  onClick={e => e.preventDefault()}
                   color="primary"
                   round
                 >
                   Sign up
-                </Button>
-              </ListItem>
+                </Button>               
+              </ListItem>             
             </List>
           }
         />
