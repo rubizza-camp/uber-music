@@ -17,7 +17,12 @@
 
 <body>
 <% if user_signed_in? %>
-  <%= react_component("shared/navigation/navigation", {image: current_user.image, id: current_user.id}) %>
+  <%= react_component("shared/navigation/navigation", {
+                                                       image: current_user.image,
+                                                       id: current_user.id,
+                                                       current_user: current_user,
+                                                       organizations: current_user.organizations
+                                                      }) %>
 <% else %>
   <%= react_component("shared/navigation/navigation") %>
 <% end %>
