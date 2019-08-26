@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 
 export default function UserCard(props) {
   const classes = useStyles();
-  const { user, link } = props;
+  const {user, link} = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../shared/landingPage";
+import landingPageStyle from "../shared/style/landingPage";
 import Grid from "@material-ui/core/Grid";
 import UserCard from "./user_card.jsx";
 

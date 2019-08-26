@@ -27,18 +27,53 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @genres = Genre.all
+    @musician_skill = MusicianSkill.all
+    @user = current_user
+    @id = current_user.id
+    @image = current_user.image
   end
 
-  def destroy
-    if @user.destroy
-      head :no_content
+  def update
+    user = params[:user]
+    if user[:password] != user[:confirm_password]
+      flash[:alert] = 'confirm_password'
+      redirect_to action: :edit, id: current_user.id
     else
-      render json: @user.errors, status: :unprocessable_entity
+      update_fields(user)
+      redirect_to action: :show, id: current_user.id
     end
   end
 
   private
+
+  def update_fields(user)
+    UserService.set_image(current_user, user[:image]) if user[:image]
+    update_user_name(user)
+    update_genres(user)
+    update_musician_skills(user)
+  end
+
+  def update_genres(user)
+    user[:genres].split(',').each do |item|
+      current_user.genres << Genre.find(item)
+    end
+  end
+
+  def update_musician_skills(user)
+    user[:musician_skills].split(',').each do |item|
+      current_user.musician_skills << MusicianSkill.find(item)
+    end
+  end
+
+  def update_user_name(user)
+    current_user.update(
+      first_name: user[:first_name],
+      second_name: user[:second_name],
+      nickname: user[:nickname]
+    )
+  end
 
   def user_params
     params.require(:user).permit(:nickname, :first_name, :second_name,

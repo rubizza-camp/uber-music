@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../shared/landingPage";
 import MyImage from "../shared/image";
 import Grid from "@material-ui/core/Grid";
 import Title from "../shared/title";
@@ -23,7 +21,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -34,7 +31,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -45,7 +41,6 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
@@ -53,7 +48,7 @@ class UserShowLandingPage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          
+          <Title content={"Musician Skill:"}/>
           <div style={{margin: 20}}>
             <Grid container direction="row" alignItems="flex-start">
               
@@ -78,18 +73,13 @@ class UserShowLandingPage extends React.Component {
                   </Grid>
                 )}
               </Grid>
-            
             </Grid>
           </div>
         </Grid>
-        
-        <br/><br/>
-        
+        <hr/>
+        <br/>
         <Title content={"Organizations:"}/>
-        
-        <br/><br/>
-        
-        
+        <br/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
           {user.organizations.map((organization) =>
             <Grid item>
@@ -106,4 +96,4 @@ UserShowLandingPage.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(landingPageStyle)(UserShowLandingPage);
+export default (UserShowLandingPage);
