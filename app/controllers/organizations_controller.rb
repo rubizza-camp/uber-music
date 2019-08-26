@@ -26,7 +26,6 @@ class OrganizationsController < ApplicationController
                                      description: organization_params[:description])
     @organization.users << current_user
     if @organization.save!
-      binding.pry
       set_image(@organization.id, 'Organization', params[:organization][:image])
       flash[:notice] = 'Организация успешно создана!'
       redirect_to action: :show, id: @organization.id
@@ -43,8 +42,8 @@ class OrganizationsController < ApplicationController
   def update
     if params[:organization][:image]
       ImageService.add_images(organization_params[:id],
-                             'Organization',
-                             params[:organization][:image])
+                              'Organization',
+                              params[:organization][:image])
     end
     update_users(organization_params)
     if update_basic_attribute(organization_params)
