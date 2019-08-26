@@ -27,11 +27,12 @@ class OrganizationsController < ApplicationController
                                      description: organization_params[:description])
     @organization.users << current_user
     if @organization.save!
+      binding.pry
       organization_params[:image] ?
-        ImageService.add_image(@organization.id, @organization.type,
-                               File.open('app/assets/images/default_organization.jpg')) :
-        ImageService.add_image(@organization.id, @organization.type, organization_params[:image]) 
-      flash[:alert] = 'Organization successfull create!'
+        ImageService.add_image(@organization.id, 'Organization', organization_params[:image]) :
+        ImageService.add_image(@organization.id,'Organization',
+                               File.open('app/assets/images/default_organization.jpg'))
+      flash[:notice] = 'Organization successfull create!'
       redirect_to action: :show, id: @organization.id
     else
       flash[:alert] = 'Oops, something went wrong, please try again later.'
@@ -41,13 +42,14 @@ class OrganizationsController < ApplicationController
 
   def edit
     @organization
-    @events = Event.all
+    @users = User.all
   end
 
   def update
     ImageService.add_image(organization_params[:id],
                           'Organization',
                           organization_params[:image]) if organization_params[:image]
+    update_users(organization_params)
     if update_basic_attribute(organization_params)
       redirect_to action: :show, id: @organization.id
     else
@@ -71,11 +73,18 @@ class OrganizationsController < ApplicationController
                           description: organization_params[:description])
   end
 
+  def update_users(organization_params)
+    @organization.users.clear
+    organization_params[:users].split(',').each do |id|
+      @organization.users << User.find(id)
+    end
+  end
+
   def set_organization
     @organization = Organization.find(params[:id])
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :id, :image)
+    params.require(:organization).permit(:name, :description, :id, :image, :users)
   end
 end

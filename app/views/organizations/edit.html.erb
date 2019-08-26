@@ -1,19 +1,49 @@
 <%= javascript_pack_tag 'application' %>
 <div class="section text-center">
   <%= form_with model: @organization do |f| %>
-    <%= f.hidden_field :id, value: @organization.id %>
-
-    <%= f.text_field :name %>
-    <label for="organization_description">Description</label>
-    <%= f.text_area :description,  class: "form-control" %>
+    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+      <% if @organization.images.first %>
+        <img id="new-image" src="<%= @organization.images.first.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+      <% else %>
+        <img id="new-image" src="/assets/default_organization.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
+      <% end %>
     <div>
       <span class="btn btn-raised btn-round btn-default btn-file">
         <span class="fileinput-new">Select image</span>
         <span class="fileinput-exists">Change</span>
-        <%= f.file_field :image, id: "image", autocomplete: @organization.images.first %>
+        <%= f.file_field :image, onchange: "readURL(this)", id: "image", autocomplete: @organization.images.first %>
       </span>
     </div>
-    <%= f.submit "Update", class: "btn btn-primary" %>
+      <br/>
+      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+      <br/>
+    </div>
+    <div class='container'>
+      <%= f.text_field :name, class: "form-control" %>
+      <br/>
+      <%= f.text_area :description,  class: "form-control", rows: '5' %>
+    </div>
+    <%= f.hidden_field :id, value: @organization.id %>
+    <div class="container">
+      <div class='row'>
+        <div class='col'>
+          <%= react_component("users/select_user", {map: @users, name: 'User', id: 'user', currentElements: @organization.user_ids, selector: '#organization_users'}) %>
+          <br/>
+          <%= f.hidden_field :users, value: '' %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Обновить", class: "btn btn-primary" %>
   <% end %>
-  <>
 </div>
+<script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          $('#new-image').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+</script>
