@@ -1,15 +1,15 @@
 <%= javascript_pack_tag 'application' %>
-<div class="section text-center">
+<div class="section text-center" id='organization_edit'>
   <%= form_with model: @organization do |f| %>
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-      <% if @organization.images.first %>
-        <img id="new-image" src="<%= @organization.images.first.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
-      <% else %>
-        <img id="new-image" src="/assets/default_organization.jpg" alt="..." width="200" height="200" style="border-radius: 6px"/>
-      <% end %>
+      <div class="gallery">
+        <% @organization.images.each do |image| %>
+          <img id="new-image" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+        <% end %>
+      </div>
     <div>
       <span class="btn btn-raised btn-round btn-default btn-file">
-        <%= f.file_field :image, onchange: "readURL(this)", id: "image", autocomplete: @organization.images.first %>
+        <%= f.file_field :image, multiple: true, id: "gallery-photo-add", autocomplete: @organization.images.first %>
       </span>
     </div>
       <br/>
@@ -34,14 +34,3 @@
     <%= f.submit "Обновить", class: "btn btn-primary" %>
   <% end %>
 </div>
-<script>
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          $('#new-image').attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-</script>
