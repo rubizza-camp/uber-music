@@ -42,7 +42,7 @@ const RegularButton = React.forwardRef((props, ref) => {
     [className]: className
   });
   return (
-    <Button {...rest} ref={ref} className={btnClasses}>
+    <Button data-turbolinks="false" {...rest} ref={ref} className={btnClasses}>
       {children}
     </Button>
   );

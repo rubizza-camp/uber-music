@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 export default function EventButton(props) {
   const classes = useStyles();
   return (
-    <Button variant="contained" size={props.size} color='primary' className={classes.purpleColor}>
+    <Button data-turbolinks="false" variant="contained" size={props.size} color='primary' className={classes.purpleColor}>
       {props.content}
     </Button>
   );

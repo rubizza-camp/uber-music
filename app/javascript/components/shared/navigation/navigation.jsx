@@ -55,6 +55,7 @@ function DropdownBar({image, classes, id}){
           href={"/users/" + id}
           data-method="get"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Me
         </a>,
@@ -62,6 +63,7 @@ function DropdownBar({image, classes, id}){
           href={"/users/" + id + "/edit"}
           data-method="get"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Edit Your Profile
         </a>,
@@ -69,6 +71,7 @@ function DropdownBar({image, classes, id}){
           href="/users/sign_out"
           data-method="delete"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Sign out
         </a>
@@ -133,6 +136,7 @@ function Navigation({classes, image, id, current_user, organizations}) {
             </ListItem>
             <ListItem className={classes.listItem}>
               <Button
+                data-turbolinks="false"
                 href="/events"
                 className={classes.navLink}
                 color="transparent"

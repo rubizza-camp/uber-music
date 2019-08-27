@@ -49,7 +49,7 @@ export default function UserCard(props) {
       </CardActionArea>
       <CardActions>
         <a href={link} data-method="get">
-          <Button size="small" color="primary">
+          <Button data-turbolinks="false" size="small" color="primary">
             Learn More
           </Button>
         </a>
