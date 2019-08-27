@@ -22,48 +22,45 @@ class PlaceShow extends React.Component {
         <React.Fragment>
           <Grid container>
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
-              <YandexMaps width={"90%"} height={"90%"} zoom={17} center={[place.longitude, place.latitude]} places={[place]}></YandexMaps>
+              <YandexMaps width={"90%"} height={"90%"} zoom={17} center={[place.longitude, place.latitude]}
+                          places={[place]}/>
             </Grid>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <Grid container direction="column" justify="flex-start" alignItems="flex-start">
                 <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
-                  <Title content={place.name}></Title>
+                  <Title content={place.name}/>
                 </Grid>
-                <p>
-                  <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
-                    <SmallText content={place.address}></SmallText>
-                  </Grid>
-                </p>
-                <p>
-                  <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
-                    <Description content={place.description}/>
-                  </Grid>
-                </p>
+                <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
+                  <SmallText content={place.address}/>
+                </Grid>
+                <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
+                  <Description content={place.description}/>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
           <hr/>
           <Grid container direction="column" alignItems="center">
             <Grid item>
-              <Title content={"Фотогалерея"}></Title>
+              <Title content={"Фотогалерея"}/>
             </Grid>
             <Grid item>
               <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"600px"} height={"400px"}
-                             images={place.images.map((image) => image.url.url)}></ImageCarousel>
+                             images={place.images.map((image) => image.image_url)}/>
             </Grid>
           </Grid>
           <hr/>
           <Grid container direction="column" alignItems="center">
             <Grid item>
-              <Title content={"Ближайшие мероприятия"}></Title>
+              <Title content={"Ближайшие мероприятия"}/>
             </Grid>
             <Grid container>
               {
-                place.events.map((event) =>
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
+                place.events.map((event, i) =>
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
                     <EventsCard name={event.name} address={place.address} start_time={event.start_time}
-                                end_time={event.end_time} image={event.images[0].url.url}
-                                link={make_url(event.id)}></EventsCard>
+                                end_time={event.end_time} image={event.first_image_url}
+                                link={make_url(event.id)} key={i}/>
                   </Grid>
                 )
               }

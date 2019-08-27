@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box'
 export default function Description(props) {
   return (
     <TypoGraphy>
-      <Box component='text' fontSize="14px" fontWeight="300">
+      <Box component='span' fontSize="14px" fontWeight="300">
         {props.content}
       </Box>
     </TypoGraphy>

@@ -16,7 +16,7 @@ class EventIndex extends React.Component {
               {events.map((event, i) => {
                 return (
                   <Grid item key={i}>
-                    <EventsCard image={event.images[0].url.url} name={event.name} address={event.place.address}
+                    <EventsCard image={event.first_image_url} name={event.name} address={event.place.address}
                                 start_time={event.start_time} end_time={event.end_time} link={event.id}/>
                   </Grid>
                 )

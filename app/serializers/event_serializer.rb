@@ -1,6 +1,6 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :description, :name, :start_time, :end_time,
-             :organizations_user_ids, :first_image_url
+             :organizations_user_ids, :first_image_url, :images
   belongs_to :place
   has_many :pending_organizations,
            through: :pending_organization_events,
@@ -29,6 +29,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def first_image_url
-    object.images.first.url.url
+    object&.images&.first&.url&.url
   end
 end
