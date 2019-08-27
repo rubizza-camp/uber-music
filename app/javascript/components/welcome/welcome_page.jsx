@@ -31,8 +31,8 @@ class WelcomePage extends React.Component {
             </Grid>
             <Grid container>
               {
-                events.map((event) =>
-                  <Grid item xs={12} sm={12} md={4} lg={4} xl={3}>
+                events.map((event, i) =>
+                  <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
                     <EventsCard name={event.name} start_time={event.start_time} end_time={event.end_time}
                                 image={event.first_image_url}/>
                   </Grid>
