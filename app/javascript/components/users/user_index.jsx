@@ -33,7 +33,7 @@ class SearchExample extends React.Component {
 // Constant, library
 const libraries = [
   
-  {props.map((user, i) => user}
+  {props.users.map((user, i) => user}
 
 ];
 
