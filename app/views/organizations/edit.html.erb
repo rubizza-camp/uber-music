@@ -1,5 +1,5 @@
 <%= javascript_pack_tag 'application' %>
-<div class="section text-center">
+<div class="section text-center" id='organization_edit'>
   <%= form_with model: @organization do |f| %>
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
       <div class="gallery">
@@ -34,23 +34,3 @@
     <%= f.submit "Обновить", class: "btn btn-primary" %>
   <% end %>
 </div>
-<script>
-  $(function() {
-  var imagesPreview = function(input, placeToInsertImagePreview) {
-    if (input.files) {
-      var filesAmount = input.files.length;
-      for (i = 0; i < filesAmount; i++) {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-            $($.parseHTML('<img width="200" height="200" style="border-radius: 6px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-        }
-        reader.readAsDataURL(input.files[i]);
-      }
-    }
-  };
-  $('#gallery-photo-add').on('change', function() {
-      imagesPreview(this, 'div.gallery');
-  });
-});
-</script>
-
