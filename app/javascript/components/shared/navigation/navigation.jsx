@@ -136,6 +136,7 @@ function Navigation({classes, image, id, current_user, organizations}) {
             </ListItem>
             <ListItem className={classes.listItem}>
               <Button
+                data-turbolinks="false"
                 href="/events"
                 className={classes.navLink}
                 color="transparent"

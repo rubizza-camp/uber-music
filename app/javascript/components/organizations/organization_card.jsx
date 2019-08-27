@@ -40,7 +40,7 @@ export default function OrganizationCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button data-turbolinks="false" size="small" color="primary">
             Learn More
           </Button>
         </CardActions>

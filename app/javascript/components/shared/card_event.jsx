@@ -41,7 +41,7 @@ export default function EventCard(props) {
       </CardActionArea>
       <CardActions>
         <a href={props.link} data-method="get">
-          <Button size="small" color="primary">
+          <Button data-turbolinks="false" size="small" color="primary">
             Learn More
           </Button>
         </a>
