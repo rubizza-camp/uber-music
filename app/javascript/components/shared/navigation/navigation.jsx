@@ -82,24 +82,20 @@ function DropdownBar({image, classes, id}){
 
 function UserHasOrganizationsButton({classes}){
   return (
-    <ListItem className={classes.listItem}>
-      <Button
-        href="/events/new"
-        className={classes.registerNavLink}
-        color="primary"
-        round
-      >
-        CREATE EVENT
-      </Button>
-    </ListItem>
+    <Button
+      href="/events/new"
+      className={classes.registerNavLink}
+      color="primary"
+      round
+    >
+      CREATE EVENT
+    </Button>
   );
 }
 
 function UserHasNotOrganizationsButton({classes}){
   return (
-    <ListItem className={classes.listItem}>
-      <DialogWindow></DialogWindow>
-    </ListItem>
+    <DialogWindow></DialogWindow>
   );
 }
 
