@@ -1,29 +1,44 @@
-import React from "react";
-import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import landingPageStyle from "../shared/style/landingPage";
+import React from 'react';
+import * as ReactDom from "react-dom";
+import UserCard from "./user_card";
 import Grid from "@material-ui/core/Grid";
-import UserCard from "./user_card.jsx";
 
-class UserIndexLandingPage extends React.Component {
+class SearchExample extends React.Component {
+  state = {searchString: ''};
+  handleChange = (e) => {
+    this.setState({searchString: e.target.value});
+  };
+  
   render() {
-    const {users} = this.props;
+    let libraries = this.props.items,
+      searchString = this.state.searchString.trim().toLowerCase();
+    if (searchString.length > 0) {
+      libraries = libraries.filter(function (i) {
+        return i.name.toLowerCase().match(searchString);
+      });
+    }
     return (
       <div>
+        <input type="text" value={this.state.searchString} onChange={this.handleChange} placeholder="Type here..."/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={1}>
-          {users.map((user, i) =>
-            <Grid item key={i}>
-              <UserCard user={user} link={'/users/' + user.id}/>
-            </Grid>
-          )}
+          {libraries.map(function (element, i) {
+              return <UserCard user={element} link={'/users/' + element.id}/>
+          })}
         </Grid>
       </div>
     );
   }
 }
 
-UserIndexLandingPage.propTypes = {
-  classes: PropTypes.object
-};
+// Constant, library
+const libraries = [
+  
+  {props.map((user, i) => user}
 
-export default withStyles(landingPageStyle)(UserIndexLandingPage);
+];
+
+// put input and display on page
+ReactDom.render(
+  <SearchExample items={libraries}/>,
+  document.getElementById('content')
+);
