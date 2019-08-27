@@ -54,7 +54,7 @@ class UserShowLandingPage extends React.Component {
               <Grid item xs={6}>
                 <Grid container spacing={2}>
                   {user.approved_musician_skills.length === 0 &&
-                  <SmallText content={"No approved skill"}/>
+                  <SmallText content={"Нет подвержденных музыкальных навков"}/>
                   }
                   {user.approved_musician_skills.map((approved_musician_skill, i) =>
                     <Grid item key={i}>
@@ -66,7 +66,7 @@ class UserShowLandingPage extends React.Component {
               <Grid item xs={6}>
                 <Grid container spacing={3}>
                   {user.pending_musician_skills.length === 0 &&
-                  <SmallText content={"No pending skill"}/>
+                  <SmallText content={"Нет музыкальных навыков"}/>
                   }
                   {user.pending_musician_skills.map((pending_musician_skill, i) =>
                     <Grid item key={i}>
@@ -82,7 +82,7 @@ class UserShowLandingPage extends React.Component {
             <Grid container direction="row" alignItems="flex-start">
               <Grid container justify="center" spacing={3}>
                 {user.genres.length === 0 &&
-                <SmallText content={"No approved skill"}/>
+                <SmallText content={"Выбранные жанры отсутвстуют"}/>
                 }
                 {user.genres.map((genre) =>
                   <Grid item>
