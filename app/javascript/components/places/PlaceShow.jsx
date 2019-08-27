@@ -46,7 +46,7 @@ class PlaceShow extends React.Component {
             </Grid>
             <Grid item>
               <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"600px"} height={"400px"}
-                             images={place.images.map((image) => image.url.url)}/>
+                             images={place.images.map((image) => image.image_url)}/>
             </Grid>
           </Grid>
           <hr/>

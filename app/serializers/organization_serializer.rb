@@ -8,6 +8,6 @@ class OrganizationSerializer < ActiveModel::Serializer
            source: :event
 
   def first_image_url
-    object.images[0].url.url
+    object&.images&.first&.url&.url
   end
 end

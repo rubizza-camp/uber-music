@@ -18,6 +18,6 @@ class UserSerializer < ActiveModel::Serializer
   has_one :image, as: :imageable
 
   def image_url
-    object.image.url.url if object.image
+    object&.image&.url&.url
   end
 end

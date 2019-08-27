@@ -35,7 +35,7 @@ class OrganizationDetail extends React.Component {
             
             
             <Grid item xs={11} md={12}>
-              <ImageCarousel images={organization.images.map((image) => image.url.url)} slidesToShow={1}
+              <ImageCarousel images={organization.images.map((image) => image.image_url)} slidesToShow={1}
                              slidesToScroll={1} width={'100%'} height={'50%'}/>
             </Grid>
             

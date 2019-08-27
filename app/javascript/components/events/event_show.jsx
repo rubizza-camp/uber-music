@@ -52,7 +52,7 @@ class EventShow extends React.Component {
               </Grid>
               <Grid item>
                 <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"600px"} height={"400px"}
-                               images={event.images.map((image) => image.url.url)}/>
+                               images={event.images.map((image) => image.image_url)}/>
               </Grid>
             </Grid>
           </Grid>

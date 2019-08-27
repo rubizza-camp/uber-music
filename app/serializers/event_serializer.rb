@@ -29,6 +29,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def first_image_url
-    object.images.first.url.url
+    object&.images&.first&.url&.url
   end
 end
