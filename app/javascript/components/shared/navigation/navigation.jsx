@@ -55,6 +55,7 @@ function DropdownBar({image, classes, id}){
           href={"/users/" + id}
           data-method="get"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Me
         </a>,
@@ -62,6 +63,7 @@ function DropdownBar({image, classes, id}){
           href={"/users/" + id + "/edit"}
           data-method="get"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Edit Your Profile
         </a>,
@@ -69,6 +71,7 @@ function DropdownBar({image, classes, id}){
           href="/users/sign_out"
           data-method="delete"
           className={classes.dropdownLink}
+          data-turbolinks={"false"}
         >
           Sign out
         </a>
