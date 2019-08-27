@@ -22,28 +22,30 @@ export default function PlacesCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.image}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.address}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <a href={props.link} data-method="get">
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </a>
-      </CardActions>
-    </Card>
+    <a href={props.link} data-method="get">
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={props.image}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.address}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <a href={props.link} data-method="get">
+            <Button size="small" color="primary">
+              Learn More
+            </Button>
+          </a>
+        </CardActions>
+      </Card>
+    </a>
   );
 }
