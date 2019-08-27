@@ -16,7 +16,7 @@ class UserShowLandingPage extends React.Component {
           <div style={{margin: 20}}>
             <Grid container justify="center">
               <Grid item>
-                <MyImage src={user.image ? user.image.url.url : "/assets/default_avatar.jpg"}
+                <MyImage src={user.image ? user.image_url : "/assets/default_avatar.jpg"}
                          width={250} height={250}/>
               </Grid>
             </Grid>

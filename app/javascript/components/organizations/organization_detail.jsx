@@ -59,7 +59,7 @@ class OrganizationDetail extends React.Component {
               {organization.approved_events.map((event, i) =>
                 <Grid item xs={12} sm={6} md={4} key={i}>
                   <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time}
-                             end_time={event.end_time} src={event.images[0].url.url} link={`/events/${event.id}`}/>
+                             end_time={event.end_time} src={event.first_image_url} link={`/events/${event.id}`}/>
                 </Grid>
               )}
             </Grid>
@@ -76,7 +76,7 @@ class OrganizationDetail extends React.Component {
             {organization.users.map((user, i) =>
               <Grid item key={i}>
                 <a href={`/users/${user.id}`}>
-                  <MyImage key={i} src={user.image.url.url} width={'300px'} height={'150px'}/>
+                  <MyImage key={i} src={user.image_url} width={'300px'} height={'150px'}/>
                 </a>
               </Grid>
             )}

@@ -59,7 +59,7 @@ class PlaceShow extends React.Component {
                 place.events.map((event, i) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
                     <EventsCard name={event.name} address={place.address} start_time={event.start_time}
-                                end_time={event.end_time} image={event.images[0].url.url}
+                                end_time={event.end_time} image={event.first_image_url}
                                 link={make_url(event.id)} key={i}/>
                   </Grid>
                 )

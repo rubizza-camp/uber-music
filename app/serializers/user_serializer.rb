@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :nickname, :first_name, :second_name, :type, :email, :password
+  attributes :id, :nickname, :first_name, :second_name, :type, :email, :password, :image_url, :image
   has_many :genres, through: :user_genres
 
   has_many :pending_musician_skills,
@@ -17,7 +17,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :organizations, through: :user_organizations
   has_one :image, as: :imageable
 
-  def first_image_url
-    object.image.first.url.url
+  def image_url
+    object.image.url.url if object.image
   end
 end

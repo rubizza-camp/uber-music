@@ -23,14 +23,14 @@ export default function OrganizationCard(props) {
     },
   });
   const classes = useStyles();
-  const {organization} = props
+  const {organization} = props;
   return (
     <a href={make_url(organization.id)} data-method="get">
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={organization.images[0].url.url}
+            image={organization.first_image_url}
             title={organization.name}
           />
           <CardContent>

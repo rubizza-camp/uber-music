@@ -27,7 +27,7 @@ export default function UserCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={user.image ? user.image.url.url : "/assets/default_avatar.jpg"}
+          image={user.image ? user.image_url : "/assets/default_avatar.jpg"}
           title="Contemplative Reptile"
         />
         <CardContent>

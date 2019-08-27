@@ -1,5 +1,5 @@
 class PlaceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :latitude, :longitude, :address, :description, :rules
+  attributes :id, :name, :latitude, :longitude, :address, :description, :rules, :images, :first_image_url
   has_many :events
   has_many :images, as: :imageable
 
