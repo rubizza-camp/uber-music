@@ -2,18 +2,15 @@ class PlacesController < ApplicationController
   authorize_resource
   before_action :set_place, only: %i[show update destroy]
 
+  FIRST_EVENTS_SIZE = 3
+
   def index
     @places = serialize_recourse(Place.all)
   end
 
   def show
-    @place = serialize_recourse(
-      @place, include:
-              [
-                'events.images.**',
-                'images.*'
-              ]
-    )
+    @events = serialize_recourse(today_events_for_current_place.first(FIRST_EVENTS_SIZE))
+    @place = serialize_recourse(@place)
   end
 
   def create
@@ -48,7 +45,11 @@ class PlacesController < ApplicationController
   end
 
   def place_params
-    params.require(:place).permit(:name, :latitude, :longitude,
+    params.require(:place).permit(:id, :name, :latitude, :longitude,
                                   :address, :description, :rules)
+  end
+
+  def today_events_for_current_place
+    @place.events.where(start_time: Date.today..(Date.today + 24.hour))
   end
 end

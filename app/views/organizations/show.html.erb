@@ -1,5 +1,6 @@
 <%= javascript_pack_tag 'application' %>
 <%= react_component("organizations/organization_detail", {
+                                                        approved_events: @approved_events,
                                                         organization: @organization,
                                                         slidesToShow: 3,
                                                         slidesToScroll: 3,

@@ -2,19 +2,17 @@ class OrganizationsController < ApplicationController
   authorize_resource
   before_action :set_organization, only: %i[show update destroy edit]
 
+  FIRST_EVENTS_SIZE = 3
+
   def index
     @organizations = serialize_recourse(Organization.all)
   end
 
   def show
-    @organization = serialize_recourse(
-      @organization, include:
-                      [
-                        'approved_events.images.**',
-                        'users.image.*',
-                        'images.*'
-                      ]
+    @approved_events = serialize_recourse(
+      today_events_for_current_organization.first(FIRST_EVENTS_SIZE)
     )
+    @organization = serialize_recourse(@organization)
   end
 
   def new
@@ -90,5 +88,9 @@ class OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img)
+  end
+
+  def today_events_for_current_organization
+    @organization.approved_events.where(start_time: Date.today..(Date.today + 2))
   end
 end
