@@ -22,7 +22,7 @@ class Header extends React.Component {
       mobileOpen: false
     };
   }
-  
+
   handleDrawerToggle = () => {
     this.setState({mobileOpen: !this.state.mobileOpen});
   };
@@ -45,19 +45,19 @@ class Header extends React.Component {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   };
-  
+
   componentDidMount() {
     if (this.props.changeColorOnScroll) {
       window.addEventListener("scroll", this.headerColorChange);
     }
   }
-  
+
   componentWillUnmount() {
     if (this.props.changeColorOnScroll) {
       window.removeEventListener("scroll", this.headerColorChange);
     }
   }
-  
+
   render() {
     const {
       classes,
@@ -74,7 +74,7 @@ class Header extends React.Component {
       [classes.absolute]: absolute,
       [classes.fixed]: fixed
     });
-    const brandComponent = <Button className={classes.title}>{brand}</Button>;
+    const brandComponent = <Button href="/" className={classes.title}>{brand}</Button>;
     return (
       <AppBar className={appBarClasses}>
         <Toolbar className={classes.container}>
