@@ -32,7 +32,12 @@
     <div class="container">
       <div class='row'>
         <div class='col'>
-          <%= react_component("users/select_user", {map: @users, name: 'User', id: 'user', currentElements: @organization.user_ids, selector: '#organization_users'}) %>
+          <%= react_component("users/select_user", {map: @users, name: 'Пригласить', id: 'new_user', currentElements: [], selector: '#organization_new_users'}) %>
+          <br/>
+          <%= f.hidden_field :new_users, value: '' %>
+        </div>
+        <div class='col'>
+          <%= react_component("users/select_user", {map: @members, name: 'Выгнать', id: 'user', currentElements: [], selector: '#organization_users'}) %>
           <br/>
           <%= f.hidden_field :users, value: '' %>
         </div>
