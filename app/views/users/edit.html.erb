@@ -43,7 +43,14 @@
       </div>
     </div>
     <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %><br/>
-    <%= f.submit "Edit", class: "btn btn-primary" %>
+    <div class="row">
+      <div class="col">
+        <%= f.submit "Edit", class: "btn btn-primary", data: { turbolinks: false } %>
+      </div>
+      <div class="col">
+        <a href="/users/edit" data-turbolinks="false" class="btn btn-default">Сменить Пароль</a>
+      </div>
+    </div>
   <% end %>
 </div>
 
