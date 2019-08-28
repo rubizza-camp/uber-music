@@ -2,11 +2,17 @@
 <div class="section text-center" id='organization_edit'>
   <%= form_with model: @organization do |f| %>
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-      <div class="gallery">
-        <% @organization.images.each do |image| %>
-          <img id="<%= image.id%>" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
-          <span class='btn btn-default' id='deleteImage_<%= image.id%>'>CLICK</span>
+      <h1>Галлерея</h1>
+      <div class="row">
+         <% @organization.images.each do |image| %>
+          <div class="col-3">
+            <img id="<%= image.id%>" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+            <span class='btn btn-default' id='deleteImage_<%= image.id%>'>Удалить</span>
+          </div>
         <% end %>
+      </div>
+      <h1>Новые фотографии</h1>
+      <div class="gallery">
       </div>
     <div>
       <span class="btn btn-raised btn-round btn-default btn-file">
