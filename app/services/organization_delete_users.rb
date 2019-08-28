@@ -1,4 +1,8 @@
 class OrganizationDeleteUsers
+  def self.delete_user(organization_id, user_id)
+    UserOrganization.find_by(organization_id: organization_id, user_id: user_id).destroy
+  end
+
   def self.delete_users(organization_id, users_id)
     organization = Organization.find(organization_id)
     users_id.split(',').each do |id|
