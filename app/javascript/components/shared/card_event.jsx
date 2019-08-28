@@ -10,8 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
-    margin: '10px',
+    maxWidth: 250,
   },
   media: {
     height: 140,
@@ -26,16 +25,16 @@ export default function EventCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.src}
+          image={props.event.first_image_url}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
+            {props.event.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {props.address}
-            {props.start_time} - {props.end_time}
+            {props.event.place.address}
+            {props.event.start_time} - {props.event.end_time}
           </Typography>
         </CardContent>
       </CardActionArea>
