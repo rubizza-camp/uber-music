@@ -9,13 +9,13 @@ class UsersController < ApplicationController
   def show
     @user = serialize_recourse(
       @user, include:
-              [
-                'organizations.images.**',
-                'approved_musician_skills.*',
-                'pending_musician_skills.*',
-                'genres.*',
-                'image.*'
-              ]
+        [
+          'organizations.images.**',
+          'approved_musician_skills.*',
+          'pending_musician_skills.*',
+          'genres.*',
+          'image.*'
+        ]
     )
   end
 

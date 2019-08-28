@@ -4,20 +4,16 @@ import landingPageStyle from "../shared/style/landingPage";
 import OrganizationCard from './organization_card'
 import Grid from '@material-ui/core/Grid'
 import MediumButton from "../shared/button";
+import Search from "../shared/search/organization_search";
 
 class OrganizationDetail extends React.Component {
   render() {
-    const {classes, organizations} = this.props;
+    const { organizations} = this.props;
     return (
       <div>
         <MediumButton content={'Создать'} href = {`/organizations/new`}/>
-        <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
-          {organizations.map((organization, i) =>
-            <Grid item key={i}>
-              <OrganizationCard organization={organization} width={'250px'} key={i}/>
-            </Grid>
-          )}
-        </Grid>
+        <br/><br/>
+        <Search organizations={organizations}/>
       </div>
     );
   }
