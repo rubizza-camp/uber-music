@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     member do
       get :confirmation
       patch :leave
-    end 
+    end
   end
   resources :musician_skills
 end

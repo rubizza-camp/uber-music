@@ -101,6 +101,7 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img, :new_users)
+    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img,
+                                         :new_users)
   end
 end
