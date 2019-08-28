@@ -40,12 +40,12 @@ class OrganizationsController < ApplicationController
   end
 
   def update
-    delete_img(params[:organization][:delete_img])
     if params[:organization][:image]
       ImageService.add_images(organization_params[:id],
                               'Organization',
                               params[:organization][:image])
     end
+    OrganizationDeleteImagesService.delete_images(organization_params[:delete_img], @organization.id)
     update_users(organization_params)
     if update_basic_attribute(organization_params)
       flash[:notice] = 'Организация успешно обновлена!'
@@ -64,13 +64,6 @@ class OrganizationsController < ApplicationController
   end
 
   private
-
-  def delete_img(images_id)
-    images_id.split(',').each do |image_id|
-      images = @organization.images.where(id: image_id.to_i)
-      images.first.destroy unless images.empty?
-    end
-  end
 
   def set_image(id, type, organization_params)
     if organization_params
@@ -98,6 +91,6 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :id, :image, :users)
+    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img)
   end
 end
