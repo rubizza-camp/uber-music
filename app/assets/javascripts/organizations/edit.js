@@ -1,5 +1,5 @@
 var createImageElement = function (src){
-  let img = $('<img width="200" height="200" style="border-radius: 6px">'); 
+  let img = $('<img width="200" height="200" style="border-radius: 6px; margin: 20px">'); 
   $(img).attr('src', src).appendTo('div.gallery');
 };
 
