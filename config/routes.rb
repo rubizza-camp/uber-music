@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :organizations do
     member do
       get :confirmation
+      patch :leave
     end 
   end
   resources :musician_skills
