@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   authorize_resource
-  before_action :set_organization, only: %i[show update destroy edit confirmation]
+  before_action :set_organization, only: %i[show update destroy edit confirmation leave]
 
   def index
     @organizations = serialize_recourse(Organization.all)
@@ -70,6 +70,12 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def leave
+    OrganizationDeleteUsers.delete_user(@organization.id, current_user.id)
+    flash[:notice] = 'Вы успешно покинули организацию!'
+    redirect_to action: :show, id: @organization.id
+  end
+
   private
 
   def set_image(id, type, organization_params)
@@ -87,12 +93,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update_users(organization_params)
-    OrganizationDeleteUsers.delete_users(@organization.id, organization_params[:users])
     OrganizationInviteUsers.invite_users(@organization.id, organization_params[:new_users])
-    # @organization.users.clear if organization_params[:users] != ''
-    # organization_params[:users].split(',').each do |id|
-    #   @organization.users << User.find(id)
-    # end
   end
 
   def set_organization
