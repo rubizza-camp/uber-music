@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   authorize_resource
-  before_action :set_organization, only: %i[show update destroy edit]
+  before_action :set_organization, only: %i[show update destroy edit confirmation]
 
   def index
     @organizations = serialize_recourse(Organization.all)
@@ -15,6 +15,11 @@ class OrganizationsController < ApplicationController
                         'images.*'
                       ]
     )
+  end
+
+  def confirmation
+    @organization.users << User.find(params[:user_id])
+    redirect_to action: :show, id: @organization.id
   end
 
   def new
@@ -36,7 +41,8 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @users = User.all
+    @users = User.all.where.not(id: @organization.users.pluck(:id))
+    @members = @organization.users
   end
 
   def update
@@ -81,10 +87,12 @@ class OrganizationsController < ApplicationController
   end
 
   def update_users(organization_params)
-    @organization.users.clear if organization_params[:users] != ''
-    organization_params[:users].split(',').each do |id|
-      @organization.users << User.find(id)
-    end
+    OrganizationDeleteUsers.delete_users(@organization.id, organization_params[:users])
+    OrganizationInviteUsers.invite_users(@organization.id, organization_params[:new_users])
+    # @organization.users.clear if organization_params[:users] != ''
+    # organization_params[:users].split(',').each do |id|
+    #   @organization.users << User.find(id)
+    # end
   end
 
   def set_organization
@@ -92,6 +100,6 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img)
+    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img, :new_users)
   end
 end
