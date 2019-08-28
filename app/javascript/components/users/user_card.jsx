@@ -28,7 +28,6 @@ export default function UserCard(props) {
         <CardMedia
           className={classes.media}
           image={user.image ? user.image_url : "/assets/default_avatar.jpg"}
-          title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
