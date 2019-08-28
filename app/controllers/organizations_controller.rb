@@ -45,7 +45,8 @@ class OrganizationsController < ApplicationController
                               'Organization',
                               params[:organization][:image])
     end
-    OrganizationDeleteImagesService.delete_images(organization_params[:delete_img], @organization.id)
+    OrganizationDeleteImagesService.delete_images(organization_params[:delete_img],
+                                                  @organization.id)
     update_users(organization_params)
     if update_basic_attribute(organization_params)
       flash[:notice] = 'Организация успешно обновлена!'

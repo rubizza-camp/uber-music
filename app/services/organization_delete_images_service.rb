@@ -5,13 +5,13 @@ class OrganizationDeleteImagesService
       images = organization.images.where(id: image_id.to_i)
       images.first.destroy unless images.empty?
     end
-    set_default_image(organization_id) if organization.images.empty?
+    install_default_image(organization_id) if organization.images.empty?
   end
 
-  private
-
-  def self.set_default_image(organization_id)
+  def self.install_default_image(organization_id)
     ImageService.add_image(organization_id, 'Organization',
                            File.open('app/assets/images/default_organization.jpg'))
   end
+
+  private_class_method :install_default_image
 end
