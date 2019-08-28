@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from 'search-bar-react'
-import EventCard from "../card_event";
+import EventCard from "../event_card";
 import JwPagination from "jw-react-pagination";
 
 class Search extends Component {
@@ -9,7 +9,7 @@ class Search extends Component {
     super(props);
     this.onChangePage = this.onChangePage.bind(this);
     this.onClear = this.onClear.bind(this);
-    
+
     this.state = {
       search: "",
       list: this.props.events.map((element) => element),
@@ -17,11 +17,11 @@ class Search extends Component {
       pageOfItems: []
     };
   }
-  
+
   state = {
     search: "",
   };
-  
+
   renderElement(element, i) {
     return (
       <Grid item key={i}>
@@ -29,7 +29,7 @@ class Search extends Component {
       </Grid>
     );
   };
-  
+
   onChangeSearch = e => {
     const {search} = this.state;
     this.setState({search: e});
@@ -37,15 +37,15 @@ class Search extends Component {
         return element.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
       })});
   };
-  
+
   onChangePage(pageOfItems) {
     this.setState({ pageOfItems });
   }
-  
+
   onClear(){
     this.setState({ filteredList: this.state.list });
   }
-  
+
   render() {
     return (
       <div>
