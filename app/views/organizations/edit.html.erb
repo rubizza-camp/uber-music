@@ -36,14 +36,12 @@
           <br/>
           <%= f.hidden_field :new_users, value: '' %>
         </div>
-        <div class='col'>
-          <%= react_component("users/select_user", {map: @members, name: 'Выгнать', id: 'user', currentElements: [], selector: '#organization_users'}) %>
-          <br/>
-          <%= f.hidden_field :users, value: '' %>
-        </div>
       </div>
     </div>
     <%= f.submit "Обновить", class: "btn btn-primary" %>
     <%= f.hidden_field :delete_img, value: ''%>
+  <% end %>
+  <%= form_for @organization, url: { action: :leave } do |f| %>
+    <%= f.submit "Покинуть организацию", class: 'btn btn-primary'%>
   <% end %>
 </div>
