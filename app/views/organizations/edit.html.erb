@@ -4,7 +4,8 @@
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
       <div class="gallery">
         <% @organization.images.each do |image| %>
-          <img id="new-image" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+          <img id="<%= image.id%>" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+          <span class='btn btn-default' id='deleteImage_<%= image.id%>'>CLICK</span>
         <% end %>
       </div>
     <div>
@@ -32,5 +33,6 @@
       </div>
     </div>
     <%= f.submit "Обновить", class: "btn btn-primary" %>
+    <%= f.hidden_field :delete_img, value: ''%>
   <% end %>
 </div>

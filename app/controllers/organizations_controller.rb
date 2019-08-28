@@ -40,6 +40,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update
+    delete_img(params[:organization][:delete_img])
     if params[:organization][:image]
       ImageService.add_images(organization_params[:id],
                               'Organization',
@@ -63,6 +64,13 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+  def delete_img(images_id)
+    images_id.split(',').each do |image_id|
+      images = @organization.images.where(id: image_id.to_i)
+      images.first.destroy unless images.empty?
+    end
+  end
 
   def set_image(id, type, organization_params)
     if organization_params
