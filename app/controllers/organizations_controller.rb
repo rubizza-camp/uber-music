@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   authorize_resource
-  before_action :set_organization, only: %i[show update destroy edit confirmation leave]
+  before_action :set_organization, only: %i[show update destroy edit confirm leave]
 
   def index
     @organizations = serialize_recourse(Organization.all)
@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
     )
   end
 
-  def confirmation
+  def confirm
     @organization.users << User.find(params[:user_id])
     redirect_to action: :show, id: @organization.id
   end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :moderators
   resources :organizations do
     member do
-      get :confirmation
+      get :confirm
       patch :leave
     end
   end
