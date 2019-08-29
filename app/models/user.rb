@@ -35,7 +35,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :genres
 
   def full_name
-    @full_name = first_name + ' ' + second_name
+    @full_name ||= "#{first_name} #{second_name}"
   end
 
   def role?(role_name)
