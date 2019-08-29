@@ -24,7 +24,7 @@ class Search extends Component {
   
   renderElement(element, i) {
     return (
-      <Grid item key={i} xs={12} sm={12} md={3} lg={3} xl={2}>
+      <Grid item key={i} xs={12} sm={6} md={3} lg={3} xl={2}>
         <OrganizationCard organization={element}/>
       </Grid>
     );
@@ -56,15 +56,15 @@ class Search extends Component {
           onClear={this.onClear}
           size='large'
           width='100%'
-          placeholder='Search...'
+          placeholder='Поиск...'
         />
-        <br/>
-        <br/>
+        <br/><br/>
         <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={1}>
           {this.state.pageOfItems.map((element, i) => {
             return this.renderElement(element, i);
           })}
         </Grid>
+        <br/>
         <center><JwPagination items={this.state.filteredList} onChangePage={this.onChangePage} pageSize={12}/></center>
       </div>
     );

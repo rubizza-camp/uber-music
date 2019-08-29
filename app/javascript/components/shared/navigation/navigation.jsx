@@ -95,14 +95,14 @@ function UserHasOrganizationsButton({classes}){
 
 function UserHasNotOrganizationsButton({classes}){
   return (
-    <DialogWindow></DialogWindow>
+    <DialogWindow/>
   );
 }
 
 function Navigation({classes, image, id, current_user, organizations}) {
     return (
       <Header
-        brand="Пешеходка"
+        brand="Пешеходка.бел"
         color="dark"
         fixed
         rightLinks={

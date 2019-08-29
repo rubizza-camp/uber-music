@@ -47,7 +47,7 @@ export default function EventCard(props) {
         </CardActionArea>
         <CardActions>
           <Button data-turbolinks="false" size="small" color="primary">
-            Learn More
+            Узнать больше...
           </Button>
         </CardActions>
       </Card>

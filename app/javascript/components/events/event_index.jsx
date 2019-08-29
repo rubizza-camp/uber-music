@@ -8,10 +8,10 @@ import Search from "../shared/search/event_search";
 
 class EventIndex extends React.Component {
   render() {
-    const {events} = this.props;
+    const {events, organizations} = this.props;
     return (
       <div>
-        <Search events={events}/>
+        <Search events={events} organizations={organizations}/>
       </div>
     );
   }

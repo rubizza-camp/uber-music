@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   card: {
-    width: 250,
+    width: '100%',
   },
   media: {
     height: 140,
@@ -27,21 +27,23 @@ export default function PlaceCard(props) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={place.images.length ? place.first_image_url : "/assets/default_place.png"}
+            image={props.place.first_image_url}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {place.name}
+              {props.place.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {place.address}
+              {props.place.address}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button data-turbolinks="false" size="small" color="primary">
-            Learn More
-          </Button>
+          <a href={props.link} data-method="get">
+            <Button data-turbolinks="false" size="small" color="primary">
+              Узнать больше...
+            </Button>
+          </a>
         </CardActions>
       </Card>
     </a>
