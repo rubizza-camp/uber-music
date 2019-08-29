@@ -30,9 +30,7 @@ export default function OrganizationCard(props) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={organization.images.length ?
-                   organization.first_image_url :
-                    "/assets/default_organization.jpg"}
+            image={organization.first_image_url}
             title={organization.name}
           />
           <CardContent>
