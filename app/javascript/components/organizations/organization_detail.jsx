@@ -11,7 +11,7 @@ import OrganizationTitle from './organization_title'
 
 class OrganizationDetail extends React.Component {
   render() {
-    const {organization, current_user} = this.props;
+    const {organization, current_user, approved_events} = this.props;
     return (
       <div>
         <Grid container direction="column" justify="center" alignItems="center">
@@ -59,7 +59,7 @@ class OrganizationDetail extends React.Component {
 
           <Grid container direction="row">
             <Grid container direction="row" justify="center" alignItems="stretch">
-              {organization.approved_events.map((event, i) =>
+              {approved_events.map((event, i) =>
                 <Grid item xs={12} sm={6} md={4} key={i}>
                   <EventCard event={event} link={`/events/${event.id}`}/>
                 </Grid>

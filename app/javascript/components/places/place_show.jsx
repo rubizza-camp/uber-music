@@ -16,7 +16,7 @@ function make_url(id) {
 
 class PlaceShow extends React.Component {
   render() {
-    const {place} = this.props;
+    const {place, events} = this.props;
     return (
       <div>
         <React.Fragment>
@@ -59,7 +59,7 @@ class PlaceShow extends React.Component {
             </Grid>
             <Grid container>
               {
-                place.events.map((event, i) =>
+                events.map((event, i) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
                     <EventCard event={event} link={make_url(event.id)}/>
                   </Grid>
