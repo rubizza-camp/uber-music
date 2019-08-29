@@ -2,6 +2,44 @@
 ActiveAdmin.register User do
   config.per_page = 10
 
+  member_action :make_moderator, method: :patch do
+    User.find(params[:id]).update(type: 'Moderator')
+    flash[:notice] = 'User successfully has become Moderator'
+    redirect_to admin_user_path(), id: params[:id]
+  end
+
+  member_action :ban, method: :patch do
+    User.find(params[:id]).update(type: '')
+    flash[:notice] = 'User successfully banned'
+    redirect_to admin_user_path(), id: params[:id]
+  end
+
+  member_action :make_user, method: :patch do
+    User.find(params[:id]).update(type: 'User')
+    flash[:notice] = 'User successfully has become a User'
+    redirect_to admin_user_path(), id: params[:id]
+  end
+
+  action_item :make_moderator, only: :show do
+    if user.type != 'Moderator'
+      link_to 'Make moderator', make_moderator_admin_user_path(user), method: :patch
+    else
+      link_to 'Make User', make_user_admin_user_path(user), method: :patch
+    end
+  end
+
+  action_item :ban, only: :show do
+    if user.type == 'User'
+      link_to 'Ban', ban_admin_user_path(user), method: :patch
+    end
+  end
+
+  action_item :unban, only: :show do
+    if user.type == ''
+      link_to 'Unban', make_user_admin_user_path(user), method: :patch  
+    end
+  end
+
   permit_params :first_name, :second_name, :nickname, :email, :full_name, :password,
                 musician_skill_user_ids: [],
                 musician_skills: [],
@@ -50,7 +88,6 @@ ActiveAdmin.register User do
       f.input :second_name
       f.input :nickname
       f.input :email
-      f.input :type
       f.input :organizations, as: :check_boxes
       f.input :genres, as: :check_boxes
     end
