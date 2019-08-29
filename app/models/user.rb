@@ -33,6 +33,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :musician_skill_users
   accepts_nested_attributes_for :user_genres
   accepts_nested_attributes_for :genres
+  
+  def full_name
+    @full_name = first_name + ' ' + second_name
+  end
 
   def role?(role_name)
     type == role_name
