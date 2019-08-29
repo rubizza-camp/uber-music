@@ -18,7 +18,7 @@ function LoginButtons({classes}){
         className={classes.navLink}
         color="transparent"
       >
-        Sign in
+        Вход
       </Button>
       <Button
         href="/users/sign_up"
@@ -26,7 +26,7 @@ function LoginButtons({classes}){
         color="primary"
         round
       >
-        Sign up
+        Регистрация
       </Button>
     </ListItem>
   );
@@ -57,7 +57,7 @@ function DropdownBar({image, classes, id}){
           className={classes.dropdownLink}
           data-turbolinks={"false"}
         >
-          Me
+          Профиль
         </a>,
         <a
           href={"/users/" + id + "/edit"}
@@ -65,7 +65,7 @@ function DropdownBar({image, classes, id}){
           className={classes.dropdownLink}
           data-turbolinks={"false"}
         >
-          Edit Your Profile
+          Редактировать Профиль
         </a>,
         <a
           href="/users/sign_out"
@@ -73,7 +73,7 @@ function DropdownBar({image, classes, id}){
           className={classes.dropdownLink}
           data-turbolinks={"false"}
         >
-          Sign out
+          Выйти
         </a>
       ]}
     />
@@ -88,7 +88,7 @@ function UserHasOrganizationsButton({classes}){
       color="primary"
       round
     >
-      CREATE EVENT
+      Создать Событие
     </Button>
   );
 }
@@ -118,7 +118,7 @@ function Navigation({classes, image, id, current_user, organizations}) {
                 className={classes.navLink}
                 color="transparent"
                 >
-                Organizations
+                Организации
               </Button>
             </ListItem>
             <ListItem className={classes.listItem}>
@@ -127,7 +127,7 @@ function Navigation({classes, image, id, current_user, organizations}) {
                 className={classes.navLink}
                 color="transparent"
               >
-                Places
+                Места
               </Button>
             </ListItem>
             <ListItem className={classes.listItem}>
@@ -137,7 +137,7 @@ function Navigation({classes, image, id, current_user, organizations}) {
                 className={classes.navLink}
                 color="transparent"
               >
-                Events
+                Мероприятия
               </Button>
             </ListItem>
             <ListItem className={classes.listItem}>

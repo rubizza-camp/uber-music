@@ -2,7 +2,6 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "../shared/style/landingPage";
 import Grid from '@material-ui/core/Grid';
-import MyImage from "../shared/image";
 import Title from "../shared/title";
 import Description from "../shared/description";
 import EventCard from "../shared/event_card";

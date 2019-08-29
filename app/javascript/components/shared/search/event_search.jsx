@@ -3,13 +3,16 @@ import Grid from "@material-ui/core/Grid";
 import SearchBar from 'search-bar-react'
 import EventCard from "../event_card";
 import JwPagination from "jw-react-pagination";
-import EventsCard from "../card_events";
 import DialogWindow from "../navigation/dialog_window";
 import MediumButton from "../button";
 
+function make_url(id) {
+  return 'events/' + id
+}
+
 function UserHasOrganizationsButton() {
   return (
-    <MediumButton content={'СОЗДАТЬ СОБЫТИЕ'} href = {`/events/new`}/>
+    <MediumButton content={'СОЗДАТЬ СОБЫТИЕ'} href={`/events/new`}/>
   );
 }
 
@@ -24,7 +27,7 @@ class Search extends Component {
     super(props);
     this.onChangePage = this.onChangePage.bind(this);
     this.onClear = this.onClear.bind(this);
-
+    
     this.state = {
       organizations: this.props.organizations,
       search: "",
@@ -33,20 +36,21 @@ class Search extends Component {
       pageOfItems: []
     };
   }
-
+  
   state = {
     search: "",
   };
-
+  
   renderElement(element, i) {
+    console.log(element.id);
+    
     return (
       <Grid item key={i} xs={12} sm={6} md={3} lg={3} xl={3}>
-        <EventsCard name={element.name} start_time={element.start_time} end_time={element.end_time}
-                    image={element.first_image_url}/>
+        <EventCard event={element} link={make_url(element.id)}/>
       </Grid>
     );
   };
-
+  
   onChangeSearch = e => {
     const {search} = this.state;
     this.setState({search: e});
@@ -56,7 +60,7 @@ class Search extends Component {
       })
     });
   };
-
+  
   onChangePage(pageOfItems) {
     this.setState({pageOfItems});
   }
@@ -64,7 +68,7 @@ class Search extends Component {
   onClear() {
     this.setState({filteredList: this.state.list});
   }
-
+  
   render() {
     return (
       <div>

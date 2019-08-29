@@ -8,7 +8,7 @@ class OrganizationTitle extends React.Component {
     return current_user ? users.map((user, i)=> user.id).includes(current_user.id) : false
   }
   render() {
-    const {users, current_user, organization_name, organization_id} = this.props
+    const {users, current_user, organization_name, organization_id} = this.props;
     if(this.current_user_is_owner(users, current_user)){
       return (
         <Grid container direction="row" justify="center" alignItems="center">

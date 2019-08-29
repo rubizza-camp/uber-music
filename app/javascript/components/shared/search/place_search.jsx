@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from 'search-bar-react'
-import PlacesCard from "../card_places";
+import PlacesCard from "../place_card";
 import JwPagination from "jw-react-pagination";
 
 class Search extends Component {

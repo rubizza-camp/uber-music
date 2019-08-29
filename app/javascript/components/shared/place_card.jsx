@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -39,11 +39,9 @@ export default function PlaceCard(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <a href={props.link} data-method="get">
-            <Button data-turbolinks="false" size="small" color="primary">
-              Узнать больше...
-            </Button>
-          </a>
+          <Button data-turbolinks="false" size="small" color="primary">
+            Узнать больше...
+          </Button>
         </CardActions>
       </Card>
     </a>
