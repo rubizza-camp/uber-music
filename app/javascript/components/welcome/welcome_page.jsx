@@ -3,7 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "../shared/style/landingPage";
 import Grid from '@material-ui/core/Grid';
 import Title from "../shared/title";
-import Description from "../shared/description";
 import EventCard from "../shared/event_card";
 import MyStepper from "./stepper";
 import YandexMaps from "../shared/yandex_maps";
@@ -39,7 +38,7 @@ class WelcomePage extends React.Component {
               <Title content={"Карта мест выступлений:"}/>
             </Grid>
             <Grid item xs={12} >
-              <YandexMaps width={"90%"} height={"90%"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
+              <YandexMaps width={"900px"} height={"400px"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
             </Grid>
           </Grid>
           <hr/>

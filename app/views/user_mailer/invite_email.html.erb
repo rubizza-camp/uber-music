@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Welcome to example.com,</h1>
-    <p>
-      <%= @organization.name %>
-      <%= @user.email %>
-      You have successfully signed up to example.com,
-      your username is: .<br>
-    </p>
-    <p>
-      To login to the site, just follow this link:
-    </p>
-    <%= link_to  'Группа', confirm_organization_url(user_id: @user.id, id: @organization.id)%>
-    <p>Thanks for joining and have a great day!</p>
-  </body>
+<head>
+</head>
+<body>
+<h1>Добро пожаловать в нашу организацию (<%= @organization.name %>)</h1>
+<p>
+  Мы рады приветствовать вас <%= @user.email %>.<br>
+</p>
+<p>Чтобы добавиться в группу, вам нужно перейти по ссылке ниже:</p>
+<%= link_to 'Группа', confirm_organization_url(user_id: @user.id, id: @organization.id) %>
+<p>Спасибо, что выбрали нас!</p>
+</body>
 </html>
