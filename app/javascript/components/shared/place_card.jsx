@@ -17,32 +17,31 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PlacesCard(props) {
+export default function PlaceCard(props) {
   const classes = useStyles();
+  const {place, link} = props;
 
   return (
-    <a href={props.link} data-method="get">
+    <a href={link} data-method="get">
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={props.image}
+            image={place.images.length ? place.first_image_url : "/assets/default_place.png"}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.name}
+              {place.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.address}
+              {place.address}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <a href={props.link} data-method="get">
-            <Button data-turbolinks="false" size="small" color="primary">
-              Learn More
-            </Button>
-          </a>
+          <Button data-turbolinks="false" size="small" color="primary">
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </a>
