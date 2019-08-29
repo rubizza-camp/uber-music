@@ -69,9 +69,6 @@ class OrganizationsController < ApplicationController
   def set_image(id, type, organization_params)
     if organization_params
       ImageService.add_images(id, type, params[:organization][:image])
-    else
-      ImageService.add_image(@organization.id, type,
-                             File.open('app/assets/images/default_organization.jpg'))
     end
   end
 

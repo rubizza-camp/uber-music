@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -18,29 +18,30 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EventsCard(props) {
+export default function EventCard(props) {
   const classes = useStyles();
+  const {event, link} = props;
 
   return (
-    <a href={props.link} data-method="get">
+    <a href={link} data-method="get">
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={props.image}
+            image={event.images.length ? event.first_image_url : "/assets/default_event.jpeg"}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.name}
+              {event.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.address}
+              {event.address}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Начало: {props.start_time}
+              Начало: {event.start_time}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Конец: {props.end_time}
+              Конец: {event.end_time}
             </Typography>
           </CardContent>
         </CardActionArea>
