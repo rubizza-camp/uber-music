@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :places
   resources :users
   resources :moderators
-  resources :organizations
+  resources :organizations do
+    member do
+      get :confirm
+      patch :leave
+    end
+  end
   resources :musician_skills
 end

@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   authorize_resource
-  before_action :set_organization, only: %i[show update destroy edit]
+  before_action :set_organization, only: %i[show update destroy edit confirm leave]
 
   FIRST_EVENTS_SIZE = 3
 
@@ -13,6 +13,11 @@ class OrganizationsController < ApplicationController
       today_events_for_current_organization.first(FIRST_EVENTS_SIZE)
     )
     @organization = serialize_recourse(@organization)
+  end
+
+  def confirm
+    @organization.users << User.find(params[:user_id])
+    redirect_to action: :show, id: @organization.id
   end
 
   def new
@@ -34,7 +39,8 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @users = User.all
+    @users = User.where.not(id: @organization.users.pluck(:id))
+    @members = @organization.users
   end
 
   def update
@@ -62,6 +68,12 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def leave
+    OrganizationDeleteUsers.delete_user(@organization.id, current_user.id)
+    flash[:notice] = 'Вы успешно покинули организацию!'
+    redirect_to action: :show, id: @organization.id
+  end
+
   private
 
   def set_image(id, type, organization_params)
@@ -76,10 +88,7 @@ class OrganizationsController < ApplicationController
   end
 
   def update_users(organization_params)
-    @organization.users.clear if organization_params[:users] != ''
-    organization_params[:users].split(',').each do |id|
-      @organization.users << User.find(id)
-    end
+    OrganizationInviteUsers.invite_users(@organization.id, organization_params[:new_users])
   end
 
   def set_organization
@@ -87,7 +96,8 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img)
+    params.require(:organization).permit(:name, :description, :id, :image, :users, :delete_img,
+                                         :new_users)
   end
 
   def today_events_for_current_organization
