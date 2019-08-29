@@ -26,6 +26,7 @@ class OrganizationsController < ApplicationController
                                      description: organization_params[:description])
     @organization.users << current_user
     if @organization.save!
+      set_image(@organization.id, 'Organization', params[:organization][:image])
       flash[:notice] = 'Организация успешно создана!'
       redirect_to action: :show, id: @organization.id
     else
@@ -39,6 +40,13 @@ class OrganizationsController < ApplicationController
   end
 
   def update
+    if params[:organization][:image]
+      ImageService.add_images(organization_params[:id],
+                              'Organization',
+                              params[:organization][:image])
+    end
+    OrganizationDeleteImagesService.delete_images(organization_params[:delete_img],
+                                                  @organization.id)
     update_users(organization_params)
     if update_basic_attribute(organization_params)
       flash[:notice] = 'Организация успешно обновлена!'
@@ -57,6 +65,15 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+  def set_image(id, type, organization_params)
+    if organization_params
+      ImageService.add_images(id, type, params[:organization][:image])
+    else
+      ImageService.add_image(@organization.id, type,
+                             File.open('app/assets/images/default_organization.jpg'))
+    end
+  end
 
   def update_basic_attribute(organization_params)
     @organization.update!(name: organization_params[:name],

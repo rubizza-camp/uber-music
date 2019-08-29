@@ -5,13 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import MyImage from "../shared/image";
 import Title from "../shared/title";
 import Description from "../shared/description";
-import EventCard from "../shared/event_card";
+import EventsCard from "../shared/card_events";
 import MyStepper from "./stepper";
 import YandexMaps from "../shared/yandex_maps";
-
-function make_url(id) {
-  return 'events/' + id
-}
 
 class WelcomePage extends React.Component {
   render() {
@@ -37,7 +33,8 @@ class WelcomePage extends React.Component {
               {
                 events.map((event, i) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
-                    <EventCard event={event} link={make_url(event.id)}/>
+                    <EventsCard name={event.name} start_time={event.start_time} end_time={event.end_time}
+                                image={event.first_image_url}/>
                   </Grid>
                 )
               }
