@@ -26,24 +26,15 @@ class EventShow extends React.Component {
             </Grid>
             <hr/>
             <Grid container>
-              {event.approved_organizations.map((organization, i) => {
-                return (
-                  <SmallText key={i} content={"Организации: " + organization.name}/>
-                )
-              })}
+              <SmallText content={'Организации: ' + event.approved_organizations.map((organization) => organization.name + ' ')}/>
             </Grid>
             <hr/>
             <Grid container>
-              <SmallText content={"Место проведения: " + event.name}/>
+                <SmallText content={"Дата и время: " + event.start_time + " - " + event.end_time}/>
             </Grid>
-            <hr/>
-            <Grid container justify="space-around">
-              <Grid item>
-                <SmallText content={"Начало: " + event.start_time}/>
-              </Grid>
-              <Grid item>
-                <SmallText content={"Конец: " + event.end_time}/>
-              </Grid>
+              <hr/>
+            <Grid container>
+              <SmallText content={"Место проведения: " + event.place.name}/>
             </Grid>
             <hr/>
             <Grid container justify="center" direction="column" alignItems="center">
@@ -60,7 +51,7 @@ class EventShow extends React.Component {
             </Grid>
           </Grid>
           <Grid item xs={2}>
-            <UpdateButtons current_user={current_user} user_ids={event.organizations_user_ids}/>
+            <UpdateButtons current_user={current_user} user_ids={event.organizations_user_ids} event_id={event.id}/>
           </Grid>
         </Grid>
       </div>
