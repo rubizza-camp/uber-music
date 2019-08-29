@@ -21,7 +21,7 @@ class Search extends Component {
   
   renderElement(element, i) {
     return (
-      <Grid item key={i}>
+      <Grid item key={i} xs={12} sm={12} md={4} lg={4} xl={3}>
         <PlacesCard place={element} link={'places/'+ element.id} width={'250px'}/>
       </Grid>
     );

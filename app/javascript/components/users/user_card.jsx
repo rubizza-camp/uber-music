@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
-    width: 250,
-    margin: '10px',
+    maxWidth: '100%',
   },
   media: {
     height: 140,

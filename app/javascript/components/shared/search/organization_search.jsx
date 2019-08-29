@@ -24,8 +24,8 @@ class Search extends Component {
   
   renderElement(element, i) {
     return (
-      <Grid item key={i}>
-        <OrganizationCard organization={element} width={'250px'}/>
+      <Grid item key={i} xs={12} sm={12} md={3} lg={3} xl={2}>
+        <OrganizationCard organization={element}/>
       </Grid>
     );
   };

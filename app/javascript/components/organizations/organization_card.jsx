@@ -15,7 +15,7 @@ function make_url(id){
 export default function OrganizationCard(props) {
   const useStyles = makeStyles({
     card: {
-      width: props.width,
+      width: '100%',
       maxWidth: 345,
     },
     media: {
