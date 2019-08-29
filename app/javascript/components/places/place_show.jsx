@@ -27,7 +27,7 @@ class PlaceShow extends React.Component {
                 <YandexMaps width={"90%"} height={"90%"} zoom={17} center={[place.longitude, place.latitude]}
                             places={[place]}/>
               </Grid>
-              <Grid item xs={7} sm={7} md={5} lg={5} xl={5} style={{marginBottom:'300px'}}>
+              <Grid item xs={7} sm={7} md={5} lg={5} xl={5} style={{marginBottom: '300px'}}>
                 <Grid container direction="column" justify="flex-start" alignItems="flex-start">
                   <Grid item xs={10} sm={11} md={11} lg={12} xl={12}>
                     <TypoGraphy component="h3">
@@ -42,7 +42,7 @@ class PlaceShow extends React.Component {
                 </Grid>
               </Grid>
             </Grid>
-          <hr/>
+            <hr/>
           </div>
           <div style={{marginTop: '20px', marginBottom: '20px'}}>
             <Title content={"Описание Места:"}/>
@@ -65,6 +65,13 @@ class PlaceShow extends React.Component {
                   </Grid>
                 )
               }
+              {events.length === 0 &&
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Нет ближайших мероприятий
+                  </Box>
+                </TypoGraphy>
+              }
             </Grid>
           </div>
           <hr/>
@@ -74,6 +81,13 @@ class PlaceShow extends React.Component {
               <Grid item>
                 <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"900px"} height={"400px"}
                                images={place.images.map((image) => image.image_url)}/>
+                {place.images.length === 0 &&
+                  <TypoGraphy>
+                    <Box component='span' fontSize="21px" fontWeight="300">
+                      Картинки отсутвуют
+                    </Box>
+                  </TypoGraphy>
+                }
               </Grid>
             </Grid>
           </div>

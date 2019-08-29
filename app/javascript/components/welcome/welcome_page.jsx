@@ -7,6 +7,8 @@ import Description from "../shared/description";
 import EventCard from "../shared/event_card";
 import MyStepper from "./stepper";
 import YandexMaps from "../shared/yandex_maps";
+import TypoGraphy from "@material-ui/core/Typography/Typography";
+import Box from "@material-ui/core/Box";
 
 function make_url(id) {
   return 'events/' + id
@@ -23,9 +25,12 @@ class WelcomePage extends React.Component {
               <Title content={"О проекте:"}/>
             </Grid>
             <Grid item xs={12}  style={{margin: 10}}>
-              <Description
-                content={"ПЕШЕХОДКА - музыкальный проект, цель которого - обеспечить слушателя качественной живой музыкой, расширить музыкальный кругозор жителей города Минска и гостей столицы.\n" +
-                "Проект включает в себя: фестиваль уличных музыкантов «Место под солнцем», форум «Звуки улиц» на территории Верхнего города и новый формат «Музыкальная карта Минска»"}/>
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  ПЕШЕХОДКА - музыкальный проект, цель которого - обеспечить слушателя качественной живой музыкой, расширить музыкальный кругозор жителей города Минска и гостей столицы.
+                  Проект включает в себя: фестиваль уличных музыкантов «Место под солнцем», форум «Звуки улиц» на территории Верхнего города и новый формат «Музыкальная карта Минска»
+                </Box>
+              </TypoGraphy>
             </Grid>
           </Grid>
           <hr/>
@@ -33,8 +38,8 @@ class WelcomePage extends React.Component {
             <Grid item xs={12}>
               <Title content={"Карта мест выступлений:"}/>
             </Grid>
-            <Grid item xs={12}>
-              <YandexMaps width={"900px"} height={"500px"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
+            <Grid item xs={12} >
+              <YandexMaps width={"90%"} height={"90%"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
             </Grid>
           </Grid>
           <hr/>
@@ -42,13 +47,22 @@ class WelcomePage extends React.Component {
             <Grid item style={{margin: 10}}>
               <Title content={"Ближайшие мероприятия:"}/>
             </Grid>
-            <Grid container>
+            <Grid container justify="center">
               {
                 events.map((event, i) =>
                   <Grid item xs={12} sm={12} md={4} lg={4} xl={3} key={i}>
                     <EventCard event={event} link={make_url(event.id)}/>
                   </Grid>
                 )
+              }
+              {events.length === 0 &&
+              <Grid item >
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Нет ближайших мероприятий
+                  </Box>
+                </TypoGraphy>
+              </Grid>
               }
             </Grid>
           </Grid>

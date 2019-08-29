@@ -29,9 +29,23 @@ class EventShow extends React.Component {
           <Title content={"Время:"}/>
           <Grid container justify="space-around" spacing={2} style={{marginTop: '10px', marginBottom: '10px'}}>
             <Grid item>
+              {event.start_time === null &&
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Время начала отсутсвует
+                  </Box>
+                </TypoGraphy>
+              }
               <SmallText content={"Начало: " + event.start_time}/>
             </Grid>
             <Grid item>
+              {event.end_time === null &&
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Время окончания отсутсвует
+                  </Box>
+                </TypoGraphy>
+              }
               <SmallText content={"Конец: " + event.end_time}/>
             </Grid>
           </Grid>
@@ -40,6 +54,13 @@ class EventShow extends React.Component {
         <div style={{marginTop: '20px', marginBottom: '20px'}}>
           <Title content={"Описание Мероприятия:"}/>
           <Grid container style={{marginTop: '10px', marginBottom: '10px'}}>
+            {event.description === null &&
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  Описание отсутвует
+                </Box>
+              </TypoGraphy>
+            }
             <Description content={event.description}/>
           </Grid>
         </div>
@@ -47,6 +68,13 @@ class EventShow extends React.Component {
         <Title content="Фотогалерея:"/><br/><br/>
         <Grid container justify="center" direction="column" alignItems="center">
           <Grid item>
+            {event.images.length === 0 &&
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  Фотографии отсутсвуют
+                </Box>
+              </TypoGraphy>
+            }
             <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"900px"} height={"400px"}
                            images={event.images.map((image) => image.image_url)}/>
           </Grid>
@@ -64,6 +92,13 @@ class EventShow extends React.Component {
         <div style={{marginTop: '20px', marginBottom: '20px'}}>
           <Title content={"Организации:"}/>
           <Grid container justify="center" style={{marginTop: '10px', marginBottom: '10px'}}>
+            {event.approved_organizations.length === 0 &&
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  Организации отсутсвуют
+                </Box>
+              </TypoGraphy>
+            }
             {event.approved_organizations.map((organization, i) => {
               return (
                 <Grid item key={i} xs={12} sm={6} md={3} lg={3} xl={2}>

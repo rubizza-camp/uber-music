@@ -1,4 +1,10 @@
-<div class="section text-center">
+<div class="section">
+
+
+  <div class="navbar navbar-expand-lg bg-primary" style="margin-top: -150px; align-content: center">
+    <div class="navbar-brand" style="align-content: center; padding-left: 10%">Редактирование профиля</div>
+  </div>
+
   <%= form_for @user do |f| %>
     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
       <% if @user.image %>
@@ -12,7 +18,6 @@
       <div>
         <span class="btn btn-raised btn-round btn-default btn-file">
             <span class="fileinput-new">Select image</span>
-            <span class="fileinput-exists">Change</span>
           <%= f.file_field :image, onchange: "readURL(this);", id: "image", autocomplete: @user.image %>
         </span>
       </div>
@@ -21,36 +26,46 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <%= f.label :first_name %><br/>
           <%= f.text_field :first_name, placeholder: "First Name...", class: "form-control", autocomplete: @user.first_name %>
         </div>
         <div class="col">
+          <%= f.label :second_name %><br/>
           <%= f.text_field :second_name, placeholder: "Second Name...", class: "form-control", autocomplete: @user.second_name %>
         </div>
       </div>
     </div>
     <br/>
+
     <div class="container">
       <div class="row">
         <div class="col">
-          <%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#genres'}) %><br/>
+          <center><%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#genres'}) %></center>
+          <br/>
           <%= f.hidden_field :genres, id: :genres, value: '' %>
-
         </div>
         <div class="col">
-          <%= react_component("users/select", {map: @musician_skills, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.pending_musician_skill_ids, selector: '#musician_skills'}) %><br/>
-          <%= f.hidden_field :musician_skills, id: :musician_skills, value: ''  %>
+          <center> <%= react_component("users/select", {map: @musician_skills, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.pending_musician_skill_ids, selector: '#musician_skills'}) %></center>
+          <br/>
+          <%= f.hidden_field :musician_skills, id: :musician_skills, value: '' %>
         </div>
       </div>
     </div>
-    <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %><br/>
-    <div class="row">
-      <div class="col">
-        <%= f.submit "Edit", class: "btn btn-primary", data: { turbolinks: false } %>
-      </div>
-      <div class="col">
-        <a href="/users/edit" data-turbolinks="false" class="btn btn-default">Сменить Пароль</a>
-      </div>
+    <div class="container">
+      <%= f.label :nickname %><br/>
+      <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %>
+      <br/>
     </div>
+    <center>
+      <div class="row">
+        <div class="col">
+          <%= f.submit "Редактировать", class: "btn btn-primary", data: {turbolinks: false} %>
+        </div>
+        <div class="col">
+          <a href="/users/edit" data-turbolinks="false" class="btn btn-default">Сменить Пароль</a>
+        </div>
+      </div>
+    </center>
   <% end %>
 </div>
 
