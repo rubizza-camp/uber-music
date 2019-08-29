@@ -41,7 +41,7 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @users = User.all.where.not(id: @organization.users.pluck(:id))
+    @users = User.where.not(id: @organization.users.pluck(:id))
     @members = @organization.users
   end
 
