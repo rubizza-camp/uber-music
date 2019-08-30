@@ -1,7 +1,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
-  process resize_to_fill: [795, 300]
+  process resize_and_crop: 300
   process convert: 'png'
 
   # Choose what kind of storage to use for this Uploader:
@@ -14,5 +14,19 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w[jpg jpeg png gif]
+  end
+
+  def resize_and_crop(size)
+    manipulate! do |image|
+      if image[:width] < image[:height]
+        remove = ((image[:height] - image[:width]) / 2).round
+        image.shave("0x#{remove}")
+      elsif image[:width] > image[:height]
+        remove = ((image[:width] - image[:height]) / 2).round
+        image.shave("#{remove}x0")
+      end
+      image.resize("#{size}x#{size}")
+      image
+    end
   end
 end
