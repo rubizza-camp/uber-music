@@ -35,7 +35,7 @@ export default function OrganizationCard(props) {
             title={organization.name}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="h2" noWrap>
               {organization.name}
             </Typography>
           </CardContent>
