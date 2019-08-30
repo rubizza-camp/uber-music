@@ -6,7 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from "@material-ui/core/Grid";
-import UserCard from "./user_card";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,14 +40,14 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect(props) {
+export default function OrganizationSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState(props.currentElements);
 
   function handleChange(event) {
     setPersonName(event.target.value);
-    document.querySelector(props.selector).value = event.target.value;
+    props.data(event.target.value);
   }
 
   return (

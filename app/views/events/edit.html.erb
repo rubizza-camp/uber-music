@@ -52,13 +52,12 @@
         <div class='col-2'></div>
         <div class="col-4">
           Начало<br/>
-          <%= react_component('shared/datepicker', {date_time: @event.start_time, selector: '#event_start_time'}) %>
-          <%= f.hidden_field :start_time, value: '' %>
+           <%= datetime_field :event, :start_time %>
         </div>
         <div class="col-4">
           Конец<br/>
-          <%= react_component('shared/datepicker', {date_time: @event.end_time, selector: '#event_end_time'}) %>
-          <%= f.hidden_field :end_time, value: '' %>
+            <%= datetime_field :event, :end_time %>
+            <%react_component  {}
         </div>
         <div class='col-2'></div>
       </div>
