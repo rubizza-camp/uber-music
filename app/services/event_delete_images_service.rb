@@ -10,7 +10,7 @@ class EventDeleteImagesService
 
   def self.install_default_image(event_id)
     ImageService.add_image(event_id, 'Event',
-                           File.open('app/assets/images/default_event.jpg'))
+                           File.open('app/assets/images/default_event.jpeg'))
   end
 
   private_class_method :install_default_image

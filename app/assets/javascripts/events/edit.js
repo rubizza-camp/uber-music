@@ -39,4 +39,5 @@ $(document).ready( () => {
     $('#gallery-photo-add').on('change', function() {
       imagesPreview(this, 'div.gallery');
     });
-  }});
+  }
+});
