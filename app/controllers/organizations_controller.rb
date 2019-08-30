@@ -9,6 +9,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+    message_for_organization
     @approved_events = serialize_recourse(
       today_events_for_current_organization.first(FIRST_EVENTS_SIZE)
     )
@@ -102,5 +103,20 @@ class OrganizationsController < ApplicationController
 
   def today_events_for_current_organization
     @organization.approved_events.where(start_time: Date.today..(Date.today + 2))
+  end
+
+  def message_for_organization
+    case check_group
+    when 2
+      flash[:message] = 'Ваш период для создания мероприятия: 22:00 - 23:00'
+    when 1
+      flash[:message] = 'Ваш период для создания мероприятия: 21:00 - 22:00'
+    when 0
+      flash[:message] = 'Ваш период для создания мероприятия: 20:00 - 21:00'
+    end
+  end
+
+  def check_group
+    (@organization.group - (Time.new.to_date - Date.new(2019, 1, 1)).to_i % 3).abs
   end
 end

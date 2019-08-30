@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_131602) do
     t.text "description", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "group", default: 0
+    t.integer "group"
   end
 
   create_table "places", force: :cascade do |t|
