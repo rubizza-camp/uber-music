@@ -1,6 +1,8 @@
 # rubocop:disable all
 ActiveAdmin.register User do
   config.per_page = 10
+  permit_params :image
+  form partial: 'form'
 
   member_action :make_moderator, method: :patch do
     User.find(params[:id]).update(type: 'Moderator')
@@ -19,6 +21,8 @@ ActiveAdmin.register User do
     flash[:notice] = 'User successfully has become a User'
     redirect_to admin_user_path(), id: params[:id]
   end
+
+
 
   action_item :make_moderator, only: :show do
     if user.type != 'Moderator'
@@ -90,6 +94,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :organizations, as: :check_boxes
       f.input :genres, as: :check_boxes
+      f.input :image, as: :file
     end
     f.inputs 'Musician skills' do
       f.has_many :musician_skill_users, new_record: false do |e|
