@@ -28,4 +28,9 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :organization_events
+  enum group: [ 0, 1, 2]
+
+  def create_group
+    p DateTime.now - DateTime.new(2019,1,1)
+  end
 end
