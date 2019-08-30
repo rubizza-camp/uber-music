@@ -78,8 +78,7 @@ class OrganizationDetail extends React.Component {
               }
               {approved_events.map((event, i) =>
                 <Grid item xs={12} sm={6} md={4} key={i}>
-                  <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time}
-                             end_time={event.end_time} image={event.first_image_url} link={`/events/${event.id}`}/>
+                  <EventCard key={i} event={event} link={`/events/${event.id}`}/>
                 </Grid>
               )}
             </Grid>
