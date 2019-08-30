@@ -7,39 +7,51 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
   <%= javascript_pack_tag('application') %>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
   <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
   <%= stylesheet_link_tag 'main_application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
 <div>
-<% if user_signed_in? %>
-  <%= react_component("shared/navigation/navigation", {
-                                                       image: current_user.image,
-                                                       id: current_user.id,
-                                                       current_user: current_user,
-                                                       organizations: current_user.organizations
-                                                      }) %>
-<% else %>
-  <%= react_component("shared/navigation/navigation") %>
-<% end %>
-<%= react_component("shared/parallax", {filter: true, small: true, image: "/assets/main.jpg"}) %>
-<div class="main main-raised">
-  <div class="container">
-    <% if notice %>
-      <%= react_component("shared/information_header", {message: notice, color: 'success'}) %>
-    <% end %>
+  <% if user_signed_in? %>
+    <%= react_component("shared/navigation/navigation", {
+        image: current_user.image,
+        id: current_user.id,
+        current_user: current_user,
+        organizations: current_user.organizations,
+        type: current_user.type
+    }) %>
+  <% else %>
+    <%= react_component("shared/navigation/navigation") %>
+  <% end %>
+  <%= react_component("shared/parallax", {filter: true, small: true, image: "/assets/main.jpg"}) %>
+  <div class="main main-raised">
+    <div class="container">
+      <% if notice %>
+        <%= react_component("shared/information_header", {message: notice, color: 'success'}) %>
+      <% end %>
 
-    <% if alert %>
-      <%= react_component("shared/information_header", {message: alert, color: 'danger'}) %>
-    <% end %>
-    <%= yield %>
+      <% if alert %>
+        <%= react_component("shared/information_header", {message: alert, color: 'danger'}) %>
+      <% end %>
+      <%= yield %>
+    </div>
   </div>
 </div>
-</div>
-<footer></footer>
+<footer>
+  <div class="container">
+    <%= react_component("shared/description", {content: "Контакты"}) %>
+    <%= react_component("shared/description", {content: "+375 (44) 515-49-83 Владислав"}) %>
+    <%= react_component("shared/description", {content: "+375 (17) 327-35-84"}) %>
+    <%= react_component("shared/description", {content: "e-mail: peshehodka.bel@gmail.com"}) %>
+  </div>
+</footer>
 </body>
 </html>

@@ -17,15 +17,11 @@ class Search extends Component {
       pageOfItems: []
     };
   }
-  
-  state = {
-    search: "",
-  };
-  
+
   renderElement(element, i) {
     return (
-      <Grid item key={i}>
-        <OrganizationCard organization={element} width={'250px'}/>
+      <Grid item key={i} xs={12} sm={6} md={3} lg={3} xl={2}>
+        <OrganizationCard organization={element}/>
       </Grid>
     );
   };
@@ -45,10 +41,12 @@ class Search extends Component {
   }
   
   onClear() {
+    const {list} = this.state;
     this.setState({filteredList: this.state.list});
   }
   
   render() {
+    const {pageOfItems, filteredList} = this.state;
     return (
       <div>
         <SearchBar
@@ -56,16 +54,16 @@ class Search extends Component {
           onClear={this.onClear}
           size='large'
           width='100%'
-          placeholder='Search...'
+          placeholder='Поиск...'
         />
-        <br/>
-        <br/>
-        <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={1}>
-          {this.state.pageOfItems.map((element, i) => {
+        <br/><br/>
+        <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={1} >
+          {pageOfItems.map((element, i) => {
             return this.renderElement(element, i);
           })}
         </Grid>
-        <center><JwPagination items={this.state.filteredList} onChangePage={this.onChangePage} pageSize={12}/></center>
+        <br/>
+        <center><JwPagination items={filteredList} onChangePage={this.onChangePage} pageSize={12}/></center>
       </div>
     );
   }

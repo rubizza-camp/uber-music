@@ -9,11 +9,13 @@
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
       <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New Password...", style: "width: 30%", class: "form-control" %>
+      <label for="password">Новый пароль</label>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", style: "width: 30%", class: "form-control" %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm New Password...", style: "width: 30%", class: "form-control" %>
+      <label for="password_confirmation">Подтвердите новый пароль</label>
+      <%= f.password_field :password_confirmation, autocomplete: "off", style: "width: 30%", class: "form-control" %>
     </div>
 
     <div class="actions">

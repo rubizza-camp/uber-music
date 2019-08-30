@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   card: {
-    width: 250,
+    width: '100%',
   },
   media: {
     height: 140,
@@ -27,20 +27,20 @@ export default function PlaceCard(props) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={place.images.length ? place.first_image_url : "/assets/default_place.png"}
+            image={props.place.first_image_url}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {place.name}
+              {props.place.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {place.address}
+              {props.place.address}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button data-turbolinks="false" size="small" color="primary">
-            Learn More
+            Узнать больше...
           </Button>
         </CardActions>
       </Card>

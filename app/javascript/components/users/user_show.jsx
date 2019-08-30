@@ -6,6 +6,8 @@ import Title from "../shared/title";
 import SmallText from "../shared/small_text";
 import Badge from "../shared/badge";
 import OrganizationCard from "../organizations/organization_card";
+import Box from "@material-ui/core/Box";
+import TypoGraphy from "@material-ui/core/Typography/Typography";
 
 class UserShowLandingPage extends React.Component {
   render() {
@@ -13,46 +15,39 @@ class UserShowLandingPage extends React.Component {
     return (
       <div>
         <Grid container direction="column" alignItems="stretch">
-          <div style={{margin: 20}}>
-            <Grid container justify="center">
-              <Grid item>
-                <MyImage src={user.image ? user.image_url : "/assets/default_avatar.jpg"}
-                         width={250} height={250}/>
+          <div style={{margin: 10}}>
+            <Grid container justify="center" alignItems="center">
+              <Grid item xs={6}>
+                <center><MyImage src={user.image ? user.image_url : "/assets/default_avatar.jpg"}
+                                 width={250} height={250}/></center>
               </Grid>
-            </Grid>
-          </div>
-          <div style={{margin: 20}}>
-            <Grid container justify="center">
-              <Grid item>
+              <Grid item xs={6} style={{textAlign: 'center'}}>
                 {user.nickname === "" &&
-                <Title content={"No title"}/>
+                <Title content={"Нет Прозвища"}/>
                 }
-                <Title content={user.nickname}/>
-              </Grid>
-            </Grid>
-          </div>
-          <div style={{margin: 20}}>
-            <Grid container justify="center">
-              <Grid item>
+                <TypoGraphy component="h3">
+                  <Box fontSize="2.5em" fontWeight={400}>
+                    {user.nickname}
+                  </Box>
+                </TypoGraphy>
+                <br/>
+                
                 {user.first_name === "" &&
-                <SmallText content={"No name"}/>
+                <Title content={"Нет Имени и Фамилии"}/>
                 }
-                <SmallText content={user.first_name + " " + user.second_name}/>
+                <Title content={user.first_name + " " + user.second_name}/>
+                <br/>
+                <Title content={user.email}/>
               </Grid>
             </Grid>
+            <br/>
+            <hr/>
           </div>
-          <div style={{margin: 20}}>
-            <Grid container justify="center">
-              <Grid item>
-                <SmallText content={user.email}/>
-              </Grid>
-            </Grid>
-          </div>
-          <Title content={"Musician Skill:"}/>
-          <div style={{margin: 20}}>
+          <Title content={"Музыкальные навыки:"}/>
+          <div>
             <Grid container>
               <Grid item xs={6}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} style={{margin: '10px'}}>
                   {user.approved_musician_skills.length === 0 &&
                   <SmallText content={"Нет подвержденных музыкальных навков"}/>
                   }
@@ -63,10 +58,10 @@ class UserShowLandingPage extends React.Component {
                   )}
                 </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <Grid container spacing={2} style={{margin: '10px'}}>
                   {user.pending_musician_skills.length === 0 &&
-                  <SmallText content={"Нет музыкальных навыков"}/>
+                  <SmallText content={"Нет выбранных музыкальных навыков"}/>
                   }
                   {user.pending_musician_skills.map((pending_musician_skill, i) =>
                     <Grid item key={i}>
@@ -76,16 +71,17 @@ class UserShowLandingPage extends React.Component {
                 </Grid>
               </Grid>
             </Grid>
+            <hr/>
           </div>
-          <Title content={"Genres:"}/>
+          <Title content={"Жанры:"}/>
           <div style={{margin: 10}}>
             <Grid container direction="row" alignItems="flex-start">
               <Grid container justify="center" spacing={3}>
                 {user.genres.length === 0 &&
                 <SmallText content={"Выбранные жанры отсутвстуют"}/>
                 }
-                {user.genres.map((genre) =>
-                  <Grid item>
+                {user.genres.map((genre, i) =>
+                  <Grid item key={i}>
                     <Badge color="rose"> <SmallText content={genre.name}/></Badge>
                   </Grid>
                 )}
@@ -94,13 +90,12 @@ class UserShowLandingPage extends React.Component {
           </div>
         </Grid>
         <hr/>
-        <br/>
-        <Title content={"Organizations:"}/>
+        <Title content={"Организации:"}/>
         <br/>
         <Grid container direction="row" justify="center" alignItems="stretch" spacing={3}>
           {user.organizations.map((organization, i) =>
-            <Grid item key={i}>
-              <OrganizationCard organization={organization} width={200}/>
+            <Grid item key={i} xs={12} sm={6} md={2} lg={2} xl={2}>
+              <OrganizationCard organization={organization}/>
             </Grid>
           )}
         </Grid>

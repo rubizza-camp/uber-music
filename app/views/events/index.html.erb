@@ -1,1 +1,1 @@
-<%= react_component('events/event_index', { events: @events }) %>
+<%= react_component('events/event_index', { events: @events, organizations: current_user.organizations }) %>

@@ -10,7 +10,7 @@ import DialogWindow from "./dialog_window";
 
 import navbarsStyle from "../style/navbarsStyle";
 
-function LoginButtons({classes}){
+function LoginButtons({classes}) {
   return (
     <ListItem className={classes.listItem}>
       <Button
@@ -18,7 +18,7 @@ function LoginButtons({classes}){
         className={classes.navLink}
         color="transparent"
       >
-        Sign in
+        Вход
       </Button>
       <Button
         href="/users/sign_up"
@@ -26,61 +26,118 @@ function LoginButtons({classes}){
         color="primary"
         round
       >
-        Sign up
+        Регистрация
       </Button>
     </ListItem>
   );
 }
 
-function DropdownBar({image, classes, id}){
-  return (
-    <CustomDropdown
-      center
-      caret={false}
-      hoverColor="black"
-      buttonText={
-        <img
-          src={image ? image.url.url : "/assets/default_avatar.jpg"}
-          className={classes.img}
-          alt="profile"
-        />
-      }
-      buttonProps={{
-        className:
-          classes.navLink + " " + classes.imageDropdownButton,
-        color: "transparent"
-      }}
-      dropdownList={[
-        <a
-          href={"/users/" + id}
-          data-method="get"
-          className={classes.dropdownLink}
-          data-turbolinks={"false"}
-        >
-          Me
-        </a>,
-        <a
-          href={"/users/" + id + "/edit"}
-          data-method="get"
-          className={classes.dropdownLink}
-          data-turbolinks={"false"}
-        >
-          Edit Your Profile
-        </a>,
-        <a
-          href="/users/sign_out"
-          data-method="delete"
-          className={classes.dropdownLink}
-          data-turbolinks={"false"}
-        >
-          Sign out
-        </a>
-      ]}
-    />
-  );
+function DropdownBar({image, classes, id, current_user, type}) {
+  if(type === 'Moderator'){
+    return (
+      <CustomDropdown
+        center
+        caret={false}
+        hoverColor="black"
+        buttonText={
+          <img
+            src={image ? image.url.url : "/assets/default_avatar.jpg"}
+            className={classes.img}
+            alt="profile"
+          />
+        }
+        buttonProps={{
+          className:
+            classes.navLink + " " + classes.imageDropdownButton,
+          color: "transparent"
+        }}
+        dropdownList={[
+          <a
+            href={"/users/" + id}
+            data-method="get"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Профиль
+          </a>,
+          <a
+            href={"/users/" + id + "/edit"}
+            data-method="get"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Редактировать Профиль
+          </a>,
+          <a
+            href={"/admin"}
+            data-method="get"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Админка
+          </a>,
+          <a
+            href="/users/sign_out"
+            data-method="delete"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Выйти
+          </a>
+        ]}
+      />
+    );
+  }else{
+    return (
+      <CustomDropdown
+        center
+        caret={false}
+        hoverColor="black"
+        buttonText={
+          <img
+            src={image ? image.url.url : "/assets/default_avatar.jpg"}
+            className={classes.img}
+            alt="profile"
+          />
+        }
+        buttonProps={{
+          className:
+            classes.navLink + " " + classes.imageDropdownButton,
+          color: "transparent"
+        }}
+        dropdownList={[
+          <a
+            href={"/users/" + id}
+            data-method="get"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Профиль
+          </a>,
+          <a
+            href={"/users/" + id + "/edit"}
+            data-method="get"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Редактировать Профиль
+          </a>,
+          <a
+            href="/users/sign_out"
+            data-method="delete"
+            className={classes.dropdownLink}
+            data-turbolinks={"false"}
+          >
+            Выйти
+          </a>
+        ]}
+      />
+    );
+  }
+  
 }
 
-function UserHasOrganizationsButton({classes}){
+function UserHasOrganizationsButton({classes}) {
   return (
     <Button
       href="/events/new"
@@ -88,69 +145,69 @@ function UserHasOrganizationsButton({classes}){
       color="primary"
       round
     >
-      CREATE EVENT
+      Создать Событие
     </Button>
   );
 }
 
-function UserHasNotOrganizationsButton({classes}){
+function UserHasNotOrganizationsButton({classes}) {
   return (
-    <DialogWindow></DialogWindow>
+    <DialogWindow/>
   );
 }
 
-function Navigation({classes, image, id, current_user, organizations}) {
-    return (
-      <Header
-        brand="Пешеходка"
-        color="dark"
-        fixed
-        rightLinks={
-          <List className={classes.list}>
-            {current_user && <ListItem className={classes.listItem}>
-              {organizations.length
-                ? <UserHasOrganizationsButton classes={classes}/>
-                : <UserHasNotOrganizationsButton classes={classes}/>}
-            </ListItem>}
-            <ListItem className={classes.listItem}>
-              <Button
-                href="/organizations"
-                className={classes.navLink}
-                color="transparent"
-                >
-                Organizations
-              </Button>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Button
-                href="/places"
-                className={classes.navLink}
-                color="transparent"
-              >
-                Places
-              </Button>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Button
-                data-turbolinks="false"
-                href="/events"
-                className={classes.navLink}
-                color="transparent"
-              >
-                Events
-              </Button>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              {id ?
-              <DropdownBar classes={classes} image={image} id={id}/> :
-
+function Navigation({classes, image, id, current_user, organizations, type}) {
+  return (
+    <Header
+      brand="Пешеходка.бел"
+      color="dark"
+      fixed
+      rightLinks={
+        <List className={classes.list}>
+          {current_user && <ListItem className={classes.listItem}>
+            {organizations.length
+              ? <UserHasOrganizationsButton classes={classes}/>
+              : <UserHasNotOrganizationsButton classes={classes}/>}
+          </ListItem>}
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/organizations"
+              className={classes.navLink}
+              color="transparent"
+            >
+              Организации
+            </Button>
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/places"
+              className={classes.navLink}
+              color="transparent"
+            >
+              Места
+            </Button>
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Button
+              data-turbolinks="false"
+              href="/events"
+              className={classes.navLink}
+              color="transparent"
+            >
+              Мероприятия
+            </Button>
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            {id ?
+              <DropdownBar classes={classes} image={image} id={id} current_user={current_user} type={type}/> :
+              
               <LoginButtons classes={classes} image={image} id={id}/>
-              }
-            </ListItem>
-          </List>
-        }
-      />
-    );
+            }
+          </ListItem>
+        </List>
+      }
+    />
+  );
 }
 
 Navigation.propTypes = {

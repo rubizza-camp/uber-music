@@ -3,10 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import landingPageStyle from "../shared/style/landingPage";
 import Search from "../shared/search/place_search";
 
-function make_url(id) {
-  return 'places/' + id
-}
-
 class PlaceIndex extends React.Component {
   render() {
     const {places} = this.props;

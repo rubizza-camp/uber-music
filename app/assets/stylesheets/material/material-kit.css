@@ -933,10 +933,18 @@ pre code {
   margin-left: auto;
 }
 
+@media (min-width: 360px) {
+    .container {
+        padding-bottom: 20px;
+        padding-top: 20px;
+        max-width: 360px;
+    }
+}
+
 @media (min-width: 576px) {
   .container {
-      padding-bottom: 20px;
-      padding-top: 20px;
+      padding-bottom: 30px;
+      padding-top: 30px;
       max-width: 540px;
   }
 }

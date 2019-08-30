@@ -15,8 +15,7 @@ function make_url(id){
 export default function OrganizationCard(props) {
   const useStyles = makeStyles({
     card: {
-      width: props.width,
-      maxWidth: 345,
+      width: '100%'
     },
     media: {
       height: 140,
@@ -43,7 +42,7 @@ export default function OrganizationCard(props) {
         </CardActionArea>
         <CardActions>
           <Button data-turbolinks="false" size="small" color="primary">
-            Learn More
+            Узнать больше...
           </Button>
         </CardActions>
       </Card>

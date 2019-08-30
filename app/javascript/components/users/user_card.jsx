@@ -10,9 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345,
-    width: 250,
-    margin: '10px',
+    maxWidth: '100%',
   },
   media: {
     height: 140,
@@ -49,7 +47,7 @@ export default function UserCard(props) {
       <CardActions>
         <a href={link} data-method="get">
           <Button data-turbolinks="false" size="small" color="primary">
-            Learn More
+            Узнать больше...
           </Button>
         </a>
       </CardActions>
