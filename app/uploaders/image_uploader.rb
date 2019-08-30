@@ -26,9 +26,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   private
 
   def shave(image)
-    remove = ((image[:height] - image[:width]) / 2).round
-    image.shave("0x#{remove}")
-    remove = ((image[:width] - image[:height]) / 2).round
-    image.shave("#{remove}x0")
+    if image[:width] < image[:height]
+      remove = ((image[:height] - image[:width]) / 2).round
+      image.shave("0x#{remove}")
+    else
+      remove = ((image[:width] - image[:height]) / 2).round
+      image.shave("#{remove}x0")
+    end
   end
 end
