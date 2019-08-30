@@ -21,7 +21,8 @@ class EventShow extends React.Component {
         <Grid container justify="center">
           <TypoGraphy component="h3">
             <Box fontSize="3.0em" fontWeight='100'>
-              {event.name}            </Box>
+              {event.name}
+            </Box>
           </TypoGraphy>
         </Grid>
         
@@ -30,21 +31,21 @@ class EventShow extends React.Component {
           <Grid container justify="space-around" spacing={2} style={{marginTop: '10px', marginBottom: '10px'}}>
             <Grid item>
               {event.start_time === null &&
-                <TypoGraphy>
-                  <Box component='span' fontSize="21px" fontWeight="300">
-                    Время начала отсутсвует
-                  </Box>
-                </TypoGraphy>
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  Время начала отсутсвует
+                </Box>
+              </TypoGraphy>
               }
               <SmallText content={"Начало: " + event.start_time}/>
             </Grid>
             <Grid item>
               {event.end_time === null &&
-                <TypoGraphy>
-                  <Box component='span' fontSize="21px" fontWeight="300">
-                    Время окончания отсутсвует
-                  </Box>
-                </TypoGraphy>
+              <TypoGraphy>
+                <Box component='span' fontSize="21px" fontWeight="300">
+                  Время окончания отсутсвует
+                </Box>
+              </TypoGraphy>
               }
               <SmallText content={"Конец: " + event.end_time}/>
             </Grid>
@@ -55,11 +56,11 @@ class EventShow extends React.Component {
           <Title content={"Описание Мероприятия:"}/>
           <Grid container style={{marginTop: '10px', marginBottom: '10px'}}>
             {event.description === null &&
-              <TypoGraphy>
-                <Box component='span' fontSize="21px" fontWeight="300">
-                  Описание отсутвует
-                </Box>
-              </TypoGraphy>
+            <TypoGraphy>
+              <Box component='span' fontSize="21px" fontWeight="300">
+                Описание отсутвует
+              </Box>
+            </TypoGraphy>
             }
             <Description content={event.description}/>
           </Grid>
@@ -69,11 +70,11 @@ class EventShow extends React.Component {
         <Grid container justify="center" direction="column" alignItems="center">
           <Grid item>
             {event.images.length === 0 &&
-              <TypoGraphy>
-                <Box component='span' fontSize="21px" fontWeight="300">
-                  Фотографии отсутсвуют
-                </Box>
-              </TypoGraphy>
+            <TypoGraphy>
+              <Box component='span' fontSize="21px" fontWeight="300">
+                Фотографии отсутсвуют
+              </Box>
+            </TypoGraphy>
             }
             <ImageCarousel slidesToShow={1} slidesToScroll={1} width={"900px"} height={"400px"}
                            images={event.images.map((image) => image.image_url)}/>
@@ -93,11 +94,11 @@ class EventShow extends React.Component {
           <Title content={"Организации:"}/>
           <Grid container justify="center" style={{marginTop: '10px', marginBottom: '10px'}}>
             {event.approved_organizations.length === 0 &&
-              <TypoGraphy>
-                <Box component='span' fontSize="21px" fontWeight="300">
-                  Организации отсутсвуют
-                </Box>
-              </TypoGraphy>
+            <TypoGraphy>
+              <Box component='span' fontSize="21px" fontWeight="300">
+                Организации отсутсвуют
+              </Box>
+            </TypoGraphy>
             }
             {event.approved_organizations.map((organization, i) => {
               return (

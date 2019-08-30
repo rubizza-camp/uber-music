@@ -26,12 +26,12 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <%= f.label :first_name %><br/>
-          <%= f.text_field :first_name, placeholder: "First Name...", class: "form-control", autocomplete: @user.first_name %>
+          <label for="first_name">Имя</label>
+          <%= f.text_field :first_name, class: "form-control", autocomplete: @user.first_name %>
         </div>
         <div class="col">
-          <%= f.label :second_name %><br/>
-          <%= f.text_field :second_name, placeholder: "Second Name...", class: "form-control", autocomplete: @user.second_name %>
+          <label for="second_name">Фамилия</label>
+          <%= f.text_field :second_name, class: "form-control", autocomplete: @user.second_name %>
         </div>
       </div>
     </div>
@@ -40,20 +40,20 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <center><%= react_component("users/select", {map: @genres, name: 'Genre', id: 'genre', currentElements: @user.genre_ids, selector: '#genres'}) %></center>
+          <center><%= react_component("users/select", {map: @genres, name: 'Жанры', id: 'genre', currentElements: @user.genre_ids, selector: '#genres'}) %></center>
           <br/>
           <%= f.hidden_field :genres, id: :genres, value: '' %>
         </div>
         <div class="col">
-          <center> <%= react_component("users/select", {map: @musician_skills, name: 'Musician Skill', id: 'musician_skill', currentElements: @user.pending_musician_skill_ids, selector: '#musician_skills'}) %></center>
+          <center> <%= react_component("users/select", {map: @musician_skills, name: 'Навыки', id: 'musician_skill', currentElements: @user.pending_musician_skill_ids, selector: '#musician_skills'}) %></center>
           <br/>
           <%= f.hidden_field :musician_skills, id: :musician_skills, value: '' %>
         </div>
       </div>
     </div>
     <div class="container">
-      <%= f.label :nickname %><br/>
-      <%= f.text_field :nickname, placeholder: "Nickname...", class: "form-control", autocomplete: @user.nickname %>
+      <label for="nickname">Прозвище</label>
+      <%= f.text_field :nickname, class: "form-control", autocomplete: @user.nickname %>
       <br/>
     </div>
     <center>

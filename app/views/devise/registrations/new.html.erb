@@ -7,18 +7,21 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <center><%= f.email_field :email, autofocus: true, style: "width: 30%" , class: "form-control", placeholder: "Email..."  %></center>
+      <center> <label for="email">Email</label></center>
+      <center><%= f.email_field :email, autofocus: true, style: "width: 30%" , class: "form-control" %></center>
     </div>
     <br/>
     <div class="field">
-      <center><%= f.password_field :password, style: "width: 30%", class: "form-control", placeholder: "Password..."  %></center>
+      <center> <label for="password">Пароль</label></center>
+      <center><%= f.password_field :password, style: "width: 30%", class: "form-control"%></center>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br/>
     </div>
     <br/>
     <div class="field">
-      <center><%= f.password_field :password_confirmation , style: "width: 30%", class: "form-control", placeholder: "Confirm Password..."  %></center>
+      <center> <label for="password_confirmation">Подтвердите пароль</label></center>
+      <center><%= f.password_field :password_confirmation, style: "width: 30%", class: "form-control" %></center>
     </div>
     <br/>
     <div class="actions">

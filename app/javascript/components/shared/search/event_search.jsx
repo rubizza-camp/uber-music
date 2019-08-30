@@ -37,13 +37,7 @@ class Search extends Component {
     };
   }
   
-  state = {
-    search: "",
-  };
-  
   renderElement(element, i) {
-    console.log(element.id);
-    
     return (
       <Grid item key={i} xs={12} sm={6} md={3} lg={3} xl={3}>
         <EventCard event={element} link={make_url(element.id)}/>
@@ -66,13 +60,15 @@ class Search extends Component {
   }
   
   onClear() {
-    this.setState({filteredList: this.state.list});
+    const {list} = this.state;
+    this.setState({filteredList: list});
   }
   
   render() {
+    const {pageOfItems,organizations,filteredList} = this.state;
     return (
       <div>
-        {this.state.organizations.length
+        {organizations.length
           ? <UserHasOrganizationsButton/>
           : <UserHasNotOrganizationsButton/>}
         <br/><br/>
@@ -85,12 +81,12 @@ class Search extends Component {
         />
         <br/><br/>
         <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={1}>
-          {this.state.pageOfItems.map((element, i) => {
+          {pageOfItems.map((element, i) => {
             return this.renderElement(element, i);
           })}
         </Grid>
         <br/>
-        <center><JwPagination items={this.state.filteredList} onChangePage={this.onChangePage} pageSize={12}/></center>
+        <center><JwPagination items={filteredList} onChangePage={this.onChangePage} pageSize={12}/></center>
       </div>
     );
   }
