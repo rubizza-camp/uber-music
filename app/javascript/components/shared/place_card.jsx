@@ -30,10 +30,10 @@ export default function PlaceCard(props) {
             image={props.place.first_image_url}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" noWrap>
+            <Typography gutterBottom variant="h5" component="h2">
               {props.place.name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" noWrap>
+            <Typography variant="body2" color="textSecondary" component="p">
               {props.place.address}
             </Typography>
           </CardContent>

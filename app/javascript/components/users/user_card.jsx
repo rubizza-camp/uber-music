@@ -28,13 +28,13 @@ export default function UserCard(props) {
           image={user.image ? user.image_url : "/assets/default_avatar.jpg"}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" noWrap>
+          <Typography gutterBottom variant="h5" component="h2">
             {user.nickname === "" &&
             "No nickname"
             }
             {user.nickname}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" noWrap>
+          <Typography variant="body2" color="textSecondary" component="p">
             {(user.first_name + ' ' + user.second_name) === " " &&
             "No name"
             }

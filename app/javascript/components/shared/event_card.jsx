@@ -31,10 +31,10 @@ export default function EventCard(props) {
             image={event.images.length ? event.first_image_url : "/assets/default_event.jpeg"}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" noWrap>
+            <Typography gutterBottom variant="h5" component="h2">
               {event.name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" noWrap>
+            <Typography variant="body2" color="textSecondary" component="p">
               {event.address}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
