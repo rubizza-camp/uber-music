@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
 
-Things you may want to cover:
+2.6.3
 
-* Ruby version
+## Name
 
-* System dependencies
+Uber-Music
 
-* Configuration
+## Description
 
-* Database creation
+Our application optimize the work with the distribution of seats to musicians who participate in the project 'pedestrian', and work with the musicians themselves
 
-* Database initialization
+## Usage
 
-* How to run the test suite
+Some video...
 
-* Services (job queues, cache servers, search engines, etc.)
+## Roadmap
 
-* Deployment instructions
+Telegram bot, add cool notice, registration from different applications(VK, Telegram, Mail.ru, Facebook, Gmail)
 
-* ...
+## Authors and acknowledgment
+
+Maxim Spaseonav 
+Alesia Yakutenok
+Maria Paharelava
+Alexander Starovojtov
+Yan Patsko
+Andrey Drozdov 
+Roma Tehanov
+
+## Project status
+
+In progress
