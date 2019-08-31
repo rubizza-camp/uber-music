@@ -14,7 +14,7 @@ class OrganizationTitle extends React.Component {
       return (
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={2}>
-            <MediumButton content={'Edit'} href={`/organizations/${organization_id}/edit`}/>
+            <MediumButton content={'Редактировать'} href={`/organizations/${organization_id}/edit`}/>
           </Grid>
           <Grid item xs={10}>
             <Grid container direction="row" justify="center" alignItems="center">

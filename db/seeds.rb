@@ -31,10 +31,11 @@ end
 
 
 10.times do
-  Organization.create(
+  organization = Organization.create(
     name: Faker::Music.band,
     description: Faker::ChuckNorris.fact
     )
+  organization.create_group
 end
 
 (1..9).each do |x|

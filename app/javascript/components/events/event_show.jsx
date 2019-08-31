@@ -25,7 +25,7 @@ class EventShow extends React.Component {
             </Box>
           </TypoGraphy>
         </Grid>
-        
+
         <div style={{marginTop: '20px', marginBottom: '20px'}}>
           <Title content={"Время:"}/>
           <Grid container justify="space-around" spacing={2} style={{marginTop: '10px', marginBottom: '10px'}}>

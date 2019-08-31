@@ -28,4 +28,11 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :events
   accepts_nested_attributes_for :users
   accepts_nested_attributes_for :organization_events
+  enum group: [0, 1, 2]
+
+  def create_group
+    organizations_group = Organization.all.map(&:group)
+    count_of_each_group = [0, 1, 2].map { |item| organizations_group.count(item) }
+    update(group: count_of_each_group.index(count_of_each_group.min))
+  end
 end

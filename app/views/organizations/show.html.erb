@@ -1,4 +1,7 @@
 <%= javascript_pack_tag 'application' %>
+<% if flash[:message] &&  current_user.organization_ids.index(@organization[:id]) %>
+  <%= react_component("shared/information_header", {message: flash[:message], color: 'success'}) %>
+<% end %>
 <%= react_component("organizations/organization_detail", {
                                                         approved_events: @approved_events,
                                                         organization: @organization,
