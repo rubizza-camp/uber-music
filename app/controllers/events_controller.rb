@@ -35,6 +35,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def select_place
+    place = Place.includes(:events).find(events_params[:place_id])
+    render json: { events: place.events }
+  end
+
   def edit
     @organizations = current_user.organizations
     @places = Place.all
@@ -48,8 +53,6 @@ class EventsController < ApplicationController
     end
     EventDeleteImagesService.delete_images(events_params[:delete_img],
                                            @event.id)
-    update_place(events_params) if events_params[:place_id] != ''
-    update_organizations(events_params)
     if update_basic_attribute(events_params)
       flash[:notice] = 'Мероприятие обновлено!'
     else
@@ -67,9 +70,7 @@ class EventsController < ApplicationController
 
   def update_basic_attribute(events_params)
     @event.update!(name: events_params[:name],
-                   description: events_params[:description],
-                   start_time: events_params[:start_time],
-                   end_time: events_params[:end_time])
+                   description: events_params[:description])
   end
 
   def update_place(events_params)
