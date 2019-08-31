@@ -101,7 +101,7 @@ class MasterForm extends React.Component {
                   currentStep: currentStep
             })
     }
-    /*if(currentStep == 2){
+    if(currentStep == 2){
       if(this.state.place_id == '')
         this.setState({hasError: true})
       else {
@@ -112,25 +112,40 @@ class MasterForm extends React.Component {
           data: {place_id: this.state.place_id},
         })
         .then(function (response) {
-<<<<<<< HEAD
           currentStep = currentStep >= 5? 6: currentStep + 1
             that.setState({
-              currentStep: currentStep
-              not_available_time: response["data"]
+              currentStep: currentStep,
+              not_available_time: response.data.events.map((event) => new Date(event.start_time))
+
             })
-=======
-          currentStep = currentStep >= 4? 5: currentStep + 1
-          that.setState({
-            currentStep: currentStep,
-            not_available_time: response.data.events.map((event) => new Date(event.start_time))
-          })
->>>>>>> Add datepicker in form
         })
         .catch(function (error) {
           console.log(error);
         })
       }
-    }*/
+    }
+    if(currentStep == 3){
+      if(this.state.place_id == '')
+        this.setState({hasError: true})
+      else {
+        axios({
+          method: 'POST',
+          url: '/events/select_place',
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          data: {place_id: this.state.place_id},
+        })
+        .then(function (response) {
+          currentStep = currentStep >= 4? 5: currentStep + 1
+          that.setState({
+            currentStep: currentStep,
+            not_available_time: response.data.events.map((event) => new Date(event.start_time))
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
+    }
   }
 
   _prev = () => {
@@ -192,6 +207,11 @@ class MasterForm extends React.Component {
     this.setState({
       description: event.target.value
     })
+  }  
+  dateDataSender = (data) => {
+    this.setState({
+      start_date: data
+    })
   }
 
   render() {
@@ -219,7 +239,8 @@ class MasterForm extends React.Component {
         <Step3
           currentStep={this.state.currentStep}
           date_time={this.state.date_time}
-          not_time ={this.state.not_available_time}
+          not_available_time ={this.state.not_available_time}
+          dataSender={this.dateDataSender}
         />
         <Step4
           currentStep={this.state.currentStep}

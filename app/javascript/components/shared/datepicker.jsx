@@ -9,10 +9,10 @@ import axios from "axios";
 
 class EventDatePicker extends React.Component {
   constructor(props) {
-    debugger
     super(props);
     this.state = {
-      busyTime: props.busy_time,
+      dataSender: props.dataSender,
+      not_available_time: props.not_available_time,
       startDate: new Date(props.date_time)
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,6 +21,7 @@ class EventDatePicker extends React.Component {
 
   handleChange(date) {
     this.setState({startDate: date});
+    this.state.dataSender(date)
   }
 
   render() {
@@ -28,7 +29,10 @@ class EventDatePicker extends React.Component {
       <DatePicker
         selected={this.state.startDate}
         onChange={this.handleChange}
-        excludeTimes={this.state.busyTime.map((date) => setMinutes(date, 0))
+        minDate={addDays(new Date(), 1)}
+        maxDate={addDays(new Date(), 3)}
+        excludeTimes={this.state.not_available_time.map((date) => 
+          setMinutes(date, 0))
         }
         showTimeSelect
         timeFormat="HH:mm"
