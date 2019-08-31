@@ -1,25 +1,27 @@
 <div class="text-center" style="justify-content: center">
-  <h2>Log in</h2>
+  <h2>Вход</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <center><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email...", style: "width: 30%" %></center>
+      <center><label for="email">Email</label></center>
+      <center><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 30%" %></center>
     </div>
     <br/>
     <div class="field">
-      <center><%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password..." , style: "width: 30%"%></center>
+      <center><label for="password">Пароль</label></center>
+      <center><%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 30%"%></center>
     </div>
     <br/>
     <% if devise_mapping.rememberable? %>
       <div class="field">
         <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <center><label for="remember_me">Запомнить меня</label></center>
       </div>
     <% end %>
 
     <br/>
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-primary", data: { turbolinks: false } %>
+      <%= f.submit "Войти", class: "btn btn-primary", data: { turbolinks: false } %>
     </div>
   <% end %>
 

@@ -78,7 +78,7 @@ class UserShowLandingPage extends React.Component {
             <Grid container direction="row" alignItems="flex-start">
               <Grid container justify="center" spacing={3}>
                 {user.genres.length === 0 &&
-                <SmallText content={"Выбранные жанры отсутвстуют"}/>
+                <SmallText content={"Выбранные жанры отсутствуют"}/>
                 }
                 {user.genres.map((genre, i) =>
                   <Grid item key={i}>

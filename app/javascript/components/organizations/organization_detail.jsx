@@ -33,11 +33,13 @@ class OrganizationDetail extends React.Component {
                 </Box>
               </TypoGraphy>
               {organization.description === null &&
-              <TypoGraphy>
-                <Box component='span' fontSize="21px" fontWeight="300">
-                  Описание отсутсвует
-                </Box>
-              </TypoGraphy>
+              <center>
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Описание отсутсвует
+                  </Box>
+                </TypoGraphy>
+              </center>
               }
             </Grid>
           </Grid>
@@ -48,16 +50,20 @@ class OrganizationDetail extends React.Component {
           <Grid item>
             <Title content={'Фотографии:'}/>
           </Grid>
-          <Grid container direction="row" style={{marginTop: '10px', marginBottom: '10px'}}>
+          <Grid container direction="row" justify="center" style={{marginTop: '10px', marginBottom: '10px'}}>
             <Grid item xs={12} md={12}>
+              {organization.images.length !== 0 &&
               <ImageCarousel images={organization.images.map((image) => image.image_url)} slidesToShow={1}
                              slidesToScroll={1} width={'100%'} height={'400px'}/>
+              }
               {organization.images.length === 0 &&
-              <TypoGraphy>
-                <Box component='span' fontSize="21px" fontWeight="300">
-                  Фотографии отсутсвуют
-                </Box>
-              </TypoGraphy>
+              <center>
+                <TypoGraphy>
+                  <Box component='span' fontSize="21px" fontWeight="300">
+                    Фотографии отсутсвуют
+                  </Box>
+                </TypoGraphy>
+              </center>
               }
             </Grid>
           </Grid>
@@ -78,8 +84,7 @@ class OrganizationDetail extends React.Component {
               }
               {approved_events.map((event, i) =>
                 <Grid item xs={12} sm={6} md={4} key={i}>
-                  <EventCard key={i} name={event.name} addres={'##'} start_time={event.start_time}
-                             end_time={event.end_time} image={event.first_image_url} link={`/events/${event.id}`}/>
+                  <EventCard event={event} link={`/events/${event.id}`}/>
                 </Grid>
               )}
             </Grid>

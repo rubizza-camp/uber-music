@@ -38,7 +38,7 @@ class WelcomePage extends React.Component {
               <Title content={"Карта мест выступлений:"}/>
             </Grid>
             <Grid item xs={12} >
-              <YandexMaps width={"900px"} height={"400px"} zoom={9} center={[places[0].longitude, places[0].latitude]} places={places}/>
+              <YandexMaps width={"900px"} height={"400px"} zoom={9} center={[places[0].latitude, places[0].longitude]} places={places}/>
             </Grid>
           </Grid>
           <hr/>

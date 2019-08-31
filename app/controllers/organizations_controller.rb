@@ -9,6 +9,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+    message_for_organization
     @approved_events = serialize_recourse(
       today_events_for_current_organization.first(FIRST_EVENTS_SIZE)
     )
@@ -18,6 +19,11 @@ class OrganizationsController < ApplicationController
   def confirm
     @organization.users << User.find(params[:user_id])
     redirect_to action: :show, id: @organization.id
+  end
+
+  def check_time
+    @organization = Organization.find(params[:organization][:organization_id])
+    render json: time_equals
   end
 
   def new
@@ -30,6 +36,7 @@ class OrganizationsController < ApplicationController
     @organization.users << current_user
     if @organization.save!
       set_image(@organization.id, 'Organization', params[:organization][:image])
+      @organization.create_group
       flash[:notice] = 'Организация успешно создана!'
       redirect_to action: :show, id: @organization.id
     else
@@ -77,9 +84,7 @@ class OrganizationsController < ApplicationController
   private
 
   def set_image(id, type, organization_params)
-    if organization_params
-      ImageService.add_images(id, type, params[:organization][:image])
-    end
+    ImageService.add_images(id, type, params[:organization][:image]) if organization_params
   end
 
   def update_basic_attribute(organization_params)
@@ -102,5 +107,21 @@ class OrganizationsController < ApplicationController
 
   def today_events_for_current_organization
     @organization.approved_events.where(start_time: Date.today..(Date.today + 2))
+  end
+
+  def message_for_organization
+    flash[:message] = "Ваш период для создания мероприятия: #{time_for_group}"
+  end
+
+  def check_group
+    (@organization.group - (Time.new.to_date - Date.new(2019, 1, 1)).to_i % 3).abs
+  end
+
+  def time_equals
+    Time.new.hour == time_for_group.split('-')[0].split(':')[0].to_i
+  end
+
+  def time_for_group
+    ['20:00-21:00', '21:00-22:00', '22:00-23:00'].rotate(check_group)[0]
   end
 end
