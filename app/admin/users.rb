@@ -1,8 +1,19 @@
 # rubocop:disable all
 ActiveAdmin.register User do
   config.per_page = 10
-  permit_params :image
   form partial: 'form'
+
+  controller do
+    def update
+      if params[:user][:image].nil? != true
+        if User.find(params[:id]).image.nil? != true 
+          User.find(params[:id]).image.delete
+        end
+        ImageService.add_image(User.find(params[:id]).id, "User", params[:user][:image])
+      end
+      redirect_to admin_user_path(), id: params[:id]
+    end
+  end
 
   member_action :make_moderator, method: :patch do
     User.find(params[:id]).update(type: 'Moderator')
@@ -21,8 +32,6 @@ ActiveAdmin.register User do
     flash[:notice] = 'User successfully has become a User'
     redirect_to admin_user_path(), id: params[:id]
   end
-
-
 
   action_item :make_moderator, only: :show do
     if user.type != 'Moderator'
