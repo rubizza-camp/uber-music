@@ -49,7 +49,7 @@ class MasterForm extends React.Component {
         })
         .then(function (response) {
           if(response["data"]){
-            currentStep = currentStep >= 5? 6: currentStep + 1
+            currentStep = currentStep >= 4? 5: currentStep + 1
             that.setState({
               currentStep: currentStep
             })
@@ -149,7 +149,7 @@ class MasterForm extends React.Component {
 
   nextButton(){
     let currentStep = this.state.currentStep;
-    if(currentStep <6){
+    if(currentStep <5){
       return (
         <button
           className="btn btn-primary float-right"
