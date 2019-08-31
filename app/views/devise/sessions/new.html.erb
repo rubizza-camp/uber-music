@@ -1,15 +1,15 @@
 <div class="text-center" style="justify-content: center">
-  <h2>Log in</h2>
+  <h2>Вход</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <center><label for="email">Email</label></center>
-      <center><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email...", style: "width: 30%" %></center>
+      <center><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 30%" %></center>
     </div>
     <br/>
     <div class="field">
       <center><label for="password">Пароль</label></center>
-      <center><%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password..." , style: "width: 30%"%></center>
+      <center><%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 30%"%></center>
     </div>
     <br/>
     <% if devise_mapping.rememberable? %>

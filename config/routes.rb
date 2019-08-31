@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#page'
+  post '/organizations/check_time', to: 'organizations#check_time'
   devise_for :users
   ActiveAdmin.routes(self)
   resources :genres

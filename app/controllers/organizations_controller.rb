@@ -21,6 +21,11 @@ class OrganizationsController < ApplicationController
     redirect_to action: :show, id: @organization.id
   end
 
+  def check_time
+    @organization = Organization.find(params[:organization][:organization_id])
+    render json: time_equals
+  end
+
   def new
     @organization = Organization.new
   end
@@ -105,12 +110,18 @@ class OrganizationsController < ApplicationController
   end
 
   def message_for_organization
-    times = ['20:00-21:00', '21:00-22:00', '22:00-23:00']
-    flash[:message] = "Ваш период для создания мероприятия: #{times.rotate(check_group)[0]}"
-    times.rotate(check_group)[0]
+    flash[:message] = "Ваш период для создания мероприятия: #{time_for_group}"
   end
 
   def check_group
     (@organization.group - (Time.new.to_date - Date.new(2019, 1, 1)).to_i % 3).abs
+  end
+
+  def time_equals
+    Time.new.hour == time_for_group.split('-')[0].split(':')[0].to_i
+  end
+
+  def time_for_group
+    ['20:00-21:00', '21:00-22:00', '22:00-23:00'].rotate(check_group)[0]
   end
 end
