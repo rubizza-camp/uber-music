@@ -17,7 +17,6 @@ export default function Step5(props) {
           value={props.description}
           onChange={props.handleChange}
         />
-        <a className="btn btn-success">Создать</a>
       </div>
     </React.Fragment>
   );

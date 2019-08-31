@@ -12,7 +12,8 @@ export default function Step2(props) {
                    name={'Place'}
                    id={'place'}
                    currentElement={[]}
-                   selector={'#event_place_id'}
+                   dataSender={props.dataSender}
+                   hasError={props.hasError}
       />
     </div>
   );
