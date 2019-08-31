@@ -77,11 +77,13 @@ class MasterForm extends React.Component {
           method: 'POST',
           url: '/events/select_place',
           headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-          data: {place: {place_id: this.state.place_id}},
+          data: {place_id: this.state.place_id},
         })
         .then(function (response) {
+          currentStep = currentStep >= 4? 5: currentStep + 1
           that.setState({
-            not_available_time: response["data"]
+            currentStep: currentStep,
+            not_available_time: response.data.events.map((event) => new Date(event.start_time))
           })
         })
         .catch(function (error) {
@@ -139,6 +141,7 @@ class MasterForm extends React.Component {
     })
   }
 
+
   render() {
     return (
       <React.Fragment>
@@ -167,6 +170,7 @@ class MasterForm extends React.Component {
           currentStep={this.state.currentStep}
           handleChange={this.handleChange}
           date_time={this.state.date_time}
+          not_time ={this.state.not_available_time}
         />
         <Step4
           currentStep={this.state.currentStep}

@@ -9,7 +9,7 @@ export default function Step3(props) {
   return(
     <React.Fragment>
       <div className="form-group">
-        <EventDatePicker date_time={props.date_time}/>
+        <EventDatePicker date_time={props.date_time} busy_time={props.not_time}/>
       </div>
     </React.Fragment>
   );

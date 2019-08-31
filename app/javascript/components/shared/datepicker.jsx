@@ -9,40 +9,27 @@ import axios from "axios";
 
 class EventDatePicker extends React.Component {
   constructor(props) {
+    debugger
     super(props);
     this.state = {
+      busyTime: props.busy_time,
       startDate: new Date(props.date_time)
     };
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   handleChange(date) {
-    this.setState({ startDate: date });
-    axios({
-      method: 'POST',
-      url: '/events/select_place',
-      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-      data: {start_time: date},
-    })
-      .then(function (response) {
-        console.log(response);
-        this.state.takenDates = response.data.events.map((event) => new Date(event.start_time));
-      })
-      .catch(function (error) {
-        console.log(error);
-      })}
+    this.setState({startDate: date});
+  }
 
   render() {
     return (
       <DatePicker
         selected={this.state.startDate}
         onChange={this.handleChange}
-        excludeTimes={[
-          setHours(setMinutes(new Date(), 0), 10),
-          setHours(setMinutes(new Date(), 0), 14),
-          setHours(setMinutes(new Date(), 0), 23),
-          setHours(setMinutes(new Date(), 0), 24)
-        ]}
+        excludeTimes={this.state.busyTime.map((date) => setMinutes(date, 0))
+        }
         showTimeSelect
         timeFormat="HH:mm"
         timeIntervals={60}
