@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +37,7 @@ export default function SelectPlace(props) {
 
   function handleChange(event) {
     setPersonName(event.target.value);
-    document.querySelector(props.selector).value = event.target.value;
+    props.dataSender(event.target.value);
   }
 
   return (
@@ -55,6 +56,7 @@ export default function SelectPlace(props) {
             </MenuItem>
           ))}
         </Select>
+        {props.hasError && <FormHelperText>Это поле обязательно!</FormHelperText>}
       </FormControl>
     </div>
   );

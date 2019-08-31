@@ -16,10 +16,15 @@ class MasterForm extends React.Component {
       organizations: props.organizations,
       places: props.places,
       date_time: Date.now(),
+      not_available_time: '',
       name: '',
       description: '',
       currentStep: 1,
-      data: [],
+      organization_id: '',
+      place_id: '',
+      start_date: '',
+      message: '',
+      hasError: false
     }
   }
 
@@ -36,16 +41,53 @@ class MasterForm extends React.Component {
   }
 
   _next = () => {
-    if(this.state.data){
-
-      let currentStep = this.state.currentStep
-      currentStep = currentStep >= 4? 5: currentStep + 1
-      this.setState({
-        currentStep: currentStep
-      })
+    const that = this
+    let currentStep = this.state.currentStep
+    if(currentStep == 1){
+      if(this.state.organization_id == '')
+        this.setState({hasError: true})
+      else {
+        axios({
+          method: 'POST',
+          url: '/organizations/check_time',
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          data: {organization: {organization_id: this.state.organization_id}},
+        })
+        .then(function (response) {
+          if(response["data"]){
+            currentStep = currentStep >= 4? 5: currentStep + 1
+            that.setState({
+              currentStep: currentStep
+            })
+          }
+          else{
+            that.setState({message: response["data"]})
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
     }
-    else {
-      <Notice message={"Это не ваше время!"} color={"warning"}/>
+    if(currentStep == 2){
+      if(this.state.place_id == '')
+        this.setState({hasError: true})
+      else {
+        axios({
+          method: 'POST',
+          url: '/events/select_place',
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          data: {place: {place_id: this.state.place_id}},
+        })
+        .then(function (response) {
+          that.setState({
+            not_available_time: response["data"]
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
     }
   }
 
@@ -73,20 +115,6 @@ class MasterForm extends React.Component {
 
   nextButton(){
     let currentStep = this.state.currentStep;
-    if(currentStep == 1){
-      axios({
-        method: 'POST',
-        url: '/organizations/check_time',
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-        data: {organization: {organization_id: this.state.data}},
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })}
-    }
     if(currentStep <5){
       return (
         <button
@@ -99,16 +127,24 @@ class MasterForm extends React.Component {
     return null;
   }
 
-  dataSender = (data) => {
-    console.log(data)
+  organizationDataSender = (data) => {
     this.setState({
-      data: data
+      organization_id: data
+    })
+  }
+
+  placeDataSender = (data) => {
+    this.setState({
+      place_id: data
     })
   }
 
   render() {
     return (
       <React.Fragment>
+      {this.state.message === false &&
+                  <Notice message={"Это не ваше время!"} color={"warning"}/>
+      }
       <h1>Мероприятие</h1>
 
       <form onSubmit={this.handleSubmit}>
@@ -117,12 +153,15 @@ class MasterForm extends React.Component {
           handleChange={this.handleChange}
           organizations={this.state.organizations}
           event={this.state.event}
-          data={this.dataSender}
+          hasError={this.state.hasError}
+          dataSender={this.organizationDataSender}
         />
         <Step2
           currentStep={this.state.currentStep}
           handleChange={this.handleChange}
           places={this.state.places}
+          hasError={this.state.hasError}
+          dataSender={this.placeDataSender}
         />
         <Step3
           currentStep={this.state.currentStep}

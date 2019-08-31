@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   end
 
   def check_time
-    @organization = Organization.find(params[organization[:organization_id]])
+    @organization = Organization.find(params[:organization][:organization_id])
     render json: Time.new.hour == time_for_group.split('-')[0].split(':')[0].to_i
   end
 
@@ -118,6 +118,6 @@ class OrganizationsController < ApplicationController
   end
 
   def time_for_group
-    ['20:00-21:00', '21:00-22:00', '22:00-23:00'].rotate(check_group)[0]
+    ['18:00-21:00', '21:00-22:00', '22:00-23:00'].rotate(check_group)[0]
   end
 end
