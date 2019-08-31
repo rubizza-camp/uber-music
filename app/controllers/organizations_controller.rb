@@ -31,6 +31,7 @@ class OrganizationsController < ApplicationController
     @organization.users << current_user
     if @organization.save!
       set_image(@organization.id, 'Organization', params[:organization][:image])
+      @organization.create_group
       flash[:notice] = 'Организация успешно создана!'
       redirect_to action: :show, id: @organization.id
     else
@@ -78,9 +79,7 @@ class OrganizationsController < ApplicationController
   private
 
   def set_image(id, type, organization_params)
-    if organization_params
-      ImageService.add_images(id, type, params[:organization][:image])
-    end
+    ImageService.add_images(id, type, params[:organization][:image]) if organization_params
   end
 
   def update_basic_attribute(organization_params)
@@ -106,14 +105,9 @@ class OrganizationsController < ApplicationController
   end
 
   def message_for_organization
-    case check_group
-    when 2
-      flash[:message] = 'Ваш период для создания мероприятия: 22:00 - 23:00'
-    when 1
-      flash[:message] = 'Ваш период для создания мероприятия: 21:00 - 22:00'
-    when 0
-      flash[:message] = 'Ваш период для создания мероприятия: 20:00 - 21:00'
-    end
+    times = ['20:00-21:00', '21:00-22:00', '22:00-23:00']
+    flash[:message] = "Ваш период для создания мероприятия: #{times.rotate(check_group)[0]}"
+    times.rotate(check_group)[0]
   end
 
   def check_group
