@@ -1,1 +1,5 @@
-<%= react_component('events/event_index', { events: @events, organizations: current_user.organizations }) %>
+<% if current_user %>
+  <%= react_component('events/event_index', { events: @events, organizations: current_user.organizations }) %>
+<% else %>
+  <%= react_component('events/event_index', { events: @events, organizations: []}) %>
+<% end %>
