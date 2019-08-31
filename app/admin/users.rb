@@ -3,18 +3,6 @@ ActiveAdmin.register User do
   config.per_page = 10
   form partial: 'form'
 
-  controller do
-    def update
-      if params[:user][:image].nil? != true
-        if User.find(params[:id]).image.nil? != true 
-          User.find(params[:id]).image.delete
-        end
-        ImageService.add_image(User.find(params[:id]).id, "User", params[:user][:image])
-      end
-      redirect_to admin_user_path(), id: params[:id]
-    end
-  end
-
   member_action :make_moderator, method: :patch do
     User.find(params[:id]).update(type: 'Moderator')
     flash[:notice] = 'User successfully has become Moderator'
@@ -63,6 +51,34 @@ ActiveAdmin.register User do
   remove_filter :user_genres, :musician_skill_users, :pending_musician_skill_users,
                 :disabled_musician_skill_users, :approved_musician_skill_users,
                 :user_organizations
+
+  controller do
+  def update
+    if User.find(params[:id]).organizations.nil? != true
+      User.find(params[:id]).user_organizations.clear
+    end
+    params[:user][:organization_ids].each do |x|
+      User.find(params[:id]).organizations << Organization.find([id = x]) if x != ""
+    end
+    if User.find(params[:id]).genres.nil? != true
+      User.find(params[:id]).genres.clear
+    end
+    params[:user][:genre_ids].each do |x|
+      User.find(params[:id]).genres << Genre.find([id = x]) if x != ""
+    end
+
+    User.find(params[:id]).update(first_name: params[:user][:first_name],
+                                  second_name: params[:user][:second_name],
+                                  nickname: params[:user][:nickname],
+                                  email: params[:user][:email])
+    if User.find(params[:id]).image.nil? != true 
+      User.find(params[:id]).image.delete
+    end
+    ImageService.add_image(User.find(params[:id]).id, "User", params[:user][:image]) if params[:user][:images]
+    redirect_to admin_user_path(), id: params[:id]
+    end
+  end
+
 
   index do
     selectable_column
