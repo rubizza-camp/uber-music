@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   end
 
   def check_time
-    @organization = Organization.find(params[organization[:organization_id]])
+    @organization = Organization.find(params[:organization][:organization_id])
     render json: Time.new.hour == time_for_group.split('-')[0].split(':')[0].to_i
   end
 

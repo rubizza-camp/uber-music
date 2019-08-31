@@ -12,7 +12,8 @@ export default function Step1(props) {
                       name={'Organization'}
                       id={'organization'}
                       currentElements={[]}
-                      data={props.data}
+                      dataSender={props.dataSender}
+                      hasError={props.hasError}
       />
     </div>
   );
