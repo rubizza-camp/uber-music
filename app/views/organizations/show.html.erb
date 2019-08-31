@@ -1,5 +1,9 @@
 <%= javascript_pack_tag 'application' %>
+<<<<<<< HEAD
 <% if check_current_organization?(@organization[:id]) %>
+=======
+<% if flash[:message] &&  current_user.organization_ids.index(@organization[:id]) %>
+>>>>>>> Add method in controller for check time for create event
   <%= react_component("shared/information_header", {message: flash[:message], color: 'success'}) %>
 <% end %>
 <%= react_component("organizations/organization_detail", {
