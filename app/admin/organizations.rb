@@ -2,17 +2,6 @@
 ActiveAdmin.register Organization do
   config.per_page = 10
 
-  controller do
-    def update
-      if params[:organization][:image].nil? != true
-        (0...params[:organization][:image].size).each do |x|
-          Image.create(imageable_id: Organization.find(params[:id]).id, imageable_type: "Organization", url: params[:organization][:image][x])
-        end
-      end 
-      redirect_to admin_organization_path(), id: params[:id]
-    end
-  end
-
   remove_filter :user_organizations, :organization_events, :pending_organization_events,
                 :disabled_organization_events, :approved_organization_events
 
@@ -21,6 +10,19 @@ ActiveAdmin.register Organization do
                 organization_event_ids: [],
                 organization_events_attributes:
                 %i[status id organization_id event_id]
+
+  controller do
+    def update
+      Organization.find(params[:id]).update(name: params[:organization][:name],
+                                            description: params[:organization][:description])
+      Organization.find(params[:id]).users.clear
+      params[:organization][:user_ids].each do |x|
+        User.find(id = x).organizations << Organization.find(params[:id]) if x != ""
+      end
+      ImageService.add_image(Organization.find(params[:id]).id, "Organization", params[:organization][:image]) if params[:organization][:images] 
+      redirect_to admin_organization_path(), id: params[:id]
+    end
+  end
 
   index do
     selectable_column

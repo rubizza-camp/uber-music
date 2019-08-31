@@ -54,15 +54,12 @@ ActiveAdmin.register User do
 
   controller do
   def update
-    if User.find(params[:id]).organizations.nil? != true
-      User.find(params[:id]).user_organizations.clear
-    end
+    User.find(params[:id]).user_organizations.clear
     params[:user][:organization_ids].each do |x|
       User.find(params[:id]).organizations << Organization.find([id = x]) if x != ""
     end
-    if User.find(params[:id]).genres.nil? != true
-      User.find(params[:id]).genres.clear
-    end
+
+    User.find(params[:id]).genres.clear
     params[:user][:genre_ids].each do |x|
       User.find(params[:id]).genres << Genre.find([id = x]) if x != ""
     end
