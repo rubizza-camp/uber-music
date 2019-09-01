@@ -1,0 +1,65 @@
+<div class="section text-center" id='event_edit' align="center">
+  <%= form_with model: @event do |f| %>
+    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+      <h2>Изменить мероприятие</h2>
+      <h3>Галлерея</h3>
+      <div class="row">
+        <% @event.images.each do |image| %>
+          <div class="col-3">
+            <img id="<%= image.id%>" src="<%= image.url %>" alt="..." width="200" height="200" style="border-radius: 6px"/>
+            <span class='btn btn-default' id='deleteImage_<%= image.id%>'>Удалить</span>
+            <%= f.hidden_field :delete_img, value: ''%>
+          </div>
+        <% end %>
+      </div>
+      <h3>Новые фотографии</h3>
+      <div class="gallery">
+      </div>
+      <div>
+      <span class="btn btn-raised btn-round btn-default btn-file">
+        <%= f.file_field :image, multiple: true, id: "gallery-photo-add", autocomplete: @event.images.first %>
+      </span>
+      </div>
+      <br/>
+      <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+      <br/>
+    </div>
+    <div class='container' align="center">
+      <div class="col-4">
+        <h3>Название</h3>
+        <br/>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="row">
+      <div class="col-4">
+        <br/>
+        Начало <%= @event.start_time %>
+      </div>
+      <div class="col-4">
+        <br/>
+        Конец <%= @event.end_time %>
+      </div>
+      </div>
+      <br/>
+      <div class="col-8">
+        <h3>Описание</h3>
+        <br/>
+        <%= f.text_area :description,  class: "form-control", rows: '12' %>
+      </div>
+      <br/>
+      <%= f.hidden_field :id, value: @event.id %>
+      <%= f.submit "Обновить", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</div>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        $('#new-image').attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

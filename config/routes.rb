@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     end
   end
   resources :musician_skills
+  post '/events/update', to: 'events#update'
+  post '/events/select_place', to: 'events#select_place'
 end
