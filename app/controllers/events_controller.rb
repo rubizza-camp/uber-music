@@ -26,11 +26,11 @@ class EventsController < ApplicationController
     if @event.save!
       set_image(@event.id, 'Event', params[:event][:image])
       flash[:notice] = 'Событие успешно создано!'
-            render json: @event
+      render json: @event
 
     else
       flash[:alert] = 'Что-то пошло не так, попробуйте еще раз.'
-            render json: @event.errors, status: :unprocessable_entity
+      render json: @event.errors, status: :unprocessable_entity
 
     end
   end
@@ -79,7 +79,7 @@ class EventsController < ApplicationController
 
   def update_organizations(events_params)
     @event.approved_organizations.clear if events_params[:organizations] != ''
-      @event.approved_organizations << Organization.find(events_params[:organizations])
+    @event.approved_organizations << Organization.find(events_params[:organizations])
   end
 
   def set_image(id, type, events_params)

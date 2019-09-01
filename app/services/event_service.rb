@@ -9,11 +9,7 @@ class EventService
                                                   events_params[:start_time]).map do |event|
       event.start_time.hour - event.end_time.hour
     end
-    if org_event_hours.reduce(:+) > 2
-      false
-    else
-      true
-    end
+    org_event_hours.reduce(:+) > 2
   end
 
   def check_musician_skills(events_params)
