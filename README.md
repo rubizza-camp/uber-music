@@ -34,7 +34,7 @@ Telegram bot, add cool notice, registration from different applications(VK, Tele
 - [Roma Tehanov](https://github.com/longbeardmen) - Mentor
 
 
-## License
+## Our project in Heroku
 [Uber-Music](https://fierce-plateau-39575.herokuapp.com/)
 
 
