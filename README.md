@@ -35,7 +35,7 @@ Telegram bot, add cool notice, registration from different applications(VK, Tele
 
 
 ## Our project in Heroku
-[Uber-Music](https://fierce-plateau-39575.herokuapp.com/)
+[Uber-Music](https://uber-music.herokuapp.com/organizations)
 
 
 ## Compatibility
