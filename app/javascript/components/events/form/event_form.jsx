@@ -62,46 +62,8 @@ class MasterForm extends React.Component {
           console.log(error);
         })
       }
-    }else if(currentStep == 2){
-    currentStep = currentStep >= 5? 6: currentStep + 1
-                that.setState({
-                  currentStep: currentStep
-            })
-    }else if(currentStep == 5){
-      axios({
-          method: 'POST',
-          url: '/events',
-          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-          data: {event: {name: this.state.name,
-            description: this.state.description,
-            start_time: new Date(),
-            end_time: new Date(),
-            organizations: this.state.organization_id,
-            place_id: this.state.place_id
-          }},
-        })
-        .then(function (response) {
-          if(response["data"]){
-            currentStep = currentStep >= 5? 6: currentStep + 1
-            that.setState({
-              currentStep: currentStep
-            })
-          }
-          else{
-            that.setState({message: response["data"]})
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
     }
-    else{
-      currentStep = currentStep >= 5? 6: currentStep + 1
-                that.setState({
-                  currentStep: currentStep
-            })
-    }
-    if(currentStep == 2){
+    else if(currentStep == 2){
       if(this.state.place_id == '')
         this.setState({hasError: true})
       else {
@@ -113,29 +75,6 @@ class MasterForm extends React.Component {
         })
         .then(function (response) {
           currentStep = currentStep >= 5? 6: currentStep + 1
-            that.setState({
-              currentStep: currentStep,
-              not_available_time: response.data.events.map((event) => new Date(event.start_time))
-
-            })
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-      }
-    }
-    if(currentStep == 3){
-      if(this.state.place_id == '')
-        this.setState({hasError: true})
-      else {
-        axios({
-          method: 'POST',
-          url: '/events/select_place',
-          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-          data: {place_id: this.state.place_id},
-        })
-        .then(function (response) {
-          currentStep = currentStep >= 4? 5: currentStep + 1
           that.setState({
             currentStep: currentStep,
             not_available_time: response.data.events.map((event) => new Date(event.start_time))
@@ -145,6 +84,47 @@ class MasterForm extends React.Component {
           console.log(error);
         })
       }
+    }
+    else if(currentStep == 3){
+      currentStep = currentStep >= 5? 6: currentStep + 1
+      that.setState({
+        currentStep: currentStep
+      })
+    }
+    else if(currentStep == 4){
+      currentStep = currentStep >= 5? 6: currentStep + 1
+      that.setState({
+        currentStep: currentStep
+      })
+    }
+    else if(currentStep == 5){
+      axios({
+          method: 'POST',
+          url: '/events',
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          data: {event: {name: this.state.name,
+            description: this.state.description,
+            start_time: this.state.start_date,
+            end_time: new Date(),
+            organizations: this.state.organization_id,
+            place_id: this.state.place_id
+          }},
+        })
+        .then(function (response) {
+          currentStep = currentStep >= 5? 6: currentStep + 1
+          that.setState({
+            currentStep: currentStep
+            })
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+    else{
+      currentStep = currentStep >= 5? 6: currentStep + 1
+        that.setState({
+          currentStep: currentStep
+        })
     }
   }
 
@@ -179,6 +159,14 @@ class MasterForm extends React.Component {
           type="button" onClick={this._next}>
         Вперед
         </button>
+      )
+    }else if(currentStep == 5){
+      return(
+        <button
+        className="btn btn-primary float-right"
+        type="button" onClick={this._next}>
+        Создать
+      </button>
       )
     }
     return null;

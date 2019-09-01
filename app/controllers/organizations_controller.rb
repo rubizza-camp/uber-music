@@ -122,6 +122,6 @@ class OrganizationsController < ApplicationController
   end
 
   def time_for_group
-    ['21:00-21:00', '21:00-21:00', '21:00-21:00'].rotate(check_group)[0]
+    ['10:00-10:00', '10:00-10:00', '10:00-10:00'].rotate(check_group)[0]
   end
 end

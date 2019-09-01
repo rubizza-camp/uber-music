@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(name: events_params[:name],
                        description: events_params[:description],
                        start_time: events_params[:start_time],
-                       end_time: events_params[:end_time])
+                       end_time: events_params[:start_time].to_datetime + 2.hour)
     update_place(events_params)
     update_organizations(events_params)
     if @event.save!
