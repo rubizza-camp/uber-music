@@ -1,6 +1,7 @@
 # rubocop:disable all
 ActiveAdmin.register User do
   config.per_page = 10
+  form partial: 'form'
 
   member_action :make_moderator, method: :patch do
     User.find(params[:id]).update(type: 'Moderator')
@@ -51,6 +52,31 @@ ActiveAdmin.register User do
                 :disabled_musician_skill_users, :approved_musician_skill_users,
                 :user_organizations
 
+  controller do
+  def update
+    User.find(params[:id]).user_organizations.clear
+    params[:user][:organization_ids].each do |x|
+      User.find(params[:id]).organizations << Organization.find([id = x]) if x != ""
+    end
+
+    User.find(params[:id]).genres.clear
+    params[:user][:genre_ids].each do |x|
+      User.find(params[:id]).genres << Genre.find([id = x]) if x != ""
+    end
+
+    User.find(params[:id]).update(first_name: params[:user][:first_name],
+                                  second_name: params[:user][:second_name],
+                                  nickname: params[:user][:nickname],
+                                  email: params[:user][:email])
+    if User.find(params[:id]).image.nil? != true 
+      User.find(params[:id]).image.delete
+    end
+    ImageService.add_image(User.find(params[:id]).id, "User", params[:user][:image]) if params[:user][:images]
+    redirect_to admin_user_path(), id: params[:id]
+    end
+  end
+
+
   index do
     selectable_column
     id_column
@@ -90,6 +116,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :organizations, as: :check_boxes
       f.input :genres, as: :check_boxes
+      f.input :image, as: :file
     end
     f.inputs 'Musician skills' do
       f.has_many :musician_skill_users, new_record: false do |e|
