@@ -25,7 +25,7 @@ gem 'active_model_serializers'
 gem 'thor', '~> 0.19.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5.2.0'
