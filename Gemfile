@@ -9,7 +9,7 @@ gem 'activeadmin'
 gem 'rails', '~> 5.2.3'
 # Use Puma as the app server
 gem 'pg'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 5.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
